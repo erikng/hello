@@ -39,6 +39,6 @@ struct helloApp: App {
 // AppDelegate
 class AppDelegate: NSObject, NSApplicationDelegate {
     func applicationDidFinishLaunching(_ notification: Notification) {
-        let something = ""
+        _ = "" // temporary placeholder
     }
 }
