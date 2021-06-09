@@ -9,12 +9,36 @@ import SwiftUI
 
 @main
 struct helloApp: App {
+    @NSApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
     var body: some Scene {
         WindowGroup {
             ContentView()
-                .frame(width: 1000.0, height: 550.0)
-                .ignoresSafeArea(.all)
+                //.fixedSize()
+                .onReceive(NotificationCenter.default.publisher(for: NSApplication.willUpdateNotification), perform: { _ in
+                    for window in NSApplication.shared.windows {
+                        window.standardWindowButton(.closeButton)?.isHidden = true //hides the red close button
+                        window.standardWindowButton(.miniaturizeButton)?.isHidden = true //hides the yellow miniaturize button
+                        window.standardWindowButton(.zoomButton)?.isHidden = false //this removes the green zoom button
+                        window.center() // center
+                        window.isMovable = false // not movable
+                        #if DEBUG
+                            NSApp.activate(ignoringOtherApps: false) // annoying AF when testing in Xcode
+                        #else
+                            NSApp.activate(ignoringOtherApps: true) // bring to forefront upon launch
+                        #endif
+                    }
+                })
+                .frame(width: 1000, height: 550)
+                //.ignoresSafeArea(.all) - macOS 12.0 and higher only
+                .edgesIgnoringSafeArea(.top)
         }
         .windowStyle(.hiddenTitleBar)
+    }
+}
+
+// AppDelegate
+class AppDelegate: NSObject, NSApplicationDelegate {
+    func applicationDidFinishLaunching(_ notification: Notification) {
+        let something = ""
     }
 }
