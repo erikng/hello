@@ -5,9 +5,6 @@
 //  Created by Erik Gomez on 6/8/21.
 //
 
-import AppKit
-import Foundation
-import SystemConfiguration
 import SwiftUI
 
 var placeholderColors: [Color] = [
@@ -57,11 +54,13 @@ struct Utils {
                 return nil
             }
         }
+
         return nil
+        
     }
     
     func getHelloJSONURL() -> String {
-        return helloDefaults.string(forKey: "json-url") ?? "file:///Library/Preferences/com.github.erikng.Hello.json"
+        return helloDefaults.string(forKey: "json-url") ?? "file:///var/tmp/com.github.erikng.Hello.json"
     }
 
     func openMoreInfo(url: String) {
