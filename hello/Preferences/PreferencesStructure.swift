@@ -52,6 +52,7 @@ extension HelloPreferences {
 
 // MARK: - DeviceStage
 struct DeviceStage: Codable {
+    let id: Int
     let title, iconPath, installedPath: String
 }
 
@@ -74,11 +75,13 @@ extension DeviceStage {
     }
 
     func with(
+        id: Int? = nil,
         title: String? = nil,
         iconPath: String? = nil,
         installedPath: String? = nil
     ) -> DeviceStage {
         return DeviceStage(
+            id: id ?? self.id,
             title: title ?? self.title,
             iconPath: iconPath ?? self.iconPath,
             installedPath: installedPath ?? self.installedPath
@@ -96,23 +99,12 @@ extension DeviceStage {
 
 // MARK: - UserExperience
 struct UserExperience: Codable {
-    let companyLogoPath: String
+    let aboutURL, body, companyLogoPath: String
     let disableWelcomeScreen: Bool
-    let aboutURL: String
-    let header: String
-    let body: String
-    let welcomeHeader: String
-    let welcomeBody: String
-    let welcomeButton: String
-    let welcomeScreenItem1Title: String
-    let welcomeScreenItem1Description: String
-    let welcomeScreenItem1ImageName: String
-    let welcomeScreenItem2Title: String
-    let welcomeScreenItem2Description: String
-    let welcomeScreenItem2ImageName: String
+    let header, welcomeBody, welcomeButton, welcomeHeader: String
+    let welcomeScreenItem1Description, welcomeScreenItem1ImageName, welcomeScreenItem1Title, welcomeScreenItem2Description: String
+    let welcomeScreenItem2ImageName, welcomeScreenItem2Title, welcomeScreenItem3Description, welcomeScreenItem3ImageName: String
     let welcomeScreenItem3Title: String
-    let welcomeScreenItem3Description: String
-    let welcomeScreenItem3ImageName: String
 }
 
 // MARK: UserExperience convenience initializers and mutators
@@ -134,42 +126,42 @@ extension UserExperience {
     }
 
     func with(
+        aboutURL: String? = nil,
+        body: String? = nil,
         companyLogoPath: String? = nil,
         disableWelcomeScreen: Bool? = nil,
-        aboutURL: String? = nil,
         header: String? = nil,
-        body: String? = nil,
-        welcomeHeader: String? = nil,
         welcomeBody: String? = nil,
         welcomeButton: String? = nil,
-        welcomeScreenItem1Title: String? = nil,
+        welcomeHeader: String? = nil,
         welcomeScreenItem1Description: String? = nil,
         welcomeScreenItem1ImageName: String? = nil,
-        welcomeScreenItem2Title: String? = nil,
+        welcomeScreenItem1Title: String? = nil,
         welcomeScreenItem2Description: String? = nil,
         welcomeScreenItem2ImageName: String? = nil,
-        welcomeScreenItem3Title: String? = nil,
+        welcomeScreenItem2Title: String? = nil,
         welcomeScreenItem3Description: String? = nil,
-        welcomeScreenItem3ImageName: String? = nil
+        welcomeScreenItem3ImageName: String? = nil,
+        welcomeScreenItem3Title: String? = nil
     ) -> UserExperience {
         return UserExperience(
+            aboutURL: aboutURL ?? self.aboutURL,
+            body: body ?? self.body,
             companyLogoPath: companyLogoPath ?? self.companyLogoPath,
             disableWelcomeScreen: disableWelcomeScreen ?? self.disableWelcomeScreen,
-            aboutURL: aboutURL ?? self.aboutURL,
             header: header ?? self.header,
-            body: body ?? self.body,
-            welcomeHeader: welcomeHeader ?? self.welcomeHeader,
             welcomeBody: welcomeBody ?? self.welcomeBody,
             welcomeButton: welcomeButton ?? self.welcomeButton,
-            welcomeScreenItem1Title: welcomeScreenItem1Title ?? self.welcomeScreenItem1Title,
+            welcomeHeader: welcomeHeader ?? self.welcomeHeader,
             welcomeScreenItem1Description: welcomeScreenItem1Description ?? self.welcomeScreenItem1Description,
-            welcomeScreenItem1ImageName: welcomeScreenItem1Description ?? self.welcomeScreenItem1Description,
-            welcomeScreenItem2Title: welcomeScreenItem1Title ?? self.welcomeScreenItem1Title,
-            welcomeScreenItem2Description: welcomeScreenItem1Description ?? self.welcomeScreenItem1Description,
-            welcomeScreenItem2ImageName: welcomeScreenItem1Description ?? self.welcomeScreenItem1Description,
-            welcomeScreenItem3Title: welcomeScreenItem1Title ?? self.welcomeScreenItem1Title,
-            welcomeScreenItem3Description: welcomeScreenItem1Description ?? self.welcomeScreenItem1Description,
-            welcomeScreenItem3ImageName: welcomeScreenItem1Description ?? self.welcomeScreenItem1Description
+            welcomeScreenItem1ImageName: welcomeScreenItem1ImageName ?? self.welcomeScreenItem1ImageName,
+            welcomeScreenItem1Title: welcomeScreenItem1Title ?? self.welcomeScreenItem1Title,
+            welcomeScreenItem2Description: welcomeScreenItem2Description ?? self.welcomeScreenItem2Description,
+            welcomeScreenItem2ImageName: welcomeScreenItem2ImageName ?? self.welcomeScreenItem2ImageName,
+            welcomeScreenItem2Title: welcomeScreenItem2Title ?? self.welcomeScreenItem2Title,
+            welcomeScreenItem3Description: welcomeScreenItem3Description ?? self.welcomeScreenItem3Description,
+            welcomeScreenItem3ImageName: welcomeScreenItem3ImageName ?? self.welcomeScreenItem3ImageName,
+            welcomeScreenItem3Title: welcomeScreenItem3Title ?? self.welcomeScreenItem3Title
         )
     }
 
