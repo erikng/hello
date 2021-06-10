@@ -7,6 +7,14 @@
 
 import SwiftUI
 
+func randomPlaceholderColor() -> Color {
+  placeholderColors.randomElement()!
+}
+
+var placeholderColors: [Color] = [
+  .red, .blue, .orange, .purple, .yellow, .green, .pink
+]
+
 // ContentView
 struct ContentView: View {
     var body: some View {
@@ -31,7 +39,8 @@ struct TopIcons: View {
                 AsyncImage(url: URL(string: "file:///Applications/Playgrounds.app/Contents/Resources/PlaygroundsAppIcon.icns")) { image in
                     image.resizable()
                 } placeholder: {
-                    Color.secondary
+                    randomPlaceholderColor()
+                        .opacity(0.2)
                 }
                 .aspectRatio(contentMode: .fit)
                 .scaledToFit()
@@ -48,7 +57,8 @@ struct TopIcons: View {
                 AsyncImage(url: URL(string: "file:///Users/Shared/github.png")) { image in
                     image.resizable()
                 } placeholder: {
-                    Color.secondary
+                    randomPlaceholderColor()
+                        .opacity(0.2)
                 }
                 .aspectRatio(contentMode: .fit)
                 .scaledToFit()
@@ -100,7 +110,8 @@ struct StageRow: View {
                 AsyncImage(url: URL(string: "file://\(installstage.icon_path)")) { image in
                     image.resizable()
                 } placeholder: {
-                    Color.secondary
+                    randomPlaceholderColor()
+                        .opacity(0.2)
                 }
                 .aspectRatio(contentMode: .fit)
                 .scaledToFit()
