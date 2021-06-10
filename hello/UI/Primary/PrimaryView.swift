@@ -12,14 +12,7 @@ struct PrimaryView: View {
         VStack{
             TopIcons()
             CompanyText()
-            PrimaryStatus()
-            HStack {
-                Rectangle()
-                    .fill(Color.gray.opacity(0.5))
-                    .frame(height: 1)
-            }
-            .frame(width: 900)
-            SecondaryStatus()
+            Status()
         }
     }
 }

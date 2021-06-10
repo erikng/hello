@@ -22,26 +22,26 @@
     {
       "id": 1,
       "title": "Xcode Command Line Tools",
-      "iconPath": "file:///System/Applications/Utilities/Terminal.app/Contents/Resources/Terminal.icns",
+      "iconPath": "/System/Applications/Utilities/Terminal.app/Contents/Resources/Terminal.icns",
       "installedPath": "/Applications/Xcode.app"
     },
     {
       "id": 2,
       "title": "Visual Studio Code",
-      "iconPath": "file:///Applications/Visual%20Studio%20Code.app/Contents/Resources/Code.icns",
-      "installedPath": "file:///Applications/Visual%20Studio%20Code.app"
+      "iconPath": "/Applications/Visual%20Studio%20Code.app/Contents/Resources/Code.icns",
+      "installedPath": "/Applications/Visual Studio Code.app"
     },
     {
       "id": 3,
       "title": "Slack",
-      "iconPath": "file:///Applications/Slack.app/Contents/Resources/electron.icns",
-      "installedPath": "file:///Applications/Slack.app"
+      "iconPath": "/Applications/Slack.app/Contents/Resources/electron.icns",
+      "installedPath": "/Applications/Slack.app"
     },
     {
       "id": 4,
       "title": "GitHub Desktop",
-      "iconPath": "file:///Applications/GitHub%20Desktop.app/Contents/Resources/electron.icns",
-      "installedPath": "file:///Applications/GitHub%20Desktop.app"
+      "iconPath": "/Applications/GitHub%20Desktop.app/Contents/Resources/electron.icns",
+      "installedPath": "/Applications/GitHub Desktop.app"
     }
   ]
 }

@@ -24,6 +24,10 @@ struct Utils {
         return NSImage(data: imageData as Data)!
     }
     
+    func pathExists(path: String) -> Bool {
+        FileManager.default.fileExists(atPath: path)
+    }
+    
     func getHelloJSONPreferences() -> HelloPreferences? {
         let url = Utils().getHelloJSONURL()
         
