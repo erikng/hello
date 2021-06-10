@@ -16,6 +16,11 @@ struct InstallStage: Identifiable {
 
 let installStages = [
     InstallStage(
+        name: "Xcode Command Line Tools",
+        icon_path: "/System/Applications/Utilities/Terminal.app/Contents/Resources/Terminal.icns",
+        status: "Installed"
+    ),
+    InstallStage(
         name: "Visual Studio Code",
         icon_path: "/Applications/Visual%20Studio%20Code.app/Contents/Resources/Code.icns",
         status: "Installed"
