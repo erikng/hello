@@ -1,0 +1,29 @@
+{
+  "userExperience": {
+    "disableWelcomeScreen": false,
+    "companyLogo" = "",
+    "aboutURL" = "https://github.com/erikng/hello"
+  },
+  "deviceStages": [
+    {
+      "title": "Xcode Command Line Tools",
+      "iconPath": "file:///System/Applications/Utilities/Terminal.app/Contents/Resources/Terminal.icns",
+      "installedPath": "/Applications/Xcode.app"
+    },
+    {
+      "title": "Visual Studio Code",
+      "iconPath": "file:///Applications/Visual%20Studio%20Code.app/Contents/Resources/Code.icns",
+      "installedPath": "file:///Applications/Visual%20Studio%20Code.app"
+    },
+    {
+      "title": "Slack",
+      "iconPath": "file:///Applications/Slack.app/Contents/Resources/electron.icns",
+      "installedPath": "file:///Applications/Slack.app"
+    },
+    {
+      "title": "GitHub Desktop",
+      "iconPath": "file:///Applications/GitHub%20Desktop.app/Contents/Resources/electron.icns",
+      "installedPath": "file:///Applications/GitHub%20Desktop.app"
+    }
+  ]
+}
