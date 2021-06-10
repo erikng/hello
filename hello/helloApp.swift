@@ -13,12 +13,11 @@ struct helloApp: App {
     var body: some Scene {
         WindowGroup {
             ContentView()
-                //.fixedSize()
                 .onReceive(NotificationCenter.default.publisher(for: NSApplication.willUpdateNotification), perform: { _ in
                     for window in NSApplication.shared.windows {
-                        window.standardWindowButton(.closeButton)?.isHidden = true //hides the red close button
-                        window.standardWindowButton(.miniaturizeButton)?.isHidden = true //hides the yellow miniaturize button
-                        window.standardWindowButton(.zoomButton)?.isHidden = false //this removes the green zoom button
+                        window.standardWindowButton(.closeButton)?.isHidden = true // hides the red close button
+                        window.standardWindowButton(.miniaturizeButton)?.isHidden = true // hides the yellow miniaturize button
+                        window.standardWindowButton(.zoomButton)?.isHidden = true // this removes the green zoom button
                         window.center() // center
                         window.isMovable = false // not movable
                         #if DEBUG
@@ -28,11 +27,8 @@ struct helloApp: App {
                         #endif
                     }
                 })
-                .frame(width: 1000, height: 550)
-                //.ignoresSafeArea(.all) - macOS 12.0 and higher only
-                .edgesIgnoringSafeArea(.top)
         }
-        .windowStyle(.hiddenTitleBar)
+        .windowStyle(.hiddenTitleBar) // 24 pixels
     }
 }
 

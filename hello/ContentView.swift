@@ -7,6 +7,22 @@
 
 import SwiftUI
 
+// ContentView
+struct ContentView: View {
+    var body: some View {
+        VStack {
+            TopIcons()
+            CompanyText()
+            PrimaryStatus()
+            HorizontalLine()
+            SecondaryStatus()
+        }
+        .frame(width: 900, height: 550)
+        //.ignoresSafeArea(.all) - macOS 12.0 and higher only
+        .edgesIgnoringSafeArea(.all)
+    }
+}
+
 // TopIcons
 struct TopIcons: View {
     var body: some View {
@@ -45,8 +61,7 @@ struct TopIcons: View {
                     .frame(width: 100, height: 25)
             }
         }
-        .frame(width: 975)
-        .padding(.top, 24)
+        .frame(width: 890) // real width is 1014
     }
 }
 
@@ -70,104 +85,101 @@ struct CompanyText: View {
                     .lineLimit(3)
                     .multilineTextAlignment(.center)
             }
-            .frame(width: 500, alignment: .leading)
+            .frame(width: 495, alignment: .leading)
         }
     }
 }
 
-// CoreStatus
-struct CoreStatus: View {
+// Stage Status (Dynamic Row)
+struct StageRow: View {
+    var installstage: InstallStage
     var body: some View {
         HStack {
-            List(0..<10) { i in
-                VStack {
-                    HStack(spacing: 20) {
-                        Text("\(i+1)")
-                            .font(.body)
-                        if i == 0 {
-                            Image(nsImage: Utils().createImageData(fileImagePath: "/Applications/GitHub Desktop.app/Contents/Resources/electron.icns"))
-                                .resizable()
-                                .aspectRatio(contentMode: .fit)
-                                .scaledToFit()
-                                .frame(width: 40, height: 40)
-                            Text("Github Desktop")
-                                .font(.body)
-                                .fontWeight(.bold)
-                                .frame(width: 700, alignment: .leading)
-                            Image(systemName: "checkmark.circle.fill")
-                                .foregroundColor(.green)
-                            Text("Completed")
-                        }
-                        if i == 1 {
-                            Image(nsImage: Utils().createImageData(fileImagePath: "/Applications/Slack.app/Contents/Resources/electron.icns"))
-                                .resizable()
-                                .aspectRatio(contentMode: .fit)
-                                .scaledToFit()
-                                .frame(width: 40, height: 40)
-                            Text("Slack")
-                                .font(.body)
-                                .fontWeight(.bold)
-                                .frame(width: 700, alignment: .leading)
-                            Image(systemName: "checkmark.circle.fill")
-                                .foregroundColor(.green)
-                            Text("Completed")
-                        }
-                        if i == 2 {
-                            Image(nsImage: Utils().createImageData(fileImagePath: "/Applications/Visual Studio Code.app/Contents/Resources/Code.icns"))
-                                .resizable()
-                                .aspectRatio(contentMode: .fit)
-                                .scaledToFit()
-                                .frame(width: 40, height: 40)
-                            Text("Visual Studio Code")
-                                .font(.body)
-                                .fontWeight(.bold)
-                                .frame(width: 700, alignment: .leading)
-                            ProgressView()
-                                .progressViewStyle(.circular)
-                                .scaleEffect(0.4, anchor: .leading)
-                            Text("Installing")
-                                .padding(.leading, -17.5)
-                        }
-                        Spacer()
-                    }
-                    Rectangle()
-                        .fill(Color.gray.opacity(0.5))
-                        .frame(height: 1)
+            // Icon
+            if #available(macOS 12.0, *) {
+                AsyncImage(url: URL(string: "file://\(installstage.icon_path)")) { image in
+                    image.resizable()
+                } placeholder: {
+                    Color.secondary
                 }
+                .aspectRatio(contentMode: .fit)
+                .scaledToFit()
+                .frame(width: 40, height: 40)
+            } else {
+                Image(nsImage: Utils().createImageData(fileImagePath: "\(installstage.icon_path)"))
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                    .scaledToFit()
+                    .frame(width: 40, height: 40)
             }
-            .frame(width: 975)
+            // Stage Name
+            Text("\(installstage.name)")
+                .font(.body)
+                .fontWeight(.bold)
+            
+            Spacer()
+            
+            // Current Stage Status
+            if installstage.status == "Installed" {
+                Image(systemName: "checkmark.circle.fill")
+                    .foregroundColor(.green)
+            } else if installstage.status == "Installing" {
+                ProgressView()
+                    .progressViewStyle(.circular)
+                    .scaleEffect(0.4)
+            } else if installstage.status == "Pending" {
+                Image(systemName: "gear.circle.fill")
+                    .foregroundColor(.secondary)
+            }
+            Text("\(installstage.status)")
+                .frame(width: 75)
         }
-        .background(Color.secondary.opacity(0.5))
+    }
+}
+
+// PrimaryStatus
+struct PrimaryStatus: View {
+    var body: some View {
+        List(installStages) { stage in
+            VStack(alignment: .leading) {
+                StageRow(installstage: stage)
+                Rectangle()
+                    .fill(Color.gray.opacity(0.5))
+                    .frame(height: 1)
+            }
+            
+        }
+        //.listStyle(.sidebar)
         .cornerRadius(10)
-        .frame(width: 975, height: 325)
+        .frame(width: 876, height: 330)
     }
 }
 
 // SecondaryStatus
+// TODO: Make this actually work
+// TODO: Figure out if this object can be pushed down about 20 pixels so it matches the top part
 struct SecondaryStatus: View {
     var body: some View {
         HStack {
             Button {
-                print("This is a test")
+                Utils().openMoreInfo(url: "https://github.com/erikng/hello")
             } label: {
                 Image(systemName: "questionmark.circle")
             }
             .buttonStyle(.link)
-            Image(nsImage: Utils().createImageData(fileImagePath: "/Applications/Visual Studio Code.app/Contents/Resources/Code.icns"))
+            Image(nsImage: Utils().createImageData(fileImagePath: "/Applications/Slack.app/Contents/Resources/electron.icns"))
                 .resizable()
                 .aspectRatio(contentMode: .fit)
                 .scaledToFit()
                 .frame(width: 30, height: 30)
-                .padding(.leading, 25)
-            Text("Visual Studio Code")
+            Text("Slack")
                 .fontWeight(.bold)
             Text("is installing")
                 .fontWeight(.light)
                 .padding(.leading, -5)
             Spacer()
         }
-        .padding(.top, -5)
-        .frame(width: 975)
+        .frame(width: 876)
     }
 }
 
@@ -179,20 +191,7 @@ struct HorizontalLine: View {
                 .fill(Color.gray.opacity(0.5))
                 .frame(height: 1)
         }
-        .frame(width: 1000)
-    }
-}
-
-struct ContentView: View {
-    var body: some View {
-        VStack(alignment: .center, spacing: 15) {
-            TopIcons()
-            CompanyText()
-            CoreStatus()
-            HorizontalLine()
-            SecondaryStatus()
-        }
-        .frame(width: 1000, height: 620) // + 24 pixels for the hidden titlebar
+        .frame(width: 900)
     }
 }
 
@@ -203,36 +202,3 @@ struct ContentView_Previews: PreviewProvider {
     }
 }
 #endif
-
-struct HostingWindowFinder: NSViewRepresentable {
-    var callback: (NSWindow?) -> ()
-
-    func makeNSView(context: Self.Context) -> NSView {
-        let view = NSView()
-
-        DispatchQueue.main.async { [weak view] in
-            self.callback(view?.window)
-        }
-        return view
-    }
-    func updateNSView(_ nsView: NSView, context: Context) {}
-}
-
-// Stuff if we ever implement fullscreen
-//        let presentationOptions: NSApplication.PresentationOptions = [
-//            .hideDock, // Dock is entirely unavailable. Spotlight menu is disabled.
-//            // .autoHideMenuBar,           // Menu Bar appears when moused to.
-//            // .disableAppleMenu,          // All Apple menu items are disabled.
-//            .disableProcessSwitching      // Cmd+Tab UI is disabled. All Exposé functionality is also disabled.
-//            // .disableForceQuit,             // Cmd+Opt+Esc panel is disabled.
-//            // .disableSessionTermination,    // PowerKey panel and Restart/Shut Down/Log Out are disabled.
-//            // .disableHideApplication,       // Application "Hide" menu item is disabled.
-//            // .autoHideToolbar,
-//            // .fullScreen
-//        ]
-//        let optionsDictionary = [NSView.FullScreenModeOptionKey.fullScreenModeApplicationPresentationOptions: presentationOptions]
-//        if let screen = NSScreen.main {
-//            view.enterFullScreenMode(screen, withOptions: [NSView.FullScreenModeOptionKey.fullScreenModeApplicationPresentationOptions:presentationOptions.rawValue])
-//        }
-//        //view.enterFullScreenMode(NSScreen.main!, withOptions: optionsDictionary)
-
