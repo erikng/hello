@@ -116,11 +116,11 @@
 			children = (
 				03D332512672A46F006135BE /* UI */,
 				03D3324726729161006135BE /* Preferences */,
+				0380EC652670509C00DF4A87 /* Utils.swift */,
 				0380EC682670556200DF4A87 /* Info.plist */,
 				0380EC67267054D900DF4A87 /* hello.entitlements */,
 				0380EC4126704BD900DF4A87 /* Assets.xcassets */,
 				0380EC4326704BD900DF4A87 /* Preview Content */,
-				0380EC652670509C00DF4A87 /* Utils.swift */,
 				03D3324526728DA9006135BE /* com.github.erikng.hello.json */,
 			);
 			path = hello;
