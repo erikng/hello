@@ -9,8 +9,8 @@ import Foundation
 
 // MARK: - HelloPreferences
 struct HelloPreferences: Codable {
-    let userExperience: UserExperience
-    let deviceStages: [DeviceStage]
+    let userExperience: UserExperience?
+    let deviceStages: [DeviceStage]?
 }
 
 // MARK: HelloPreferences convenience initializers and mutators
@@ -32,8 +32,8 @@ extension HelloPreferences {
     }
 
     func with(
-        userExperience: UserExperience? = nil,
-        deviceStages: [DeviceStage]? = nil
+        userExperience: UserExperience?? = nil,
+        deviceStages: [DeviceStage]?? = nil
     ) -> HelloPreferences {
         return HelloPreferences(
             userExperience: userExperience ?? self.userExperience,
@@ -52,8 +52,8 @@ extension HelloPreferences {
 
 // MARK: - DeviceStage
 struct DeviceStage: Codable {
-    let id: Int
-    let title, iconPath, installedPath: String
+    let id: Int?
+    let title, iconPath, installedPath: String?
 }
 
 // MARK: DeviceStage convenience initializers and mutators
@@ -75,10 +75,10 @@ extension DeviceStage {
     }
 
     func with(
-        id: Int? = nil,
-        title: String? = nil,
-        iconPath: String? = nil,
-        installedPath: String? = nil
+        id: Int?? = nil,
+        title: String?? = nil,
+        iconPath: String?? = nil,
+        installedPath: String?? = nil
     ) -> DeviceStage {
         return DeviceStage(
             id: id ?? self.id,
@@ -99,12 +99,12 @@ extension DeviceStage {
 
 // MARK: - UserExperience
 struct UserExperience: Codable {
-    let aboutURL, body, companyLogoPath: String
-    let disableWelcomeScreen: Bool
-    let header, welcomeBody, welcomeButton, welcomeHeader: String
-    let welcomeScreenItem1Description, welcomeScreenItem1ImageName, welcomeScreenItem1Title, welcomeScreenItem2Description: String
-    let welcomeScreenItem2ImageName, welcomeScreenItem2Title, welcomeScreenItem3Description, welcomeScreenItem3ImageName: String
-    let welcomeScreenItem3Title: String
+    let aboutURL, body, companyLogoPath: String?
+    let disableWelcomeScreen: Bool?
+    let header, welcomeBody, welcomeButton, welcomeHeader: String?
+    let welcomeScreenItem1Description, welcomeScreenItem1ImageName, welcomeScreenItem1Title, welcomeScreenItem2Description: String?
+    let welcomeScreenItem2ImageName, welcomeScreenItem2Title, welcomeScreenItem3Description, welcomeScreenItem3ImageName: String?
+    let welcomeScreenItem3Title: String?
 }
 
 // MARK: UserExperience convenience initializers and mutators
@@ -126,23 +126,23 @@ extension UserExperience {
     }
 
     func with(
-        aboutURL: String? = nil,
-        body: String? = nil,
-        companyLogoPath: String? = nil,
-        disableWelcomeScreen: Bool? = nil,
-        header: String? = nil,
-        welcomeBody: String? = nil,
-        welcomeButton: String? = nil,
-        welcomeHeader: String? = nil,
-        welcomeScreenItem1Description: String? = nil,
-        welcomeScreenItem1ImageName: String? = nil,
-        welcomeScreenItem1Title: String? = nil,
-        welcomeScreenItem2Description: String? = nil,
-        welcomeScreenItem2ImageName: String? = nil,
-        welcomeScreenItem2Title: String? = nil,
-        welcomeScreenItem3Description: String? = nil,
-        welcomeScreenItem3ImageName: String? = nil,
-        welcomeScreenItem3Title: String? = nil
+        aboutURL: String?? = nil,
+        body: String?? = nil,
+        companyLogoPath: String?? = nil,
+        disableWelcomeScreen: Bool?? = nil,
+        header: String?? = nil,
+        welcomeBody: String?? = nil,
+        welcomeButton: String?? = nil,
+        welcomeHeader: String?? = nil,
+        welcomeScreenItem1Description: String?? = nil,
+        welcomeScreenItem1ImageName: String?? = nil,
+        welcomeScreenItem1Title: String?? = nil,
+        welcomeScreenItem2Description: String?? = nil,
+        welcomeScreenItem2ImageName: String?? = nil,
+        welcomeScreenItem2Title: String?? = nil,
+        welcomeScreenItem3Description: String?? = nil,
+        welcomeScreenItem3ImageName: String?? = nil,
+        welcomeScreenItem3Title: String?? = nil
     ) -> UserExperience {
         return UserExperience(
             aboutURL: aboutURL ?? self.aboutURL,
