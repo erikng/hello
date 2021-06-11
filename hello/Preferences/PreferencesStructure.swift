@@ -100,7 +100,7 @@ extension DeviceStage {
 // MARK: - UserExperience
 struct UserExperience: Codable {
     let aboutURL, body, companyLogoPath: String?
-    let disableWelcomeScreen: Bool?
+    let disableWelcomeScreen, enableExitScreen: Bool?
     let header, welcomeBody, welcomeButton, welcomeHeader: String?
     let welcomeScreenItem1Description, welcomeScreenItem1ImageName, welcomeScreenItem1Title, welcomeScreenItem2Description: String?
     let welcomeScreenItem2ImageName, welcomeScreenItem2Title, welcomeScreenItem3Description, welcomeScreenItem3ImageName: String?
@@ -130,6 +130,7 @@ extension UserExperience {
         body: String?? = nil,
         companyLogoPath: String?? = nil,
         disableWelcomeScreen: Bool?? = nil,
+        enableExitScreen: Bool?? = nil,
         header: String?? = nil,
         welcomeBody: String?? = nil,
         welcomeButton: String?? = nil,
@@ -149,6 +150,7 @@ extension UserExperience {
             body: body ?? self.body,
             companyLogoPath: companyLogoPath ?? self.companyLogoPath,
             disableWelcomeScreen: disableWelcomeScreen ?? self.disableWelcomeScreen,
+            enableExitScreen: enableExitScreen ?? self.enableExitScreen,
             header: header ?? self.header,
             welcomeBody: welcomeBody ?? self.welcomeBody,
             welcomeButton: welcomeButton ?? self.welcomeButton,

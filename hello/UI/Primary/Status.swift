@@ -20,6 +20,7 @@ struct Status: View {
             List(deviceStages) { stage in
                 VStack(alignment: .leading) {
                     StageRow(settings: settings, installstage: stage)
+                    // TODO: Is this needed still?
                     Rectangle()
                         .fill(Color.gray.opacity(0.5))
                         .frame(height: 1)
@@ -28,13 +29,7 @@ struct Status: View {
             .cornerRadius(10)
             .frame(width: 876, height: 320)
         
-            // Divider
-            HStack {
-                Rectangle()
-                    .fill(Color.gray.opacity(0.5))
-                    .frame(height: 1)
-            }
-            .frame(width: 900)
+            Divider()
             
             // TODO: Learn Swift - This is fucking stupid
             Text(String(self.refreshUI))
@@ -144,10 +139,15 @@ struct StageRow: View {
                     .foregroundColor(.green)
                 Text("Installed")
                     .frame(width: 75)
-                    .onAppear {
-                        settings.applicationInstalling = ""
-                        settings.applicationInstallingIconPath = ""
-                    }
+                if settings.applicationInstalling == installstage.title {
+                    // TODO: Learn Swift - This is fucking stupid
+                    Text(String(self.refreshUI))
+                        .hidden()
+                        .frame(width: 0, height: 0)
+                        .onAppear {
+                            settings.applicationInstalling = ""
+                        }
+                }
             } else {
                 if settings.applicationInstalling == installstage.title || settings.applicationInstalling == "Initializing" || settings.applicationInstalling.isEmpty {
                     ProgressView()

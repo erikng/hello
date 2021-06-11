@@ -15,6 +15,7 @@ let userExperienceJSON = getUserExperienceJSON()
 let aboutURL = userExperienceJSON?.aboutURL ?? "https://github.com/erikng/hello"
 let companyLogoPath = userExperienceJSON?.companyLogoPath ?? ""
 let disableWelcomeScreen = userExperienceJSON?.disableWelcomeScreen ?? false
+let enableExitScreen = userExperienceJSON?.enableExitScreen ?? true
 let header = userExperienceJSON?.header ?? "Setting up your Mac..."
 let bodyText = userExperienceJSON?.body ?? "Your Mac is being automatically configured by your organization. This process may take some time to complete. Please don't attempt to restart or shut down the computer unless you are prompted to do so."
 
