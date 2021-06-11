@@ -72,6 +72,7 @@ struct StageRow: View {
     var body: some View {
         HStack {
             // Icon
+            // TODO: Figure out how to refresh AsyncImage if it fails to download the first time
             if #available(macOS 12.0, *) {
                 AsyncImage(url: URL(string: "file://\(installstage.iconPath)")) { image in
                     image.resizable()
