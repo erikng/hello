@@ -66,6 +66,14 @@ struct Status: View {
                     Text("Provisioning is complete")
                         .fontWeight(.bold)
                     Spacer()
+                    // Normal Quit button
+                    Button {
+                        AppKit.NSApp.terminate(nil)
+                    } label: {
+                        Text("Quit")
+                    }
+                    .keyboardShortcut(.defaultAction)
+
                 }
                 .frame(width: 876)
             } else {
