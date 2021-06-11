@@ -9,6 +9,7 @@ import SwiftUI
 
 class HelloHelper: ObservableObject {
     @Published var hasClickedWelcomeButton = false
+    @Published var hasClickedExitButton = false
     @Published var applicationInstalling = "Initializing"
     @Published var applicationInstallingIconPath = ""
 }
@@ -16,16 +17,23 @@ class HelloHelper: ObservableObject {
 // ContentView
 struct ContentView: View {
     @StateObject var settings = HelloHelper()
-
+    @State var refreshUI = false
     var body: some View {
         VStack {
             if settings.hasClickedWelcomeButton || disableWelcomeScreen {
-                PrimaryView()
-                    .animation(.easeInOut(duration: 1.0))
-                    .transition(.opacity)
+                if settings.hasClickedExitButton {
+                    ExitView()
+                        .animation(.easeInOut(duration: 1.0))
+                        .transition(.opacity)
+                } else {
+                    PrimaryView(settings: settings)
+                        .animation(.easeInOut(duration: 1.0))
+                        .transition(.opacity)
+                }
             } else {
                 WelcomeView(settings: settings)
             }
+            
         }
         .frame(width: 900, height: 550)
         //.textSelection(.enabled) - macOS 12.0 and higher only

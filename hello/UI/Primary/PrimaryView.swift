@@ -8,11 +8,12 @@
 import SwiftUI
 
 struct PrimaryView: View {
+    @ObservedObject var settings: HelloHelper
     var body: some View {
         VStack{
             TopIcons()
             CompanyText()
-            Status()
+            Status(settings: settings)
         }
     }
 }
@@ -20,7 +21,7 @@ struct PrimaryView: View {
 #if DEBUG
 struct PrimaryView_Previews: PreviewProvider {
     static var previews: some View {
-        PrimaryView()
+        PrimaryView(settings: HelloHelper())
     }
 }
 #endif

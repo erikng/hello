@@ -13,7 +13,7 @@ let helloRefreshCycleTimer = Timer.publish(every: Double(2.0), on: .main, in: .c
 
 // Status
 struct Status: View {
-    @StateObject var settings = HelloHelper()
+    @ObservedObject var settings: HelloHelper
     @State var refreshUI = false
     var body: some View {
         VStack {
@@ -67,9 +67,9 @@ struct Status: View {
                         .fontWeight(.bold)
                     Spacer()
                     // Normal Quit button
-                    Button {
+                    Button(action: {
                         AppKit.NSApp.terminate(nil)
-                    } label: {
+                    }) {
                         Text("Quit")
                     }
                     .keyboardShortcut(.defaultAction)
@@ -173,7 +173,7 @@ struct StageRow: View {
 #if DEBUG
 struct Status_Previews: PreviewProvider {
     static var previews: some View {
-        Status()
+        Status(settings: HelloHelper())
     }
 }
 #endif
