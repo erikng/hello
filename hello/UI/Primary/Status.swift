@@ -16,7 +16,7 @@ struct Status: View {
     @State var refreshUI = false
     var body: some View {
         VStack {
-            List(installStages1) { stage in
+            List(deviceStages) { stage in
                 VStack(alignment: .leading) {
                     StageRow(installstage: stage)
                     Rectangle()
@@ -65,17 +65,9 @@ struct Status: View {
     }
 }
 
-struct InstallStage: Codable, Identifiable {
-    var id = UUID()
-    let title: String
-    let iconPath: String
-    let installedPath: String
-    var deviceStage = [DeviceStage]()
-}
-
 // Stage Status (Dynamic Row)
 struct StageRow: View {
-    var installstage: InstallStage
+    var installstage: DeviceStage
     @State var refreshUI = false
     var body: some View {
         HStack {
@@ -135,31 +127,6 @@ struct StageRow: View {
         }
     }
 }
-
-let installStages = deviceStages
-
-let installStages1 = [
-    InstallStage(
-        title: "Xcode Command Line Tools",
-        iconPath: "/System/Applications/Utilities/Terminal.app/Contents/Resources/Terminal.icns",
-        installedPath: "/Applications/Xcode.app"
-    ),
-    InstallStage(
-        title: "Visual Studio Code",
-        iconPath: "/Applications/Visual%20Studio%20Code.app/Contents/Resources/Code.icns",
-        installedPath: "/Applications/Visual Studio Code.app"
-    ),
-    InstallStage(
-        title: "Slack",
-        iconPath: "/Applications/Slack.app/Contents/Resources/electron.icns",
-        installedPath: "/Applications/Slack.app"
-    ),
-    InstallStage(
-        title: "GitHub Desktop",
-        iconPath: "/Applications/GitHub%20Desktop.app/Contents/Resources/electron.icns",
-        installedPath: "/Applications/GitHub Desktop.app"
-    )
-]
 
 #if DEBUG
 struct Status_Previews: PreviewProvider {

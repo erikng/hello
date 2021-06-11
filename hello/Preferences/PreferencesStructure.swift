@@ -51,9 +51,9 @@ extension HelloPreferences {
 }
 
 // MARK: - DeviceStage
-struct DeviceStage: Codable {
-    let id: Int?
-    let title, iconPath, installedPath: String?
+struct DeviceStage: Codable, Identifiable {
+    let id: Int
+    let title, iconPath, installedPath: String
 }
 
 // MARK: DeviceStage convenience initializers and mutators
@@ -75,16 +75,16 @@ extension DeviceStage {
     }
 
     func with(
-        id: Int?? = nil,
-        title: String?? = nil,
-        iconPath: String?? = nil,
-        installedPath: String?? = nil
+        id: Int,
+        title: String,
+        iconPath: String,
+        installedPath: String
     ) -> DeviceStage {
         return DeviceStage(
-            id: id ?? self.id,
-            title: title ?? self.title,
-            iconPath: iconPath ?? self.iconPath,
-            installedPath: installedPath ?? self.installedPath
+            id: id,
+            title: title,
+            iconPath: iconPath,
+            installedPath: installedPath
         )
     }
 
