@@ -9,23 +9,24 @@ import SwiftUI
 
 //TODO: Hook this into the JSON preferences file
 
-let helloRefreshCycleTimer = Timer.publish(every: Double(1), on: .main, in: .common).autoconnect()
+let helloRefreshCycleTimer = Timer.publish(every: Double(2.0), on: .main, in: .common).autoconnect()
 
 // Status
 struct Status: View {
+    @StateObject var settings = HelloHelper()
     @State var refreshUI = false
     var body: some View {
         VStack {
             List(deviceStages) { stage in
                 VStack(alignment: .leading) {
-                    StageRow(installstage: stage)
+                    StageRow(settings: settings, installstage: stage)
                     Rectangle()
                         .fill(Color.gray.opacity(0.5))
                         .frame(height: 1)
                 }
             }
             .cornerRadius(10)
-            .frame(width: 876, height: 330)
+            .frame(width: 876, height: 320)
         
             // Divider
             HStack {
@@ -35,8 +36,7 @@ struct Status: View {
             }
             .frame(width: 900)
             
-            // TODO: Learn Swift
-            // This is fucking stupid
+            // TODO: Learn Swift - This is fucking stupid
             Text(String(self.refreshUI))
                 .hidden()
                 .frame(width: 0, height: 0)
@@ -46,27 +46,52 @@ struct Status: View {
             
             // Secondary Status
             // TODO: Figure out if this object can be pushed down about 20 pixels so it matches the top part
-            HStack {
-                Image(nsImage: Utils().createImageData(fileImagePath: "/Applications/Slack.app/Contents/Resources/electron.icns"))
-                    .resizable()
-                    .aspectRatio(contentMode: .fit)
-                    .scaledToFit()
-                    .frame(width: 30, height: 30)
-                    .padding(.leading, 15)
-                Text("Slack")
-                    .fontWeight(.bold)
-                Text("is installing")
-                    .fontWeight(.light)
-                    .padding(.leading, -5)
-                Spacer()
+            if settings.applicationInstalling == "Initializing" {
+                HStack {
+                    Image(systemName: "circle.dashed.inset.filled")
+                        .foregroundColor(.primary)
+                        .frame(width: 30, height: 30)
+                        .padding(.leading, 15)
+                    Text("Initializing...")
+                        .fontWeight(.bold)
+                    Spacer()
+                }
+                .frame(width: 876)
+            } else if settings.applicationInstalling.isEmpty {
+                HStack {
+                    Image(systemName: "checkmark.circle.fill")
+                        .foregroundColor(.green)
+                        .frame(width: 30, height: 30)
+                        .padding(.leading, 15)
+                    Text("Provisioning is complete")
+                        .fontWeight(.bold)
+                    Spacer()
+                }
+                .frame(width: 876)
+            } else {
+                HStack {
+                    Image(nsImage: Utils().createImageData(fileImagePath: settings.applicationInstallingIconPath))
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .scaledToFit()
+                        .frame(width: 30, height: 30)
+                        .padding(.leading, 15)
+                    Text("\(settings.applicationInstalling)")
+                        .fontWeight(.bold)
+                    Text("is installing")
+                        .fontWeight(.light)
+                        .padding(.leading, -5)
+                    Spacer()
+                }
+                .frame(width: 876)
             }
-            .frame(width: 876)
         }
     }
 }
 
 // Stage Status (Dynamic Row)
 struct StageRow: View {
+    @ObservedObject var settings: HelloHelper
     var installstage: DeviceStage
     @State var refreshUI = false
     var body: some View {
@@ -90,8 +115,7 @@ struct StageRow: View {
                     .scaledToFit()
                     .frame(width: 40, height: 40)
             }
-            // TODO: Learn Swift
-            // This is fucking stupid
+            // TODO: Learn Swift - This is fucking stupid
             Text(String(self.refreshUI))
                 .hidden()
                 .frame(width: 0, height: 0)
@@ -112,18 +136,27 @@ struct StageRow: View {
                     .foregroundColor(.green)
                 Text("Installed")
                     .frame(width: 75)
-            // TODO: Figure out how to make this work
-//            } else if installstage.status == "Installing" {
-//                ProgressView()
-//                    .progressViewStyle(.circular)
-//                    .scaleEffect(0.4)
-//                Text("Installing")
-//                    .frame(width: 75)
+                    .onAppear {
+                        settings.applicationInstalling = ""
+                        settings.applicationInstallingIconPath = ""
+                    }
             } else {
-                Image(systemName: "gear.circle.fill")
-                    .foregroundColor(.secondary)
-                Text("Pending")
-                    .frame(width: 75)
+                if settings.applicationInstalling == installstage.title || settings.applicationInstalling == "Initializing" || settings.applicationInstalling.isEmpty {
+                    ProgressView()
+                        .progressViewStyle(.circular)
+                        .scaleEffect(0.4)
+                    Text("Installing")
+                        .frame(width: 75)
+                        .onAppear {
+                            settings.applicationInstalling = "\(installstage.title)"
+                            settings.applicationInstallingIconPath = "\(installstage.iconPath)"
+                        }
+                } else {
+                    Image(systemName: "gear.circle.fill")
+                        .foregroundColor(.secondary)
+                    Text("Pending")
+                        .frame(width: 75)
+                }
             }
         }
     }

@@ -9,6 +9,8 @@ import SwiftUI
 
 class HelloHelper: ObservableObject {
     @Published var hasClickedWelcomeButton = false
+    @Published var applicationInstalling = "Initializing"
+    @Published var applicationInstallingIconPath = ""
 }
 
 // ContentView
