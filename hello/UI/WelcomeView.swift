@@ -1,5 +1,5 @@
 //
-//  Intro.swift
+//  WelcomeView.swift
 //  hello
 //
 //  Created by Erik Gomez on 6/10/21.
