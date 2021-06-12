@@ -3,6 +3,12 @@
 
 hello is application onboarding macOS devices.
 
+- Inspired by [Kandji's Liftoff](https://www.kandji.io/liftoff)
+- Logo created with [Type with Pride font family](https://www.typewithpride.com)
+
+## Warning
+DO NOT USE THIS IN PRODUCTION! IT IS NOT READY AND MAY NEVER BE READY!
+
 ## OS support
 macOS Big Sur 11.0 and higher
 
