@@ -102,7 +102,7 @@ struct StageRow: View {
             // Icon
             // TODO: Figure out how to refresh AsyncImage if it fails to download the first time
             if #available(macOS 12.0, *) {
-                AsyncImage(url: URL(string: "file://\(installstage.iconPath)")) { image in
+                AsyncImage(url: URL(string: installstage.iconPath)) { image in
                     image.resizable()
                 } placeholder: {
                     Utils().randomPlaceholderColor()
@@ -112,7 +112,7 @@ struct StageRow: View {
                 .scaledToFit()
                 .frame(width: 40, height: 40)
             } else {
-                Image(nsImage: Utils().createImageData(fileImagePath: "\(installstage.iconPath)"))
+                Image(nsImage: Utils().createImageData(fileImagePath: installstage.iconPath))
                     .resizable()
                     .aspectRatio(contentMode: .fit)
                     .scaledToFit()
@@ -156,8 +156,8 @@ struct StageRow: View {
                     Text("Installing")
                         .frame(width: 75)
                         .onAppear {
-                            settings.applicationInstalling = "\(installstage.title)"
-                            settings.applicationInstallingIconPath = "\(installstage.iconPath)"
+                            settings.applicationInstalling = installstage.title
+                            settings.applicationInstallingIconPath = installstage.iconPath
                         }
                 } else {
                     Image(systemName: "gear.circle.fill")

@@ -41,25 +41,25 @@
     {
       "id": 1,
       "title": "Xcode Command Line Tools",
-      "iconPath": "/System/Applications/Utilities/Terminal.app/Contents/Resources/Terminal.icns",
+      "iconPath": "file:///System/Applications/Utilities/Terminal.app/Contents/Resources/Terminal.icns",
       "installedPath": "/Applications/Xcode.app"
     },
     {
       "id": 2,
       "title": "Visual Studio Code",
-      "iconPath": "/var/tmp/vsc.icns",
+      "iconPath": "file:///var/tmp/vsc.icns",
       "installedPath": "/Applications/Visual Studio Code.app"
     },
     {
       "id": 3,
       "title": "Slack",
-      "iconPath": "/var/tmp/slack.icns",
+      "iconPath": "file:///var/tmp/slack.icns",
       "installedPath": "/Applications/Slack.app"
     },
     {
       "id": 4,
       "title": "GitHub Desktop",
-      "iconPath": "/var/tmp/ghd.icns",
+      "iconPath": "file:///var/tmp/ghd.icns",
       "installedPath": "/Applications/GitHub Desktop.app"
     }
   ]

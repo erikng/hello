@@ -10,8 +10,8 @@ import SwiftUI
 class HelloHelper: ObservableObject {
     @Published var hasClickedwelcomeButtonText = false
     @Published var hasClickedExitButton = false
-    // @Published var applicationInstalling = "Initializing"
-    @Published var applicationInstalling = "" // test exitscreen
+    @Published var applicationInstalling = "Initializing"
+    // @Published var applicationInstalling = "" // test exitscreen
     @Published var applicationInstallingIconPath = ""
 }
 
