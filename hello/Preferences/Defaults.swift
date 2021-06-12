@@ -16,8 +16,8 @@ let userExperienceJSON = getUserExperienceJSON()
 // userExperience
 let aboutURL = userExperienceJSON?.aboutURL ?? "https://github.com/erikng/hello"
 let companyLogoPath = userExperienceJSON?.companyLogoPath ?? ""
-let exitScreenBodyText = userExperienceJSON?.exitScreenBodyText ?? "Your Mac has been successfully configured. Below are a few resources to help you get started."
-let exitText = userExperienceJSON?.exitText ?? "Setup complete"
+let completeBodyText = userExperienceJSON?.completeBodyText ?? "Your Mac has been successfully configured. Below are a few resources to help you get started."
+let completeHeaderText = userExperienceJSON?.completeHeaderText ?? "Setup complete"
 let disableWelcomeScreen = userExperienceJSON?.disableWelcomeScreen ?? false
 let disableExitScreen = userExperienceJSON?.disableExitScreen ?? false
 let exitScreenItem1ButtonText = userExperienceJSON?.exitScreenItem1ButtonText ?? ""

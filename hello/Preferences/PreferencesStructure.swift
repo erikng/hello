@@ -99,12 +99,12 @@ extension DeviceStage {
 
 // MARK: - UserExperience
 struct UserExperience: Codable {
-    let aboutURL, companyLogoPath, exitScreenBodyText: String?
+    let aboutURL, companyLogoPath, completeBodyText, completeHeaderText: String?
     let disableWelcomeScreen, disableExitScreen: Bool?
     let exitScreenItem1ButtonText, exitScreenItem1DescriptionText, exitScreenItem1ImagePath, exitScreenItem1LaunchURL, exitScreenItem1Title: String?
     let exitScreenItem2ButtonText, exitScreenItem2DescriptionText, exitScreenItem2ImagePath, exitScreenItem2LaunchURL, exitScreenItem2Title: String?
     let exitScreenItem3ButtonText, exitScreenItem3DescriptionText, exitScreenItem3ImagePath, exitScreenItem3LaunchURL, exitScreenItem3Title: String?
-    let exitText, provisioningBodyText, provisioningHeaderText, quitButtonText, welcomeButtonText, welcomeHeaderText: String?
+    let provisioningBodyText, provisioningHeaderText, quitButtonText, welcomeButtonText, welcomeHeaderText: String?
     let welcomeSubHeaderText, welcomeScreenItem1DescriptionText, welcomeScreenItem1SymbolName: String?
     let welcomeScreenItem1Title, welcomeScreenItem2DescriptionText, welcomeScreenItem2SymbolName, welcomeScreenItem2Title: String?
     let welcomeScreenItem3DescriptionText, welcomeScreenItem3SymbolName, welcomeScreenItem3Title: String?
@@ -131,9 +131,10 @@ extension UserExperience {
     func with(
         aboutURL: String?? = nil,
         companyLogoPath: String?? = nil,
+        completeBodyText: String?? = nil,
+        completeHeaderText: String?? = nil,
         disableWelcomeScreen: Bool?? = nil,
         disableExitScreen: Bool?? = nil,
-        exitScreenBodyText: String?? = nil,
         exitScreenItem1ButtonText: String?? = nil,
         exitScreenItem1DescriptionText: String?? = nil,
         exitScreenItem1ImagePath: String?? = nil,
@@ -149,7 +150,6 @@ extension UserExperience {
         exitScreenItem3ImagePath: String?? = nil,
         exitScreenItem3LaunchURL: String?? = nil,
         exitScreenItem3Title: String?? = nil,
-        exitText: String?? = nil,
         provisioningBodyText: String?? = nil,
         provisioningHeaderText: String?? = nil,
         quitButtonText: String?? = nil,
@@ -169,9 +169,10 @@ extension UserExperience {
         return UserExperience(
             aboutURL: aboutURL ?? self.aboutURL,
             companyLogoPath: companyLogoPath ?? self.companyLogoPath,
+            completeBodyText: completeBodyText ?? self.completeBodyText,
+            completeHeaderText: completeHeaderText ?? self.completeHeaderText,
             disableWelcomeScreen: disableWelcomeScreen ?? self.disableWelcomeScreen,
             disableExitScreen: disableExitScreen ?? self.disableExitScreen,
-            exitScreenBodyText: exitScreenBodyText ?? self.exitScreenBodyText,
             exitScreenItem1ButtonText: exitScreenItem1ButtonText ?? self.exitScreenItem1ButtonText,
             exitScreenItem1DescriptionText: exitScreenItem1DescriptionText ?? self.exitScreenItem1DescriptionText,
             exitScreenItem1ImagePath: exitScreenItem1ImagePath ?? self.exitScreenItem1ImagePath,
@@ -187,7 +188,6 @@ extension UserExperience {
             exitScreenItem3ImagePath: exitScreenItem3ImagePath ?? self.exitScreenItem3ImagePath,
             exitScreenItem3LaunchURL: exitScreenItem3LaunchURL ?? self.exitScreenItem3LaunchURL,
             exitScreenItem3Title: exitScreenItem3Title ?? self.exitScreenItem3Title,
-            exitText: exitText ?? self.exitText,
             provisioningBodyText: provisioningBodyText ?? self.provisioningBodyText,
             provisioningHeaderText: provisioningHeaderText ?? self.provisioningHeaderText,
             quitButtonText: quitButtonText ?? self.quitButtonText,
