@@ -58,14 +58,14 @@ struct Status: View {
                         .foregroundColor(.green)
                         .frame(width: 30, height: 30)
                         .padding(.leading, 15)
-                    Text("Provisioning is complete")
+                    Text(completeHeaderText)
                         .fontWeight(.bold)
                     Spacer()
                     // Normal Quit button
                     Button(action: {
                         AppKit.NSApp.terminate(nil)
                     }) {
-                        Text("Quit")
+                        Text(quitButtonText)
                     }
                     .keyboardShortcut(.defaultAction)
 
@@ -79,7 +79,7 @@ struct Status: View {
                         .scaledToFit()
                         .frame(width: 30, height: 30)
                         .padding(.leading, 15)
-                    Text("\(settings.applicationInstalling)")
+                    Text(settings.applicationInstalling)
                         .fontWeight(.bold)
                     Text("is installing")
                         .fontWeight(.light)
@@ -127,7 +127,7 @@ struct StageRow: View {
                 }
 
             // Stage Name
-            Text("\(installstage.title)")
+            Text(installstage.title)
                 .font(.body)
                 .fontWeight(.bold)
             

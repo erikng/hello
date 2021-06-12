@@ -8,10 +8,10 @@
 import SwiftUI
 
 class HelloHelper: ObservableObject {
-    @Published var hasClickedWelcomeButton = false
+    @Published var hasClickedwelcomeButtonText = false
     @Published var hasClickedExitButton = false
-    @Published var applicationInstalling = "Initializing"
-    // @Published var applicationInstalling = "" // test exitscreen
+    // @Published var applicationInstalling = "Initializing"
+    @Published var applicationInstalling = "" // test exitscreen
     @Published var applicationInstallingIconPath = ""
 }
 
@@ -21,8 +21,8 @@ struct ContentView: View {
     @State var refreshUI = false
     var body: some View {
         VStack {
-            if settings.hasClickedWelcomeButton || disableWelcomeScreen {
-                if settings.applicationInstalling.isEmpty && enableExitScreen {
+            if settings.hasClickedwelcomeButtonText || disableWelcomeScreen {
+                if settings.applicationInstalling.isEmpty && !disableExitScreen {
                     ExitView()
                         .animation(.easeInOut(duration: 1.0))
                         .transition(.opacity)

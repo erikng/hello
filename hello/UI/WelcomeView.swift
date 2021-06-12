@@ -18,9 +18,9 @@ struct WelcomeView: View {
                 .padding(.top, 35)
             WelcomeMiddle()
             Button(action: {
-                settings.hasClickedWelcomeButton = true
+                settings.hasClickedwelcomeButtonText = true
             }) {
-                Text(welcomeButton)
+                Text(welcomeButtonText)
                     .foregroundColor(.white)
                     .font(.headline)
                     .padding()
@@ -72,10 +72,10 @@ struct WelcomeTop: View {
                 }
             }
 
-            Text(welcomeHeader)
+            Text(welcomeHeaderText)
                 .font(.largeTitle)
 
-            Text(welcomeBody)
+            Text(welcomeSubHeaderText)
                 .font(.largeTitle)
                 .foregroundColor(.secondary)
         }
@@ -85,11 +85,11 @@ struct WelcomeTop: View {
 struct WelcomeMiddle: View {
     var body: some View {
         VStack(alignment: .leading) {
-            WelcomeDetails(title: welcomeScreenItem1Title, description: welcomeScreenItem1Description, imageName: welcomeScreenItem1ImageName)
+            WelcomeDetails(title: welcomeScreenItem1Title, description: welcomeScreenItem1DescriptionText, SymbolName: welcomeScreenItem1SymbolName)
 
-            WelcomeDetails(title: welcomeScreenItem2Title, description: welcomeScreenItem2Description, imageName: welcomeScreenItem2ImageName)
+            WelcomeDetails(title: welcomeScreenItem2Title, description: welcomeScreenItem2DescriptionText, SymbolName: welcomeScreenItem2SymbolName)
 
-            WelcomeDetails(title: welcomeScreenItem3Title, description: welcomeScreenItem3Description, imageName: welcomeScreenItem3ImageName)
+            WelcomeDetails(title: welcomeScreenItem3Title, description: welcomeScreenItem3DescriptionText, SymbolName: welcomeScreenItem3SymbolName)
         }
     }
 }
@@ -97,11 +97,11 @@ struct WelcomeMiddle: View {
 struct WelcomeDetails: View {
     var title: String
     var description: String
-    var imageName: String
+    var SymbolName: String
 
     var body: some View {
         HStack(alignment: .center) {
-            Image(systemName: imageName)
+            Image(systemName: SymbolName)
                 .font(.largeTitle)
                 .foregroundColor(.primary)
                 .padding()

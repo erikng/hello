@@ -99,15 +99,15 @@ extension DeviceStage {
 
 // MARK: - UserExperience
 struct UserExperience: Codable {
-    let aboutURL, body, companyLogoPath: String?
-    let disableWelcomeScreen, enableExitScreen: Bool?
-    let exitScreenItem1ButtonText, exitScreenItem1Description, exitScreenItem1ImagePath, exitScreenItem1LaunchURL, exitScreenItem1Title: String?
-    let exitScreenItem2ButtonText, exitScreenItem2Description, exitScreenItem2ImagePath, exitScreenItem2LaunchURL, exitScreenItem2Title: String?
-    let exitScreenItem3ButtonText, exitScreenItem3Description, exitScreenItem3ImagePath, exitScreenItem3LaunchURL, exitScreenItem3Title: String?
-    let header, welcomeBody, welcomeButton: String?
-    let welcomeHeader, welcomeScreenItem1Description, welcomeScreenItem1ImageName: String?
-    let welcomeScreenItem1Title, welcomeScreenItem2Description, welcomeScreenItem2ImageName, welcomeScreenItem2Title: String?
-    let welcomeScreenItem3Description, welcomeScreenItem3ImageName, welcomeScreenItem3Title: String?
+    let aboutURL, companyLogoPath, completeBodyText, completeHeaderText: String?
+    let disableWelcomeScreen, disableExitScreen: Bool?
+    let exitScreenItem1ButtonText, exitScreenItem1DescriptionText, exitScreenItem1ImagePath, exitScreenItem1LaunchURL, exitScreenItem1Title: String?
+    let exitScreenItem2ButtonText, exitScreenItem2DescriptionText, exitScreenItem2ImagePath, exitScreenItem2LaunchURL, exitScreenItem2Title: String?
+    let exitScreenItem3ButtonText, exitScreenItem3DescriptionText, exitScreenItem3ImagePath, exitScreenItem3LaunchURL, exitScreenItem3Title: String?
+    let provisioningBodyText, provisioningHeaderText, quitButtonText, welcomeButtonText, welcomeHeaderText: String?
+    let welcomeSubHeaderText, welcomeScreenItem1DescriptionText, welcomeScreenItem1SymbolName: String?
+    let welcomeScreenItem1Title, welcomeScreenItem2DescriptionText, welcomeScreenItem2SymbolName, welcomeScreenItem2Title: String?
+    let welcomeScreenItem3DescriptionText, welcomeScreenItem3SymbolName, welcomeScreenItem3Title: String?
 }
 
 // MARK: UserExperience convenience initializers and mutators
@@ -130,72 +130,78 @@ extension UserExperience {
 
     func with(
         aboutURL: String?? = nil,
-        body: String?? = nil,
         companyLogoPath: String?? = nil,
+        completeBodyText: String?? = nil,
+        completeHeaderText: String?? = nil,
         disableWelcomeScreen: Bool?? = nil,
-        enableExitScreen: Bool?? = nil,
+        disableExitScreen: Bool?? = nil,
         exitScreenItem1ButtonText: String?? = nil,
-        exitScreenItem1Description: String?? = nil,
+        exitScreenItem1DescriptionText: String?? = nil,
         exitScreenItem1ImagePath: String?? = nil,
         exitScreenItem1LaunchURL: String?? = nil,
         exitScreenItem1Title: String?? = nil,
         exitScreenItem2ButtonText: String?? = nil,
-        exitScreenItem2Description: String?? = nil,
+        exitScreenItem2DescriptionText: String?? = nil,
         exitScreenItem2ImagePath: String?? = nil,
         exitScreenItem2LaunchURL: String?? = nil,
         exitScreenItem2Title: String?? = nil,
         exitScreenItem3ButtonText: String?? = nil,
-        exitScreenItem3Description: String?? = nil,
+        exitScreenItem3DescriptionText: String?? = nil,
         exitScreenItem3ImagePath: String?? = nil,
         exitScreenItem3LaunchURL: String?? = nil,
         exitScreenItem3Title: String?? = nil,
-        header: String?? = nil,
-        welcomeBody: String?? = nil,
-        welcomeButton: String?? = nil,
-        welcomeHeader: String?? = nil,
-        welcomeScreenItem1Description: String?? = nil,
-        welcomeScreenItem1ImageName: String?? = nil,
+        provisioningBodyText: String?? = nil,
+        provisioningHeaderText: String?? = nil,
+        quitButtonText: String?? = nil,
+        welcomeButtonText: String?? = nil,
+        welcomeHeaderText: String?? = nil,
+        welcomeSubHeaderText: String?? = nil,
+        welcomeScreenItem1DescriptionText: String?? = nil,
+        welcomeScreenItem1SymbolName: String?? = nil,
         welcomeScreenItem1Title: String?? = nil,
-        welcomeScreenItem2Description: String?? = nil,
-        welcomeScreenItem2ImageName: String?? = nil,
+        welcomeScreenItem2DescriptionText: String?? = nil,
+        welcomeScreenItem2SymbolName: String?? = nil,
         welcomeScreenItem2Title: String?? = nil,
-        welcomeScreenItem3Description: String?? = nil,
-        welcomeScreenItem3ImageName: String?? = nil,
+        welcomeScreenItem3DescriptionText: String?? = nil,
+        welcomeScreenItem3SymbolName: String?? = nil,
         welcomeScreenItem3Title: String?? = nil
     ) -> UserExperience {
         return UserExperience(
             aboutURL: aboutURL ?? self.aboutURL,
-            body: body ?? self.body,
             companyLogoPath: companyLogoPath ?? self.companyLogoPath,
+            completeBodyText: completeBodyText ?? self.completeBodyText,
+            completeHeaderText: completeHeaderText ?? self.completeHeaderText,
             disableWelcomeScreen: disableWelcomeScreen ?? self.disableWelcomeScreen,
-            enableExitScreen: enableExitScreen ?? self.enableExitScreen,
+            disableExitScreen: disableExitScreen ?? self.disableExitScreen,
             exitScreenItem1ButtonText: exitScreenItem1ButtonText ?? self.exitScreenItem1ButtonText,
-            exitScreenItem1Description: exitScreenItem1Description ?? self.exitScreenItem1Description,
+            exitScreenItem1DescriptionText: exitScreenItem1DescriptionText ?? self.exitScreenItem1DescriptionText,
             exitScreenItem1ImagePath: exitScreenItem1ImagePath ?? self.exitScreenItem1ImagePath,
             exitScreenItem1LaunchURL: exitScreenItem1LaunchURL ?? self.exitScreenItem1LaunchURL,
             exitScreenItem1Title: exitScreenItem1Title ?? self.exitScreenItem1Title,
             exitScreenItem2ButtonText: exitScreenItem2ButtonText ?? self.exitScreenItem2ButtonText,
-            exitScreenItem2Description: exitScreenItem2Description ?? self.exitScreenItem2Description,
+            exitScreenItem2DescriptionText: exitScreenItem2DescriptionText ?? self.exitScreenItem2DescriptionText,
             exitScreenItem2ImagePath: exitScreenItem2ImagePath ?? self.exitScreenItem2ImagePath,
             exitScreenItem2LaunchURL: exitScreenItem2LaunchURL ?? self.exitScreenItem2LaunchURL,
             exitScreenItem2Title: exitScreenItem2Title ?? self.exitScreenItem2Title,
             exitScreenItem3ButtonText: exitScreenItem3ButtonText ?? self.exitScreenItem3ButtonText,
-            exitScreenItem3Description: exitScreenItem3Description ?? self.exitScreenItem3Description,
+            exitScreenItem3DescriptionText: exitScreenItem3DescriptionText ?? self.exitScreenItem3DescriptionText,
             exitScreenItem3ImagePath: exitScreenItem3ImagePath ?? self.exitScreenItem3ImagePath,
             exitScreenItem3LaunchURL: exitScreenItem3LaunchURL ?? self.exitScreenItem3LaunchURL,
             exitScreenItem3Title: exitScreenItem3Title ?? self.exitScreenItem3Title,
-            header: header ?? self.header,
-            welcomeBody: welcomeBody ?? self.welcomeBody,
-            welcomeButton: welcomeButton ?? self.welcomeButton,
-            welcomeHeader: welcomeHeader ?? self.welcomeHeader,
-            welcomeScreenItem1Description: welcomeScreenItem1Description ?? self.welcomeScreenItem1Description,
-            welcomeScreenItem1ImageName: welcomeScreenItem1ImageName ?? self.welcomeScreenItem1ImageName,
+            provisioningBodyText: provisioningBodyText ?? self.provisioningBodyText,
+            provisioningHeaderText: provisioningHeaderText ?? self.provisioningHeaderText,
+            quitButtonText: quitButtonText ?? self.quitButtonText,
+            welcomeButtonText: welcomeButtonText ?? self.welcomeButtonText,
+            welcomeHeaderText: welcomeHeaderText ?? self.welcomeHeaderText,
+            welcomeSubHeaderText: welcomeSubHeaderText ?? self.welcomeSubHeaderText,
+            welcomeScreenItem1DescriptionText: welcomeScreenItem1DescriptionText ?? self.welcomeScreenItem1DescriptionText,
+            welcomeScreenItem1SymbolName: welcomeScreenItem1SymbolName ?? self.welcomeScreenItem1SymbolName,
             welcomeScreenItem1Title: welcomeScreenItem1Title ?? self.welcomeScreenItem1Title,
-            welcomeScreenItem2Description: welcomeScreenItem2Description ?? self.welcomeScreenItem2Description,
-            welcomeScreenItem2ImageName: welcomeScreenItem2ImageName ?? self.welcomeScreenItem2ImageName,
+            welcomeScreenItem2DescriptionText: welcomeScreenItem2DescriptionText ?? self.welcomeScreenItem2DescriptionText,
+            welcomeScreenItem2SymbolName: welcomeScreenItem2SymbolName ?? self.welcomeScreenItem2SymbolName,
             welcomeScreenItem2Title: welcomeScreenItem2Title ?? self.welcomeScreenItem2Title,
-            welcomeScreenItem3Description: welcomeScreenItem3Description ?? self.welcomeScreenItem3Description,
-            welcomeScreenItem3ImageName: welcomeScreenItem3ImageName ?? self.welcomeScreenItem3ImageName,
+            welcomeScreenItem3DescriptionText: welcomeScreenItem3DescriptionText ?? self.welcomeScreenItem3DescriptionText,
+            welcomeScreenItem3SymbolName: welcomeScreenItem3SymbolName ?? self.welcomeScreenItem3SymbolName,
             welcomeScreenItem3Title: welcomeScreenItem3Title ?? self.welcomeScreenItem3Title
         )
     }

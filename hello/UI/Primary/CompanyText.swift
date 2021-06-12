@@ -14,7 +14,7 @@ struct CompanyText: View {
             // Header
             HStack {
                 Spacer()
-                Text(header)
+                Text(provisioningHeaderText)
                     .foregroundColor(.primary)
                     .font(.title)
                     .fontWeight(.medium)
@@ -22,7 +22,7 @@ struct CompanyText: View {
             }
             // Body
             HStack {
-                Text(bodyText)
+                Text(provisioningBodyText)
                     .foregroundColor(.secondary)
                     .lineLimit(3)
                     .multilineTextAlignment(.center)
