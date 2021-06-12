@@ -13,7 +13,13 @@ var placeholderColors: [Color] = [
 
 struct Utils {
     func createImageData(fileImagePath: String) -> NSImage {
-        let urlPath = NSURL(fileURLWithPath: fileImagePath)
+        var mutatedFileImagePath = fileImagePath
+        if mutatedFileImagePath.starts(with: "file://") {
+            mutatedFileImagePath = fileImagePath.replacingOccurrences(of: "file://", with: "")
+        }
+        
+        let urlPath = NSURL(fileURLWithPath: mutatedFileImagePath)
+        
         var imageData = NSData()
         do {
             imageData = try NSData(contentsOf: urlPath as URL)
