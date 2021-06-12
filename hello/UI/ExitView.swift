@@ -13,17 +13,7 @@ struct ExitView: View {
             // Icons
             TopIcons()
             ExitTop()
-            HStack(spacing: 20) {
-                if !exitScreenItem1Title.isEmpty {
-                    ExitMiddleDetails(buttonText: exitScreenItem1ButtonText, description: exitScreenItem1Description, imagePath: exitScreenItem1ImagePath, launchURL: exitScreenItem1LaunchURL, title: exitScreenItem1Title)
-                }
-                if !exitScreenItem2Title.isEmpty {
-                    ExitMiddleDetails(buttonText: exitScreenItem2ButtonText, description: exitScreenItem2Description, imagePath: exitScreenItem2ImagePath, launchURL: exitScreenItem2LaunchURL, title: exitScreenItem2Title)
-                }
-                if !exitScreenItem3Title.isEmpty {
-                    ExitMiddleDetails(buttonText: exitScreenItem3ButtonText, description: exitScreenItem3Description, imagePath: exitScreenItem3ImagePath, launchURL: exitScreenItem3LaunchURL, title: exitScreenItem3Title)
-                }
-            }
+            ExitMiddle()
             Divider()
             ExitBottom()
             
@@ -35,121 +25,69 @@ struct ExitView: View {
 struct ExitTop: View {
     var body: some View {
         VStack {
+            // Hero exit logo
             ZStack {
-                Image(systemName: "person.crop.circle.badge.checkmark")
-                    .font(.title2)
-                    .foregroundColor(.accentColor)
-                    .padding()
-                    .background(
-                        RoundedRectangle(cornerRadius: 10)
-                            .frame(width: 35, height: 35)
-                            .foregroundColor(Color(NSColor.textBackgroundColor))
-                    )
-                    .overlay(
-                        RoundedRectangle(cornerRadius: 10)
-                            .stroke(Color.blue, lineWidth: 3)
-                            .opacity(0.4)
-                            .frame(width: 35, height: 35)
-                    )
-                    .zIndex(3)
-                    .offset(x: -65, y: 0)
-                Image(systemName: "tray.full.fill")
-                    .font(.title)
-                    .foregroundColor(.accentColor)
-                    .padding()
-                    .background(
-                        RoundedRectangle(cornerRadius: 10)
-                            .frame(width: 40, height: 40)
-                            .foregroundColor(Color(NSColor.textBackgroundColor))
-                    )
-                    .overlay(
-                        RoundedRectangle(cornerRadius: 10)
-                            .stroke(Color.blue, lineWidth: 3)
-                            .opacity(0.4)
-                            .frame(width: 40, height: 40)
-                    )
-                    .zIndex(4)
-                    .offset(x: -35, y: -20)
-                Image(systemName: "checkmark.seal.fill")
-                    .font(.largeTitle)
-                    .foregroundColor(.accentColor)
-                    .padding()
-                    .background(
-                        RoundedRectangle(cornerRadius: 10)
-                            .frame(width: 45, height: 45)
-                            .foregroundColor(Color(NSColor.textBackgroundColor))
-                    )
-                    .overlay(
-                        RoundedRectangle(cornerRadius: 10)
-                            .stroke(Color.blue, lineWidth: 3)
-                            .opacity(0.4)
-                            .frame(width: 45, height: 45)
-                    )
-                    .zIndex(5)
-                
-                Image(systemName: "link.circle.fill")
-                    .font(.largeTitle)
-                    .foregroundColor(.accentColor)
-                    .padding()
-                    .background(
-                        RoundedRectangle(cornerRadius: 10)
-                            .frame(width: 45, height: 45)
-                            .foregroundColor(Color(NSColor.textBackgroundColor))
-                    )
-                    .overlay(
-                        RoundedRectangle(cornerRadius: 10)
-                            .stroke(Color.blue, lineWidth: 3)
-                            .opacity(0.4)
-                            .frame(width: 45, height: 45)
-                    )
-                    .zIndex(4)
-                    .offset(x: 35, y: -20)
-                Image(systemName: "arrow.down.doc.fill")
-                    .font(.title)
-                    .foregroundColor(.accentColor)
-                    .padding()
-                    .background(
-                        RoundedRectangle(cornerRadius: 10)
-                            .frame(width: 40, height: 40)
-                            .foregroundColor(Color(NSColor.textBackgroundColor))
-                    )
-                    .overlay(
-                        RoundedRectangle(cornerRadius: 10)
-                            .stroke(Color.blue, lineWidth: 3)
-                            .opacity(0.4)
-                            .frame(width: 40, height: 40)
-                    )
-                    .zIndex(3)
-                    .offset(x: 65, y: 0)
-                Image(systemName: "folder.fill")
-                    .font(.title2)
-                    .foregroundColor(.accentColor)
-                    .padding()
-                    .background(
-                        RoundedRectangle(cornerRadius: 10)
-                            .frame(width: 35, height: 35)
-                            .foregroundColor(Color(NSColor.textBackgroundColor))
-                    )
-                    .overlay(
-                        RoundedRectangle(cornerRadius: 10)
-                            .stroke(Color.blue, lineWidth: 3)
-                            .opacity(0.4)
-                            .frame(width: 35, height: 35)
-                    )
-                    .zIndex(0)
-                    .offset(x: 95, y: -20)
+                ExitTopDetails(font: .title2, imageHeight: 35, imageWidth: 35, xOffset: -65, yOffSet: 0, symbolName: "person.crop.circle.badge.checkmark", zIndex: 3)
+                ExitTopDetails(font: .title, imageHeight: 40, imageWidth: 40, xOffset: -35, yOffSet: -20, symbolName: "tray.full.fill", zIndex: 4)
+                ExitTopDetails(font: .largeTitle, imageHeight: 45, imageWidth: 45, xOffset: 0, yOffSet: 0, symbolName: "checkmark.seal.fill", zIndex: 5)
+                ExitTopDetails(font: .largeTitle, imageHeight: 45, imageWidth: 45, xOffset: 35, yOffSet: -20, symbolName: "link.circle.fill", zIndex: 4)
+                ExitTopDetails(font: .title, imageHeight: 40, imageWidth: 40, xOffset: 65, yOffSet: 0, symbolName: "arrow.down.doc.fill", zIndex: 3)
+                ExitTopDetails(font: .title, imageHeight: 35, imageWidth: 35, xOffset: 95, yOffSet: -20, symbolName: "folder.fill", zIndex: 0)
             }
             
-            Text("Setup complete")
+            Text(completeHeaderText)
                 .font(.largeTitle)
             // Body
             HStack {
-                Text("Your Mac has been successfully configured. Below are a few resources to help you get started.")
+                Text(completeBodyText)
                     .foregroundColor(.secondary)
                     .lineLimit(3)
                     .multilineTextAlignment(.center)
             }
             .frame(width: 495, alignment: .leading)
+        }
+    }
+}
+
+struct ExitTopDetails: View {
+    var font: Font
+    var imageHeight, imageWidth, xOffset, yOffSet: CGFloat
+    var symbolName: String
+    var zIndex: Double
+    
+    var body: some View {
+        Image(systemName: symbolName)
+            .font(font)
+            .foregroundColor(.accentColor)
+            .padding()
+            .background(
+                RoundedRectangle(cornerRadius: 10)
+                    .frame(width: imageWidth, height: imageHeight)
+                    .foregroundColor(Color(NSColor.textBackgroundColor))
+            )
+            .overlay(
+                RoundedRectangle(cornerRadius: 10)
+                    .stroke(Color.blue, lineWidth: 3)
+                    .opacity(0.4)
+                    .frame(width: imageWidth, height: imageHeight)
+            )
+            .zIndex(zIndex)
+            .offset(x: xOffset, y: yOffSet)
+    }
+}
+
+struct ExitMiddle: View {
+    var body: some View {
+        HStack(spacing: 20) {
+            if !exitScreenItem1Title.isEmpty {
+                ExitMiddleDetails(buttonText: exitScreenItem1ButtonText, description: exitScreenItem1DescriptionText, imagePath: exitScreenItem1ImagePath, launchURL: exitScreenItem1LaunchURL, title: exitScreenItem1Title)
+            }
+            if !exitScreenItem2Title.isEmpty {
+                ExitMiddleDetails(buttonText: exitScreenItem2ButtonText, description: exitScreenItem2DescriptionText, imagePath: exitScreenItem2ImagePath, launchURL: exitScreenItem2LaunchURL, title: exitScreenItem2Title)
+            }
+            if !exitScreenItem3Title.isEmpty {
+                ExitMiddleDetails(buttonText: exitScreenItem3ButtonText, description: exitScreenItem3DescriptionText, imagePath: exitScreenItem3ImagePath, launchURL: exitScreenItem3LaunchURL, title: exitScreenItem3Title)
+            }
         }
     }
 }
@@ -218,13 +156,13 @@ struct ExitBottom: View {
             Button(action: {
                 AppKit.NSApp.terminate(nil)
             }) {
-                Text("Quit")
+                Text(quitButtonText)
                     .foregroundColor(.white)
                     .font(.headline)
                     .padding()
                     .frame(minWidth: 0, maxWidth: 500, alignment: .center)
                     .background(RoundedRectangle(cornerRadius: 15, style: .continuous)
-                        .fill(Color.blue))
+                        .fill(Color(NSColor.underPageBackgroundColor)))
                     .padding(.bottom)
             }
             .buttonStyle(.link)
