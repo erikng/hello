@@ -106,8 +106,9 @@ struct UserExperience: Codable {
     let exitScreenItem2ButtonText, exitScreenItem2DescriptionText, exitScreenItem2ImagePath, exitScreenItem2LaunchURL, exitScreenItem2Title: String?
     let exitScreenItem3ButtonText, exitScreenItem3DescriptionText, exitScreenItem3ImagePath, exitScreenItem3LaunchURL, exitScreenItem3Title: String?
     let exitText, provisioningBodyText, provisioningHeaderText, quitButtonText, welcomeButtonText: String?
-    let welcomeHeaderText, welcomeSubHeaderText, welcomeScreenItem1DescriptionText, welcomeScreenItem1SymbolName: String?
-    let welcomeScreenItem1Title, welcomeScreenItem2DescriptionText, welcomeScreenItem2SymbolName, welcomeScreenItem2Title: String?
+    let welcomeHeaderText, welcomeSubHeaderText: String?
+    let welcomeScreenItem1DescriptionText, welcomeScreenItem1SymbolName, welcomeScreenItem1Title: String?
+    let welcomeScreenItem2DescriptionText, welcomeScreenItem2SymbolName, welcomeScreenItem2Title: String?
     let welcomeScreenItem3DescriptionText, welcomeScreenItem3SymbolName, welcomeScreenItem3Title: String?
 }
 
