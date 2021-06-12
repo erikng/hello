@@ -35,11 +35,11 @@ struct ExitTop: View {
                 ExitTopDetails(font: .title, imageHeight: 35, imageWidth: 35, xOffset: 95, yOffSet: -20, symbolName: "folder.fill", zIndex: 0)
             }
             
-            Text(completeHeaderText)
+            Text(exitText)
                 .font(.largeTitle)
             // Body
             HStack {
-                Text(completeBodyText)
+                Text(exitScreenBodyText)
                     .foregroundColor(.secondary)
                     .lineLimit(3)
                     .multilineTextAlignment(.center)

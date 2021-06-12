@@ -58,7 +58,7 @@ struct Status: View {
                         .foregroundColor(.green)
                         .frame(width: 30, height: 30)
                         .padding(.leading, 15)
-                    Text(completeHeaderText)
+                    Text(exitText)
                         .fontWeight(.bold)
                     Spacer()
                     // Normal Quit button
