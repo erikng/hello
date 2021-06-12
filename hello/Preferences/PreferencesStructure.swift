@@ -101,10 +101,13 @@ extension DeviceStage {
 struct UserExperience: Codable {
     let aboutURL, body, companyLogoPath: String?
     let disableWelcomeScreen, enableExitScreen: Bool?
-    let header, welcomeBody, welcomeButton, welcomeHeader: String?
-    let welcomeScreenItem1Description, welcomeScreenItem1ImageName, welcomeScreenItem1Title, welcomeScreenItem2Description: String?
-    let welcomeScreenItem2ImageName, welcomeScreenItem2Title, welcomeScreenItem3Description, welcomeScreenItem3ImageName: String?
-    let welcomeScreenItem3Title: String?
+    let exitScreenItem1ButtonText, exitScreenItem1Description, exitScreenItem1ImagePath, exitScreenItem1LaunchURL, exitScreenItem1Title: String?
+    let exitScreenItem2ButtonText, exitScreenItem2Description, exitScreenItem2ImagePath, exitScreenItem2LaunchURL, exitScreenItem2Title: String?
+    let exitScreenItem3ButtonText, exitScreenItem3Description, exitScreenItem3ImagePath, exitScreenItem3LaunchURL, exitScreenItem3Title: String?
+    let header, welcomeBody, welcomeButton: String?
+    let welcomeHeader, welcomeScreenItem1Description, welcomeScreenItem1ImageName: String?
+    let welcomeScreenItem1Title, welcomeScreenItem2Description, welcomeScreenItem2ImageName, welcomeScreenItem2Title: String?
+    let welcomeScreenItem3Description, welcomeScreenItem3ImageName, welcomeScreenItem3Title: String?
 }
 
 // MARK: UserExperience convenience initializers and mutators
@@ -131,6 +134,21 @@ extension UserExperience {
         companyLogoPath: String?? = nil,
         disableWelcomeScreen: Bool?? = nil,
         enableExitScreen: Bool?? = nil,
+        exitScreenItem1ButtonText: String?? = nil,
+        exitScreenItem1Description: String?? = nil,
+        exitScreenItem1ImagePath: String?? = nil,
+        exitScreenItem1LaunchURL: String?? = nil,
+        exitScreenItem1Title: String?? = nil,
+        exitScreenItem2ButtonText: String?? = nil,
+        exitScreenItem2Description: String?? = nil,
+        exitScreenItem2ImagePath: String?? = nil,
+        exitScreenItem2LaunchURL: String?? = nil,
+        exitScreenItem2Title: String?? = nil,
+        exitScreenItem3ButtonText: String?? = nil,
+        exitScreenItem3Description: String?? = nil,
+        exitScreenItem3ImagePath: String?? = nil,
+        exitScreenItem3LaunchURL: String?? = nil,
+        exitScreenItem3Title: String?? = nil,
         header: String?? = nil,
         welcomeBody: String?? = nil,
         welcomeButton: String?? = nil,
@@ -151,6 +169,21 @@ extension UserExperience {
             companyLogoPath: companyLogoPath ?? self.companyLogoPath,
             disableWelcomeScreen: disableWelcomeScreen ?? self.disableWelcomeScreen,
             enableExitScreen: enableExitScreen ?? self.enableExitScreen,
+            exitScreenItem1ButtonText: exitScreenItem1ButtonText ?? self.exitScreenItem1ButtonText,
+            exitScreenItem1Description: exitScreenItem1Description ?? self.exitScreenItem1Description,
+            exitScreenItem1ImagePath: exitScreenItem1ImagePath ?? self.exitScreenItem1ImagePath,
+            exitScreenItem1LaunchURL: exitScreenItem1LaunchURL ?? self.exitScreenItem1LaunchURL,
+            exitScreenItem1Title: exitScreenItem1Title ?? self.exitScreenItem1Title,
+            exitScreenItem2ButtonText: exitScreenItem2ButtonText ?? self.exitScreenItem2ButtonText,
+            exitScreenItem2Description: exitScreenItem2Description ?? self.exitScreenItem2Description,
+            exitScreenItem2ImagePath: exitScreenItem2ImagePath ?? self.exitScreenItem2ImagePath,
+            exitScreenItem2LaunchURL: exitScreenItem2LaunchURL ?? self.exitScreenItem2LaunchURL,
+            exitScreenItem2Title: exitScreenItem2Title ?? self.exitScreenItem2Title,
+            exitScreenItem3ButtonText: exitScreenItem3ButtonText ?? self.exitScreenItem3ButtonText,
+            exitScreenItem3Description: exitScreenItem3Description ?? self.exitScreenItem3Description,
+            exitScreenItem3ImagePath: exitScreenItem3ImagePath ?? self.exitScreenItem3ImagePath,
+            exitScreenItem3LaunchURL: exitScreenItem3LaunchURL ?? self.exitScreenItem3LaunchURL,
+            exitScreenItem3Title: exitScreenItem3Title ?? self.exitScreenItem3Title,
             header: header ?? self.header,
             welcomeBody: welcomeBody ?? self.welcomeBody,
             welcomeButton: welcomeButton ?? self.welcomeButton,

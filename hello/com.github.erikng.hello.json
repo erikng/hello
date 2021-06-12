@@ -5,6 +5,21 @@
     "companyLogoPath": "",
     "disableWelcomeScreen": false,
     "enableExitScreen": true,
+    "exitScreenItem1ButtonText": "LAUNCH",
+    "exitScreenItem1Description": "Easily install apps and tools provided by your IT department.",
+    "exitScreenItem1ImagePath": "file:///System/Applications/App%20Store.app/Contents/Resources/AppIcon.icns",
+    "exitScreenItem1LaunchURL": "https://google.com",
+    "exitScreenItem1Title": "Self Service",
+    "exitScreenItem2ButtonText": "OPEN",
+    "exitScreenItem2Description": "Everything you need to know to start using your new Mac.",
+    "exitScreenItem2ImagePath": "file:///System/Library/CoreServices/Finder.app/Contents/Resources/Finder.icns",
+    "exitScreenItem2LaunchURL": "https://google.com",
+    "exitScreenItem2Title": "Mac Basics",
+    "exitScreenItem3ButtonText": "OPEN",
+    "exitScreenItem3Description": "Resources and onboarding information for your first day.",
+    "exitScreenItem3ImagePath": "file:///System/Library/CoreServices/HelpViewer.app/Contents/Resources/AppIcon.icns",
+    "exitScreenItem3LaunchURL": "https://google.com",
+    "exitScreenItem3Title": "Wiki",
     "header": "",
     "welcomeBody": "",
     "welcomeButton": "",
@@ -29,19 +44,19 @@
     {
       "id": 2,
       "title": "Visual Studio Code",
-      "iconPath": "/Applications/Visual%20Studio%20Code.app/Contents/Resources/Code.icns",
+      "iconPath": "/var/tmp/vsc.icns",
       "installedPath": "/Applications/Visual Studio Code.app"
     },
     {
       "id": 3,
       "title": "Slack",
-      "iconPath": "/Applications/Slack.app/Contents/Resources/electron.icns",
+      "iconPath": "/var/tmp/slack.icns",
       "installedPath": "/Applications/Slack.app"
     },
     {
       "id": 4,
       "title": "GitHub Desktop",
-      "iconPath": "/Applications/GitHub%20Desktop.app/Contents/Resources/electron.icns",
+      "iconPath": "/var/tmp/ghd.icns",
       "installedPath": "/Applications/GitHub Desktop.app"
     }
   ]

@@ -9,12 +9,21 @@ import SwiftUI
 
 struct ExitView: View {
     var body: some View {
-        VStack(alignment: .center) {
+        VStack(alignment: .center, spacing: 20) {
             // Icons
             TopIcons()
-                .padding(.top, 35)
             ExitTop()
-            ExitMiddle()
+            HStack(spacing: 20) {
+                if !exitScreenItem1Title.isEmpty {
+                    ExitMiddleDetails(buttonText: exitScreenItem1ButtonText, description: exitScreenItem1Description, imagePath: exitScreenItem1ImagePath, launchURL: exitScreenItem1LaunchURL, title: exitScreenItem1Title)
+                }
+                if !exitScreenItem2Title.isEmpty {
+                    ExitMiddleDetails(buttonText: exitScreenItem2ButtonText, description: exitScreenItem2Description, imagePath: exitScreenItem2ImagePath, launchURL: exitScreenItem2LaunchURL, title: exitScreenItem2Title)
+                }
+                if !exitScreenItem3Title.isEmpty {
+                    ExitMiddleDetails(buttonText: exitScreenItem3ButtonText, description: exitScreenItem3Description, imagePath: exitScreenItem3ImagePath, launchURL: exitScreenItem3LaunchURL, title: exitScreenItem3Title)
+                }
+            }
             Divider()
             ExitBottom()
             
@@ -145,14 +154,60 @@ struct ExitTop: View {
     }
 }
 
-struct ExitMiddle: View {
+struct ExitMiddleDetails: View {
+    var buttonText: String
+    var description: String
+    var imagePath: String
+    var launchURL: String
+    var title: String
+    
     var body: some View {
-        VStack(alignment: .leading) {
-            WelcomeDetails(title: welcomeScreenItem1Title, description: welcomeScreenItem1Description, imageName: welcomeScreenItem1ImageName)
-
-            WelcomeDetails(title: welcomeScreenItem2Title, description: welcomeScreenItem2Description, imageName: welcomeScreenItem2ImageName)
-
-            WelcomeDetails(title: welcomeScreenItem3Title, description: welcomeScreenItem3Description, imageName: welcomeScreenItem3ImageName)
+        HStack(alignment: .top) {
+            VStack(spacing: 7.5) {
+                if #available(macOS 12.0, *) {
+                    AsyncImage(url: URL(string: imagePath)) { image in
+                        image.resizable()
+                    } placeholder: {
+                        Utils().randomPlaceholderColor()
+                            .opacity(0)
+                    }
+                    .aspectRatio(contentMode: .fit)
+                    .scaledToFit()
+                    .frame(width: 40, alignment: .center)
+                } else {
+                    Image(nsImage: Utils().createImageData(fileImagePath: imagePath))
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .scaledToFit()
+                        .frame(width: 40, alignment: .center)
+                }
+                Text(title)
+                    .font(.body)
+                    .fontWeight(.bold)
+                Text(description)
+                    .font(.subheadline)
+                    .foregroundColor(.secondary)
+                    .frame(width: 150, alignment: .center)
+                Button(action: {
+                    Utils().openMoreInfo(url:  launchURL)
+                }) {
+                    Text(buttonText)
+                        .foregroundColor(.accentColor)
+                        .font(.headline)
+                        .padding()
+                        .frame(width: 100, height: 25, alignment: .center)
+                        .background(RoundedRectangle(cornerRadius: 15, style: .continuous)
+                            .fill(Color(NSColor.windowBackgroundColor)))
+                        .padding(.bottom)
+                }
+                .buttonStyle(.link)
+            }
+            .background(
+                RoundedRectangle(cornerRadius: 10)
+                    .frame(width: 175, height: 175)
+                    .foregroundColor(Color(NSColor.textBackgroundColor)
+                ))
+            .frame(width: 175, height: 175)
         }
     }
 }
@@ -160,14 +215,21 @@ struct ExitMiddle: View {
 struct ExitBottom: View {
     var body: some View {
         HStack {
-            Spacer()
-            // Normal Quit button
             Button(action: {
                 AppKit.NSApp.terminate(nil)
             }) {
                 Text("Quit")
+                    .foregroundColor(.white)
+                    .font(.headline)
+                    .padding()
+                    .frame(minWidth: 0, maxWidth: 500, alignment: .center)
+                    .background(RoundedRectangle(cornerRadius: 15, style: .continuous)
+                        .fill(Color.blue))
+                    .padding(.bottom)
             }
+            .buttonStyle(.link)
             .keyboardShortcut(.defaultAction)
+            
         }
     }
 }
