@@ -2,8 +2,8 @@
   "userExperience": {
     "aboutURL": "https://github.com/erikng/hello",
     "companyLogoPath": "",
-    "completeBodyText": "Your Mac has been successfully configured. Below are a few resources to help you get started.",
-    "completeHeaderText": "Setup complete",
+    "exitScreenBodyText": "Your Mac has been successfully configured. Below are a few resources to help you get started.",
+    "exitText": "Setup complete",
     "disableExitScreen": false,
     "disableWelcomeScreen": true,
     "exitScreenItem1ButtonText": "LAUNCH",
