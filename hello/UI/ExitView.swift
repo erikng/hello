@@ -27,12 +27,12 @@ struct ExitTop: View {
         VStack {
             // Hero exit logo
             ZStack {
-                ExitTopDetails(font: .title2, imageHeight: 35, imageWidth: 35, xOffset: -65, yOffSet: 0, symbolName: "person.crop.circle.badge.checkmark", zIndex: 3)
-                ExitTopDetails(font: .title, imageHeight: 40, imageWidth: 40, xOffset: -35, yOffSet: -20, symbolName: "tray.full.fill", zIndex: 4)
-                ExitTopDetails(font: .largeTitle, imageHeight: 45, imageWidth: 45, xOffset: 0, yOffSet: 0, symbolName: "checkmark.seal.fill", zIndex: 5)
-                ExitTopDetails(font: .largeTitle, imageHeight: 45, imageWidth: 45, xOffset: 35, yOffSet: -20, symbolName: "link.circle.fill", zIndex: 4)
-                ExitTopDetails(font: .title, imageHeight: 40, imageWidth: 40, xOffset: 65, yOffSet: 0, symbolName: "arrow.down.doc.fill", zIndex: 3)
-                ExitTopDetails(font: .title, imageHeight: 35, imageWidth: 35, xOffset: 95, yOffSet: -20, symbolName: "folder.fill", zIndex: 0)
+                ExitTopDetails(font: .title2, imageHeight: 35, imageWidth: 35, xOffset: -65, yOffSet: 0, symbolName: "person.crop.circle.badge.checkmark", zIndex: 1)
+                ExitTopDetails(font: .title, imageHeight: 40, imageWidth: 40, xOffset: -35, yOffSet: -20, symbolName: "tray.full.fill", zIndex: 2)
+                ExitTopDetails(font: .largeTitle, imageHeight: 45, imageWidth: 45, xOffset: 0, yOffSet: 0, symbolName: "checkmark.seal.fill", zIndex: 3)
+                ExitTopDetails(font: .largeTitle, imageHeight: 45, imageWidth: 45, xOffset: 35, yOffSet: -20, symbolName: "link.circle.fill", zIndex: 2)
+                ExitTopDetails(font: .title, imageHeight: 40, imageWidth: 40, xOffset: 65, yOffSet: 0, symbolName: "arrow.down.doc.fill", zIndex: 1)
+                ExitTopDetails(font: .title2, imageHeight: 35, imageWidth: 35, xOffset: 95, yOffSet: -20, symbolName: "folder.fill", zIndex: 0)
             }
             
             Text(exitText)
@@ -71,8 +71,8 @@ struct ExitTopDetails: View {
                     .opacity(0.4)
                     .frame(width: imageWidth, height: imageHeight)
             )
-            .zIndex(zIndex)
             .offset(x: xOffset, y: yOffSet)
+            .zIndex(zIndex)
     }
 }
 
