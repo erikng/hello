@@ -38,14 +38,14 @@ struct WelcomeView: View {
 struct WelcomeTop: View {
     var body: some View {
         VStack {
-            if #available(macOS 12.0, *) {
-                if companyLogoPath.isEmpty {
-                    Image("HelloIcon")
-                        .resizable()
-                        .aspectRatio(contentMode: .fit)
-                        .scaledToFit()
-                        .frame(width: 150, alignment: .center)
-                } else {
+            if companyLogoPath.isEmpty {
+                Image("HelloIcon")
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                    .scaledToFit()
+                    .frame(width: 150, alignment: .center)
+            } else {
+                if #available(macOS 12.0, *) {
                     AsyncImage(url: URL(string: companyLogoPath)) { image in
                         image.resizable()
                     } placeholder: {
@@ -55,14 +55,6 @@ struct WelcomeTop: View {
                     .aspectRatio(contentMode: .fit)
                     .scaledToFit()
                     .frame(width: 150, alignment: .center)
-                }
-            } else {
-                if companyLogoPath.isEmpty {
-                    Image("HelloIcon")
-                        .resizable()
-                        .aspectRatio(contentMode: .fit)
-                        .scaledToFit()
-                        .frame(width: 150, alignment: .center)
                 } else {
                     Image(nsImage: Utils().createImageData(fileImagePath: companyLogoPath))
                         .resizable()
