@@ -1,0 +1,22 @@
+#!/bin/zsh
+
+sudo /bin/mv "/Applications/GitHub Desktop.app" "/Applications/GitHub Desktop1.app"
+sudo /bin/mv "/Applications/SF Symbols.app" "/Applications/SF Symbols1.app"
+sudo /bin/mv "/Applications/Playgrounds.app" "/Applications/Playgrounds1.app"
+sudo /bin/mv "/Applications/Slack.app" "/Applications/Slack1.app"
+sudo /bin/mv "/Applications/Visual Studio Code.app" "/Applications/Visual Studio Code1.app"
+sudo /bin/mv "/Applications/Xcode.app" "/Applications/Xcode1.app"
+
+/usr/bin/osascript -e 'tell application "/Users/erik/Library/Developer/Xcode/DerivedData/hello-ewlvceqjmxxthvfsdsutzwvuujcl/Build/Products/Debug/hello.app" to activate'
+
+sudo /bin/mv "/Applications/GitHub Desktop1.app" "/Applications/GitHub Desktop.app"
+/bin/sleep 3
+sudo /bin/mv "/Applications/SF Symbols1.app" "/Applications/SF Symbols.app"
+/bin/sleep 3
+sudo /bin/mv "/Applications/Slack1.app" "/Applications/Slack.app"
+/bin/sleep 3
+sudo /bin/mv "/Applications/Playgrounds1.app" "/Applications/Playgrounds.app"
+/bin/sleep 3
+sudo /bin/mv "/Applications/Visual Studio Code1.app" "/Applications/Visual Studio Code.app"
+/bin/sleep 3
+sudo /bin/mv "/Applications/Xcode1.app" "/Applications/Xcode.app"
