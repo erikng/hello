@@ -44,17 +44,26 @@ struct Status: View {
             if settings.applicationInstalling == "Initializing" {
                 HStack {
                     Image(systemName: "circle.dashed.inset.filled")
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .scaledToFit()
                         .foregroundColor(.primary)
                         .frame(width: 30, height: 30)
                         .padding(.leading, 15)
-                    Text("Initializing...")
+                    Text(welcomeSubHeaderText)
                         .fontWeight(.bold)
+                    Text("is initializing")
+                        .fontWeight(.light)
+                        .padding(.leading, -5)
                     Spacer()
                 }
                 .frame(width: 876)
             } else if settings.applicationInstalling.isEmpty {
                 HStack {
                     Image(systemName: "checkmark.circle.fill")
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .scaledToFit()
                         .foregroundColor(.green)
                         .frame(width: 30, height: 30)
                         .padding(.leading, 15)
@@ -73,12 +82,25 @@ struct Status: View {
                 .frame(width: 876)
             } else {
                 HStack {
-                    Image(nsImage: Utils().createImageData(fileImagePath: settings.applicationInstallingIconPath))
-                        .resizable()
+                    if #available(macOS 12.0, *) {
+                        AsyncImage(url: URL(string: settings.applicationInstallingIconPath)) { image in
+                            image.resizable()
+                        } placeholder: {
+                            Utils().randomPlaceholderColor()
+                                .opacity(0.2)
+                        }
                         .aspectRatio(contentMode: .fit)
                         .scaledToFit()
                         .frame(width: 30, height: 30)
                         .padding(.leading, 15)
+                    } else {
+                        Image(nsImage: Utils().createImageData(fileImagePath: settings.applicationInstallingIconPath))
+                            .resizable()
+                            .aspectRatio(contentMode: .fit)
+                            .scaledToFit()
+                            .frame(width: 30, height: 30)
+                            .padding(.leading, 15)
+                    }
                     Text(settings.applicationInstalling)
                         .fontWeight(.bold)
                     Text("is installing")
