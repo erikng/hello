@@ -27,7 +27,7 @@ struct ContentView: View {
                         .animation(.easeInOut(duration: 1.0))
                         .transition(.opacity)
                 } else {
-                    PrimaryView(settings: settings)
+                    ProvisioningView(settings: settings)
                         .animation(.easeInOut(duration: 1.0))
                         .transition(.opacity)
                 }

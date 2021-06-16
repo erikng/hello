@@ -1,5 +1,5 @@
 //
-//  PrimaryView.swift
+//  ProvisioningView.swift
 //  hello
 //
 //  Created by Erik Gomez on 6/10/21.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct PrimaryView: View {
+struct ProvisioningView: View {
     @ObservedObject var settings: HelloHelper
     var body: some View {
         VStack{
@@ -19,9 +19,9 @@ struct PrimaryView: View {
 }
 
 #if DEBUG
-struct PrimaryView_Previews: PreviewProvider {
+struct ProvisioningView_Previews: PreviewProvider {
     static var previews: some View {
-        PrimaryView(settings: HelloHelper())
+        ProvisioningView(settings: HelloHelper())
     }
 }
 #endif
