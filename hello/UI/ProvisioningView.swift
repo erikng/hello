@@ -11,8 +11,8 @@ struct ProvisioningView: View {
     @ObservedObject var settings: HelloHelper
     var body: some View {
         VStack{
-            TopIcons()
-            CompanyText()
+            TopIcons(settings: settings)
+            CompanyText(settings: settings)
             Status(settings: settings)
         }
     }

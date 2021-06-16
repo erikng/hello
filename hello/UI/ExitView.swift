@@ -8,10 +8,11 @@
 import SwiftUI
 
 struct ExitView: View {
+    @ObservedObject var settings: HelloHelper
     var body: some View {
         VStack(alignment: .center, spacing: 20) {
             // Icons
-            TopIcons()
+            TopIcons(settings: settings)
             ExitTop()
             ExitMiddle()
             Divider()
@@ -174,6 +175,6 @@ struct ExitBottom: View {
 
 struct ExitView_Previews: PreviewProvider {
     static var previews: some View {
-        ExitView()
+        ExitView(settings: HelloHelper())
     }
 }

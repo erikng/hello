@@ -7,20 +7,14 @@
 
 import SwiftUI
 
-//TODO: Hook this into the JSON preferences file
-
-let helloRefreshCycleTimer = Timer.publish(every: Double(2.0), on: .main, in: .common).autoconnect()
-
 // Status
 struct Status: View {
     @ObservedObject var settings: HelloHelper
-    @State var refreshUI = false
     var body: some View {
         VStack {
             List(deviceStages) { stage in
                 VStack(alignment: .leading) {
                     StageRow(settings: settings, installstage: stage)
-                    // TODO: Is this needed still?
                     Rectangle()
                         .fill(Color.gray.opacity(0.5))
                         .frame(height: 1)
@@ -31,16 +25,7 @@ struct Status: View {
         
             Divider()
             
-            // TODO: Learn Swift - This is fucking stupid
-            Text(String(self.refreshUI))
-                .hidden()
-                .frame(width: 0, height: 0)
-                .onReceive(helloRefreshCycleTimer) { _ in
-                    self.refreshUI.toggle()
-                }
-            
             // Secondary Status
-            // TODO: Figure out if this object can be pushed down about 20 pixels so it matches the top part
             if settings.applicationInstalling == "Initializing" {
                 HStack {
                     Image(systemName: "circle.dashed.inset.filled")
@@ -70,13 +55,15 @@ struct Status: View {
                     Text(exitText)
                         .fontWeight(.bold)
                     Spacer()
-                    // Normal Quit button
-                    Button(action: {
-                        AppKit.NSApp.terminate(nil)
-                    }) {
-                        Text(quitButtonText)
+                    if disableExitScreen {
+                        // Normal Quit button
+                        Button(action: {
+                            AppKit.NSApp.terminate(nil)
+                        }) {
+                            Text(quitButtonText)
+                        }
+                        .keyboardShortcut(.defaultAction)
                     }
-                    .keyboardShortcut(.defaultAction)
 
                 }
                 .frame(width: 876)
@@ -140,13 +127,6 @@ struct StageRow: View {
                     .scaledToFit()
                     .frame(width: 40, height: 40)
             }
-            // TODO: Learn Swift - This is fucking stupid
-            Text(String(self.refreshUI))
-                .hidden()
-                .frame(width: 0, height: 0)
-                .onReceive(helloRefreshCycleTimer) { _ in
-                    self.refreshUI.toggle()
-                }
 
             // Stage Name
             Text(installstage.title)
@@ -163,7 +143,7 @@ struct StageRow: View {
                     .frame(width: 75)
                 if settings.applicationInstalling == installstage.title {
                     // TODO: Learn Swift - This is fucking stupid
-                    Text(String(self.refreshUI))
+                    Text("")
                         .hidden()
                         .frame(width: 0, height: 0)
                         .onAppear {

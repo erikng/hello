@@ -9,9 +9,9 @@ import Foundation
 
 let helloDefaults = UserDefaults.standard
 let helloJSONPreferences = Utils().getHelloJSONPreferences()
+let helloRefreshCycleTimer = Timer.publish(every: Double(2.0), on: .main, in: .common).autoconnect()
 let deviceStagesJSON = getDeviceStagesJSON()
 let userExperienceJSON = getUserExperienceJSON()
-
 
 // userExperience
 let aboutURL = userExperienceJSON?.aboutURL ?? "https://github.com/erikng/hello"

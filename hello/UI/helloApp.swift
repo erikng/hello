@@ -7,13 +7,28 @@
 
 import SwiftUI
 
+class HelloHelper: ObservableObject {
+    @Published var hasClickedwelcomeButtonText = false
+    @Published var hasClickedExitButton = false
+    @Published var applicationInstalling = "Initializing"
+    // @Published var applicationInstalling = "" // test exitscreen
+    @Published var applicationInstallingIconPath = ""
+    @Published var refreshUI = false
+}
+
+
 @main
 struct helloApp: App {
     @NSApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
+    @StateObject var settings = HelloHelper()
     
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            ContentView(settings: settings)
+            // TODO: See if the .onReceiver can somehow be polled less aggressively and turned into a real declarative UI.
+                .onReceive(helloRefreshCycleTimer) { _ in
+                    settings.refreshUI.toggle()
+                }
                 .onReceive(NotificationCenter.default.publisher(for: NSApplication.willUpdateNotification), perform: { _ in
                     for window in NSApplication.shared.windows {
                         window.standardWindowButton(.closeButton)?.isHidden = true // hides the red close button

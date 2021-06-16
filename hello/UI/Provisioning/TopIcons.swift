@@ -9,6 +9,7 @@ import SwiftUI
 
 // TopIcons
 struct TopIcons: View {
+    @ObservedObject var settings: HelloHelper
     var body: some View {
         HStack(alignment: .top) {
             if #available(macOS 12.0, *) {
@@ -63,7 +64,7 @@ struct TopIcons: View {
 #if DEBUG
 struct TopIcons_Previews: PreviewProvider {
     static var previews: some View {
-        TopIcons()
+        TopIcons(settings: HelloHelper())
     }
 }
 #endif

@@ -7,23 +7,14 @@
 
 import SwiftUI
 
-class HelloHelper: ObservableObject {
-    @Published var hasClickedwelcomeButtonText = false
-    @Published var hasClickedExitButton = false
-    @Published var applicationInstalling = "Initializing"
-    // @Published var applicationInstalling = "" // test exitscreen
-    @Published var applicationInstallingIconPath = ""
-}
-
 // ContentView
 struct ContentView: View {
-    @StateObject var settings = HelloHelper()
-    @State var refreshUI = false
+    @ObservedObject var settings: HelloHelper
     var body: some View {
         VStack {
             if settings.hasClickedwelcomeButtonText || disableWelcomeScreen {
                 if settings.applicationInstalling.isEmpty && !disableExitScreen {
-                    ExitView()
+                    ExitView(settings: settings)
                         .animation(.easeInOut(duration: 1.0))
                         .transition(.opacity)
                 } else {
@@ -34,7 +25,6 @@ struct ContentView: View {
             } else {
                 WelcomeView(settings: settings)
             }
-            
         }
         .frame(width: 900, height: 550)
         //.textSelection(.enabled) - macOS 12.0 and higher only
@@ -58,7 +48,7 @@ struct Divider: View {
 #if DEBUG
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        ContentView(settings: HelloHelper())
     }
 }
 #endif

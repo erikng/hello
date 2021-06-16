@@ -3,7 +3,7 @@
     "aboutURL": "https://github.com/erikng/hello",
     "companyLogoPath": "https://raw.githubusercontent.com/erikng/hello/main/demo/icons/company/hellodemo.png",
     "disableExitScreen": false,
-    "disableWelcomeScreen": false,
+    "disableWelcomeScreen": true,
     "exitScreenBodyText": "Your Mac has been successfully configured. Below are a few resources to help you get started.",
     "exitScreenItem1ButtonText": "LAUNCH",
     "exitScreenItem1DescriptionText": "Easily install apps and tools provided by your IT department.",
