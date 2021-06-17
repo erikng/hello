@@ -27,8 +27,6 @@ struct helloApp: App {
             ContentView(settings: settings)
                 // TODO: See if the .onReceiver can somehow be polled less aggressively and turned into a real declarative UI.
                 .onReceive(helloRefreshCycleTimer) { _ in
-                    print(settings.applicationState)
-                    print(settings.applicationState.isEmpty)
                     settings.refreshUI.toggle()
                 }
                 .onReceive(NotificationCenter.default.publisher(for: NSApplication.willUpdateNotification), perform: { _ in
