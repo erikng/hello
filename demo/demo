@@ -8,7 +8,7 @@ sudo /bin/mv "/Applications/Visual Studio Code.app" "/Applications/Visual Studio
 sudo /bin/mv "/Applications/Xcode.app" "/Applications/Xcode1.app"
 echo "go"
 
-# /usr/bin/osascript -e 'tell application "/Users/erik/Library/Developer/Xcode/DerivedData/hello-ewlvceqjmxxthvfsdsutzwvuujcl/Build/Products/Debug/hello.app" to activate'
+/usr/bin/osascript -e 'tell application "/Applications/hello.app" to activate'
 
 /bin/sleep 10
 
