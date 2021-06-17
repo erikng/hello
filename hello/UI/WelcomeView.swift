@@ -51,7 +51,7 @@ struct WelcomeTop: View {
                         image.resizable()
                     } placeholder: {
                         Utils().randomPlaceholderColor()
-                            .opacity(0.2)
+                            .opacity(0)
                     }
                     .aspectRatio(contentMode: .fit)
                     .scaledToFit()
