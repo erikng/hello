@@ -69,9 +69,8 @@ struct StageRow: View {
                         settings.applicationState[installstage.id] = "installed"
                     }
             } else {
-                // First application in run - send state
-                // TODO: Figure out why this logic does not work when running with welcomeScreen
-                if settings.applicationState.isEmpty {
+                // First stage - auto trigger installing
+                if settings.applicationState.isEmpty && installstage.id == 1 {
                     ProgressView()
                         .progressViewStyle(.circular)
                         .scaleEffect(0.4)
@@ -82,14 +81,14 @@ struct StageRow: View {
                             settings.applicationInstalling = installstage.title
                             settings.applicationInstallingIconPath = installstage.iconPath
                         }
-                // Application has already sent its state so we want to show this view - no need to resend state
+                // Stage has already sent its state - no need to resend
                 } else if settings.applicationState[installstage.id] == "installing" {
                     ProgressView()
                         .progressViewStyle(.circular)
                         .scaleEffect(0.4)
                     Text("Installing")
                         .frame(width: 75)
-                // No application is currently installing - send state
+                // Previous stage has completed - trigger installing
                 } else if settings.applicationState[installstage.id-1] == "installed" {
                     ProgressView()
                         .progressViewStyle(.circular)
@@ -101,6 +100,7 @@ struct StageRow: View {
                             settings.applicationInstalling = installstage.title
                             settings.applicationInstallingIconPath = installstage.iconPath
                         }
+                // Catchall for pending
                 } else {
                     Image(systemName: "gear.circle.fill")
                         .foregroundColor(.secondary)
