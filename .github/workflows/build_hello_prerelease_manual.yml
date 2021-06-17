@@ -1,0 +1,52 @@
+name: Manual build signed hello and upload signed package (prerelease)
+
+on: [workflow_dispatch]
+
+jobs:
+  build:
+    runs-on: macos-11
+
+    steps:
+    - name: Checkout hello repo
+      uses: actions/checkout@v2
+
+    - name: Run build package script
+      run: ./build_hello.zsh "CREATE_PKG"
+
+    - name: get environment variables
+      id: get_env_var
+      run: |
+         echo "HELLO_VERSION=$(/bin/cat ./build_info.txt)" >> $GITHUB_ENV
+
+    - name: Create Pre-Release
+      id: create_pre_release
+      uses: actions/create-release@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        tag_name: v.${{env.HELLO_VERSION}}
+        release_name: hello ${{env.HELLO_VERSION}}
+        body: |
+            # Notes
+            This is a pre-release version of hello created by GitHub Actions.
+            hello.app has not been signed application nor has the package.
+
+            By default hudge looks for a `com.github.erikng.hello.json` file located in `/var/tmp`. If you would like to use an alternative path, look at the code.
+        draft: false
+        prerelease: true
+
+    - name: Upload Signed Package Pre-Release Asset
+      uses: actions/upload-release-asset@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ steps.create_pre_release.outputs.upload_url }}
+        asset_path: ./outputs/hello-${{env.HELLO_VERSION}}.pkg
+        asset_name: hello-${{env.HELLO_VERSION}}.pkg
+        asset_content_type: application/x-newton-compatible-pkg
+
+    - name: Upload packages
+      uses: actions/upload-artifact@v1
+      with:
+        name: packages
+        path: outputs/

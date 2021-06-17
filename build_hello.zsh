@@ -36,7 +36,7 @@ else
   XCODE_BUILD="xcodebuild"
 fi
 # $XCODE_BUILD -project "$TOOLSDIR/hello.xcodeproj" CODE_SIGN_IDENTITY="Apple Distribution: Clever DevOps Co. (9GQZ7KUFR6)"
-$XCODE_BUILD -scheme "hello (Release)" build
+$XCODE_BUILD -project "$TOOLSDIR/hello.xcodeproj" -scheme "hello (Release)" build -derivedDataPath $BUILDSDIR
 XCB_RESULT="$?"
 if [ "${XCB_RESULT}" != "0" ]; then
     echo "Error running xcodebuild: ${XCB_RESULT}" 1>&2
@@ -62,7 +62,7 @@ if [ -e $HELLO_PKG_PATH ]; then
 fi
 /bin/mkdir -p "$HELLO_PKG_PATH/payload/Applications/Utilities"
 /usr/bin/sudo /usr/sbin/chown -R ${CONSOLEUSER}:wheel "$HELLO_PKG_PATH"
-/bin/mv "${BUILDSDIR}/Release/hello.app" "$HELLO_PKG_PATH/payload/Applications/Utilities/hello.app"
+/bin/mv "${BUILDSDIR}/Build/Products/Release/hello.app" "$HELLO_PKG_PATH/payload/Applications/Utilities/hello.app"
 
 # Download specific version of munki-pkg
 echo "Downloading munki-pkg tool from github..."
