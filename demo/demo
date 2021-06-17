@@ -8,7 +8,7 @@ sudo /bin/mv "/Applications/Visual Studio Code.app" "/Applications/Visual Studio
 sudo /bin/mv "/Applications/Xcode.app" "/Applications/Xcode1.app"
 echo "go"
 
-/usr/bin/osascript -e 'tell application "/Applications/hello.app" to activate'
+/usr/bin/open -na /Applications/hello.app --args -json-url https://raw.githubusercontent.com/erikng/hello/main/demo/com.github.erikng.hello.json
 
 /bin/sleep 10
 
