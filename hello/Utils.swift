@@ -12,24 +12,6 @@ var placeholderColors: [Color] = [
 ]
 
 struct Utils {
-    func createImageData(fileImagePath: String) -> NSImage {
-        var mutatedFileImagePath = fileImagePath
-        if mutatedFileImagePath.starts(with: "file://") {
-            mutatedFileImagePath = fileImagePath.replacingOccurrences(of: "file://", with: "")
-        }
-        
-        let urlPath = NSURL(fileURLWithPath: mutatedFileImagePath)
-        
-        var imageData = NSData()
-        do {
-            imageData = try NSData(contentsOf: urlPath as URL)
-        } catch {
-            let errorImageConfig = NSImage.SymbolConfiguration(pointSize: 200, weight: .regular)
-            return NSImage(systemSymbolName: "applelogo", accessibilityDescription: nil)!.withSymbolConfiguration(errorImageConfig)!
-        }
-        return NSImage(data: imageData as Data)!
-    }
-    
     func pathExists(path: String) -> Bool {
         FileManager.default.fileExists(atPath: path)
     }
