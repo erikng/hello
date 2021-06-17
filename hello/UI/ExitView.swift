@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import SDWebImageSwiftUI
 
 struct ExitView: View {
     @ObservedObject var settings: HelloHelper
@@ -114,11 +115,12 @@ struct ExitMiddleDetails: View {
                     .scaledToFit()
                     .frame(width: 40, alignment: .center)
                 } else {
-                    Image(nsImage: Utils().createImageData(fileImagePath: imagePath))
-                        .resizable()
-                        .aspectRatio(contentMode: .fit)
-                        .scaledToFit()
-                        .frame(width: 40, alignment: .center)
+                    WebImage(url: URL(string: imagePath))
+                            .renderingMode(.original)
+                            .resizable()
+                            .aspectRatio(contentMode: .fit)
+                            .scaledToFit()
+                            .frame(width: 40, alignment: .center)
                 }
                 Text(title)
                     .font(.body)

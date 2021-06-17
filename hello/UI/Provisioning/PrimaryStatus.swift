@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import SDWebImageSwiftUI
 
 // Status
 struct PrimaryStatus: View {
@@ -45,11 +46,12 @@ struct StageRow: View {
                 .scaledToFit()
                 .frame(width: 40, height: 40)
             } else {
-                Image(nsImage: Utils().createImageData(fileImagePath: installstage.iconPath))
-                    .resizable()
-                    .aspectRatio(contentMode: .fit)
-                    .scaledToFit()
-                    .frame(width: 40, height: 40)
+                WebImage(url: URL(string: installstage.iconPath))
+                        .renderingMode(.original)
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .scaledToFit()
+                        .frame(width: 40, height: 40)
             }
 
             // Stage Name
