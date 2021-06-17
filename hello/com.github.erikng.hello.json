@@ -1,25 +1,25 @@
 {
   "userExperience": {
     "aboutURL": "https://github.com/erikng/hello",
-    "companyLogoPath": "",
+    "companyLogoPath": "https://raw.githubusercontent.com/erikng/hello/main/demo/icons/company/hellodemo.png",
     "disableExitScreen": false,
     "disableWelcomeScreen": false,
     "exitScreenBodyText": "Your Mac has been successfully configured. Below are a few resources to help you get started.",
     "exitScreenItem1ButtonText": "LAUNCH",
     "exitScreenItem1DescriptionText": "Easily install apps and tools provided by your IT department.",
-    "exitScreenItem1ImagePath": "file:///System/Applications/App%20Store.app/Contents/Resources/AppIcon.icns",
-    "exitScreenItem1LaunchURL": "https://google.com",
+    "exitScreenItem1ImagePath": "https://raw.githubusercontent.com/erikng/hello/main/demo/icons/exit/exitScreenItem1.png",
+    "exitScreenItem1LaunchURL": "file:///Applications/Managed%20Software%20Center.app",
     "exitScreenItem1Title": "Self Service",
     "exitScreenItem2ButtonText": "OPEN",
     "exitScreenItem2DescriptionText": "Everything you need to know to start using your new Mac.",
-    "exitScreenItem2ImagePath": "file:///System/Library/CoreServices/Finder.app/Contents/Resources/Finder.icns",
-    "exitScreenItem2LaunchURL": "https://google.com",
-    "exitScreenItem2Title": "Mac Basics",
-    "exitScreenItem3ButtonText": "OPEN",
-    "exitScreenItem3DescriptionText": "Resources and onboarding information for your first day.",
-    "exitScreenItem3ImagePath": "file:///System/Library/CoreServices/HelpViewer.app/Contents/Resources/AppIcon.icns",
-    "exitScreenItem3LaunchURL": "https://google.com",
-    "exitScreenItem3Title": "Wiki",
+    "exitScreenItem2ImagePath": "https://raw.githubusercontent.com/erikng/hello/main/demo/icons/exit/exitScreenItem2.png",
+    "exitScreenItem2LaunchURL": "https://support.apple.com/guide/mac-help/welcome/mac",
+    "exitScreenItem2Title": "macOS User Guide",
+    "exitScreenItem3ButtonText": "UPDATE",
+    "exitScreenItem3DescriptionText": "Updates may be available for your Mac. It is encouraged to install them.",
+    "exitScreenItem3ImagePath": "https://raw.githubusercontent.com/erikng/hello/main/demo/icons/exit/exitScreenItem3.png",
+    "exitScreenItem3LaunchURL": "file:///System/Library/PreferencePanes/SoftwareUpdate.prefPane",
+    "exitScreenItem3Title": "Software Updates",
     "exitText": "Setup complete",
     "provisioningBodyText": "Your Mac is being automatically configured by your organization. This process may take some time to complete. Please don't attempt to restart or shut down the computer unless you are prompted to do so.",
     "provisioningHeaderText": "Setting up your Mac...",
@@ -40,27 +40,39 @@
   "deviceStages": [
     {
       "id": 1,
-      "title": "Xcode Command Line Tools",
-      "iconPath": "file:///System/Applications/Utilities/Terminal.app/Contents/Resources/Terminal.icns",
-      "installedPath": "/Applications/Xcode.app"
+      "title": "GitHub Desktop",
+      "iconPath": "https://raw.githubusercontent.com/erikng/hello/main/demo/icons/apps/GitHub_Desktop.png",
+      "installedPath": "/Applications/GitHub Desktop.app"
     },
     {
       "id": 2,
-      "title": "Visual Studio Code",
-      "iconPath": "file:///var/tmp/vsc.icns",
-      "installedPath": "/Applications/Visual Studio Code.app"
+      "title": "SF Symbols",
+      "iconPath": "https://raw.githubusercontent.com/erikng/hello/main/demo/icons/apps/SF_Symbols.png",
+      "installedPath": "/Applications/SF Symbols.app"
     },
     {
       "id": 3,
       "title": "Slack",
-      "iconPath": "file:///var/tmp/slack.icns",
+      "iconPath": "https://raw.githubusercontent.com/erikng/hello/main/demo/icons/apps/Slack.png",
       "installedPath": "/Applications/Slack.app"
     },
     {
       "id": 4,
-      "title": "GitHub Desktop",
-      "iconPath": "file:///var/tmp/ghd.icns",
-      "installedPath": "/Applications/GitHub Desktop.app"
+      "title": "Swift Playgrounds",
+      "iconPath": "https://raw.githubusercontent.com/erikng/hello/main/demo/icons/apps/Swift_Playgrounds.png",
+      "installedPath": "/Applications/Playgrounds.app"
+    },
+    {
+      "id": 5,
+      "title": "Visual Studio Code",
+      "iconPath": "https://raw.githubusercontent.com/erikng/hello/main/demo/icons/apps/Visual_Studio_Code.png",
+      "installedPath": "/Applications/Visual Studio Code.app"
+    },
+    {
+      "id": 6,
+      "title": "Xcode",
+      "iconPath": "https://raw.githubusercontent.com/erikng/hello/main/demo/icons/apps/Xcode.png",
+      "installedPath": "/Applications/Xcode.app"
     }
   ]
 }
