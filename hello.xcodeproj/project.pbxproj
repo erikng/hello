@@ -19,7 +19,6 @@
 		0380EC5926704BD900DF4A87 /* helloUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0380EC5826704BD900DF4A87 /* helloUITests.swift */; };
 		0380EC662670509C00DF4A87 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0380EC652670509C00DF4A87 /* Utils.swift */; };
 		03D33244267267E9006135BE /* WelcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03D33243267267E9006135BE /* WelcomeView.swift */; };
-		03D3324626728DA9006135BE /* com.github.erikng.hello.json in Resources */ = {isa = PBXBuildFile; fileRef = 03D3324526728DA9006135BE /* com.github.erikng.hello.json */; };
 		03D3324926729172006135BE /* Defaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03D3324826729172006135BE /* Defaults.swift */; };
 		03D3324C26729238006135BE /* PreferencesStructure.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03D3324B26729238006135BE /* PreferencesStructure.swift */; };
 		03D3324E2672A3EC006135BE /* TopIcons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03D3324D2672A3EC006135BE /* TopIcons.swift */; };
@@ -63,7 +62,6 @@
 		0380EC67267054D900DF4A87 /* hello.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = hello.entitlements; sourceTree = "<group>"; };
 		0380EC682670556200DF4A87 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		03D33243267267E9006135BE /* WelcomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeView.swift; sourceTree = "<group>"; };
-		03D3324526728DA9006135BE /* com.github.erikng.hello.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = com.github.erikng.hello.json; sourceTree = "<group>"; };
 		03D3324826729172006135BE /* Defaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Defaults.swift; sourceTree = "<group>"; };
 		03D3324B26729238006135BE /* PreferencesStructure.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferencesStructure.swift; sourceTree = "<group>"; };
 		03D3324D2672A3EC006135BE /* TopIcons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopIcons.swift; sourceTree = "<group>"; };
@@ -130,7 +128,6 @@
 				0380EC67267054D900DF4A87 /* hello.entitlements */,
 				0380EC4126704BD900DF4A87 /* Assets.xcassets */,
 				0380EC4326704BD900DF4A87 /* Preview Content */,
-				03D3324526728DA9006135BE /* com.github.erikng.hello.json */,
 			);
 			path = hello;
 			sourceTree = "<group>";
@@ -303,7 +300,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				03D3324626728DA9006135BE /* com.github.erikng.hello.json in Resources */,
 				0380EC4526704BD900DF4A87 /* Preview Assets.xcassets in Resources */,
 				0380EC4226704BD900DF4A87 /* Assets.xcassets in Resources */,
 			);
