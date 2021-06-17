@@ -12,8 +12,10 @@ struct ProvisioningView: View {
     var body: some View {
         VStack{
             TopIcons(settings: settings)
-            CompanyText(settings: settings)
-            Status(settings: settings)
+            CompanyText()
+            PrimaryStatus(settings: settings)
+            Divider()
+            SecondaryStatus(settings: settings)
         }
     }
 }

@@ -10,9 +10,9 @@ import SwiftUI
 class HelloHelper: ObservableObject {
     @Published var hasClickedwelcomeButtonText = false
     @Published var hasClickedExitButton = false
-    @Published var applicationInstalling = "Initializing"
-    // @Published var applicationInstalling = "" // test exitscreen
     @Published var applicationInstallingIconPath = ""
+    @Published var applicationInstalling = ""
+    @Published var applicationState = [Int: String]()
     @Published var refreshUI = false
 }
 
@@ -25,8 +25,10 @@ struct helloApp: App {
     var body: some Scene {
         WindowGroup {
             ContentView(settings: settings)
-            // TODO: See if the .onReceiver can somehow be polled less aggressively and turned into a real declarative UI.
+                // TODO: See if the .onReceiver can somehow be polled less aggressively and turned into a real declarative UI.
                 .onReceive(helloRefreshCycleTimer) { _ in
+                    print(settings.applicationState)
+                    print(settings.applicationState.isEmpty)
                     settings.refreshUI.toggle()
                 }
                 .onReceive(NotificationCenter.default.publisher(for: NSApplication.willUpdateNotification), perform: { _ in

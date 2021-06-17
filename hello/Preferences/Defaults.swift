@@ -9,7 +9,7 @@ import Foundation
 
 let helloDefaults = UserDefaults.standard
 let helloJSONPreferences = Utils().getHelloJSONPreferences()
-let helloRefreshCycleTimer = Timer.publish(every: Double(2.0), on: .main, in: .common).autoconnect()
+let helloRefreshCycleTimer = Timer.publish(every: Double(1.0), on: .main, in: .common).autoconnect()
 let deviceStagesJSON = getDeviceStagesJSON()
 let userExperienceJSON = getUserExperienceJSON()
 

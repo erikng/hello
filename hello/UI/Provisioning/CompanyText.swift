@@ -9,7 +9,6 @@ import SwiftUI
 
 // Company Text
 struct CompanyText: View {
-    @ObservedObject var settings: HelloHelper
     var body: some View {
         VStack(spacing: 5) {
             // Header
@@ -36,7 +35,7 @@ struct CompanyText: View {
 #if DEBUG
 struct CompanyText_Previews: PreviewProvider {
     static var previews: some View {
-        CompanyText(settings: HelloHelper())
+        CompanyText()
     }
 }
 #endif

@@ -51,7 +51,7 @@ extension HelloPreferences {
 }
 
 // MARK: - DeviceStage
-struct DeviceStage: Codable, Identifiable {
+struct DeviceStage: Codable, Identifiable, Hashable {
     let id: Int
     let title, iconPath, installedPath: String
 }

@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0305DD11267A9FF7000DA4C7 /* SecondaryStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0305DD10267A9FF7000DA4C7 /* SecondaryStatus.swift */; };
+		0305DD13267AA086000DA4C7 /* Misc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0305DD12267AA086000DA4C7 /* Misc.swift */; };
 		036C17BE2674F0AF006461A9 /* _Notes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 036C17BD2674F0AF006461A9 /* _Notes.swift */; };
 		0380EC3E26704BD800DF4A87 /* helloApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0380EC3D26704BD800DF4A87 /* helloApp.swift */; };
 		0380EC4026704BD800DF4A87 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0380EC3F26704BD800DF4A87 /* ContentView.swift */; };
@@ -21,7 +23,7 @@
 		03D3324C26729238006135BE /* PreferencesStructure.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03D3324B26729238006135BE /* PreferencesStructure.swift */; };
 		03D3324E2672A3EC006135BE /* TopIcons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03D3324D2672A3EC006135BE /* TopIcons.swift */; };
 		03D332502672A412006135BE /* CompanyText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03D3324F2672A412006135BE /* CompanyText.swift */; };
-		03D332532672A4A7006135BE /* Status.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03D332522672A4A7006135BE /* Status.swift */; };
+		03D332532672A4A7006135BE /* PrimaryStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03D332522672A4A7006135BE /* PrimaryStatus.swift */; };
 		03D332582672A69F006135BE /* ProvisioningView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03D332572672A69F006135BE /* ProvisioningView.swift */; };
 		03F00B8D2673AE1E004399FE /* ExitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03F00B8C2673AE1E004399FE /* ExitView.swift */; };
 /* End PBXBuildFile section */
@@ -44,6 +46,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0305DD10267A9FF7000DA4C7 /* SecondaryStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondaryStatus.swift; sourceTree = "<group>"; };
+		0305DD12267AA086000DA4C7 /* Misc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Misc.swift; sourceTree = "<group>"; };
 		036C17BD2674F0AF006461A9 /* _Notes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = _Notes.swift; sourceTree = "<group>"; };
 		0380EC3A26704BD800DF4A87 /* hello.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = hello.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0380EC3D26704BD800DF4A87 /* helloApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = helloApp.swift; sourceTree = "<group>"; };
@@ -63,7 +67,7 @@
 		03D3324B26729238006135BE /* PreferencesStructure.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferencesStructure.swift; sourceTree = "<group>"; };
 		03D3324D2672A3EC006135BE /* TopIcons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopIcons.swift; sourceTree = "<group>"; };
 		03D3324F2672A412006135BE /* CompanyText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompanyText.swift; sourceTree = "<group>"; };
-		03D332522672A4A7006135BE /* Status.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Status.swift; sourceTree = "<group>"; };
+		03D332522672A4A7006135BE /* PrimaryStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrimaryStatus.swift; sourceTree = "<group>"; };
 		03D332572672A69F006135BE /* ProvisioningView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProvisioningView.swift; sourceTree = "<group>"; };
 		03F00B8C2673AE1E004399FE /* ExitView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExitView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -170,7 +174,9 @@
 				03D33243267267E9006135BE /* WelcomeView.swift */,
 				03D332572672A69F006135BE /* ProvisioningView.swift */,
 				03F00B8C2673AE1E004399FE /* ExitView.swift */,
+				03D3324D2672A3EC006135BE /* TopIcons.swift */,
 				03D332562672A67D006135BE /* Provisioning */,
+				0305DD12267AA086000DA4C7 /* Misc.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -178,9 +184,9 @@
 		03D332562672A67D006135BE /* Provisioning */ = {
 			isa = PBXGroup;
 			children = (
-				03D3324D2672A3EC006135BE /* TopIcons.swift */,
 				03D3324F2672A412006135BE /* CompanyText.swift */,
-				03D332522672A4A7006135BE /* Status.swift */,
+				03D332522672A4A7006135BE /* PrimaryStatus.swift */,
+				0305DD10267A9FF7000DA4C7 /* SecondaryStatus.swift */,
 			);
 			path = Provisioning;
 			sourceTree = "<group>";
@@ -320,10 +326,12 @@
 				03D332502672A412006135BE /* CompanyText.swift in Sources */,
 				03D332582672A69F006135BE /* ProvisioningView.swift in Sources */,
 				03D33244267267E9006135BE /* WelcomeView.swift in Sources */,
+				0305DD13267AA086000DA4C7 /* Misc.swift in Sources */,
+				0305DD11267A9FF7000DA4C7 /* SecondaryStatus.swift in Sources */,
 				0380EC4026704BD800DF4A87 /* ContentView.swift in Sources */,
 				0380EC3E26704BD800DF4A87 /* helloApp.swift in Sources */,
 				03D3324926729172006135BE /* Defaults.swift in Sources */,
-				03D332532672A4A7006135BE /* Status.swift in Sources */,
+				03D332532672A4A7006135BE /* PrimaryStatus.swift in Sources */,
 				0380EC662670509C00DF4A87 /* Utils.swift in Sources */,
 				03D3324C26729238006135BE /* PreferencesStructure.swift in Sources */,
 				03F00B8D2673AE1E004399FE /* ExitView.swift in Sources */,
