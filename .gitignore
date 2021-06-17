@@ -93,3 +93,4 @@ iOSInjectionProject/
 outputs/
 build_info.txt
 date_info.txt
+helloPkg/*

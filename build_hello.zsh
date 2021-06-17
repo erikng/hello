@@ -1,6 +1,7 @@
 #!/bin/zsh
 #
 # Build script for Hello
+# ./build_hello.zsh "CREATE_PKG"
 
 # Variables
 SIGNING_IDENTITY="Developer ID Installer: Clever DevOps Co. (9GQZ7KUFR6)"
@@ -12,6 +13,7 @@ BUILDSDIR="$TOOLSDIR/build"
 OUTPUTSDIR="$TOOLSDIR/outputs"
 MP_ZIP="/tmp/munki-pkg.zip"
 XCODE_BUILD_PATH="/Applications/Xcode_13.0.app/Contents/Developer/usr/bin/xcodebuild"
+XCODE_BETA_BUILD_PATH="/Applications/Xcode-beta.app/Contents/Developer/usr/bin/xcodebuild"
 CURRENT_HELLO_MAIN_BUILD_VERSION=$(/usr/libexec/PlistBuddy -c Print:CFBundleVersion $TOOLSDIR/hello/Info.plist)
 DATE=$(/bin/date -u "+%m%d%Y%H%M%S")
 
@@ -28,11 +30,13 @@ ls -la /Applications
 echo "Building hello"
 if [ -e $XCODE_BUILD_PATH ]; then
   XCODE_BUILD="$XCODE_BUILD_PATH"
+elif [ -e $XCODE_BETA_BUILD_PATH ]; then
+  XCODE_BUILD="$XCODE_BETA_BUILD_PATH"
 else
   XCODE_BUILD="xcodebuild"
 fi
 # $XCODE_BUILD -project "$TOOLSDIR/hello.xcodeproj" CODE_SIGN_IDENTITY="Apple Distribution: Clever DevOps Co. (9GQZ7KUFR6)"
-$XCODE_BUILD -project "$TOOLSDIR/hello.xcodeproj"
+$XCODE_BUILD -scheme "hello (Release)" build
 XCB_RESULT="$?"
 if [ "${XCB_RESULT}" != "0" ]; then
     echo "Error running xcodebuild: ${XCB_RESULT}" 1>&2
