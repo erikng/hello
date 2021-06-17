@@ -31,6 +31,7 @@ struct PrimaryStatus: View {
 struct StageRow: View {
     @ObservedObject var settings: HelloHelper
     var installstage: DeviceStage
+    @State var installedPkg = false
     var body: some View {
         HStack {
             // Icon
@@ -62,7 +63,7 @@ struct StageRow: View {
             Spacer()
             
             // Current Stage Status
-            if Utils().pathExists(path: installstage.installedPath) {
+            if Utils().pathExists(path: installstage.installedPath) || PkgInfo(receipt: installstage.installedPath) {
                 Image(systemName: "checkmark.circle.fill")
                     .foregroundColor(.green)
                 Text("Installed")
@@ -114,6 +115,13 @@ struct StageRow: View {
                 }
             }
         }
+    }
+    
+    func PkgInfo(receipt: String) -> Bool {
+        DispatchQueue.main.async {
+            self.installedPkg = Utils().pkgInfo(receipt: receipt)
+        }
+        return self.installedPkg
     }
 }
 
