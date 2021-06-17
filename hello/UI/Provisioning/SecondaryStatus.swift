@@ -74,9 +74,13 @@ struct SecondaryStatus: View {
                 if disableExitScreen {
                     // Normal Quit button
                     Button(action: {
-                        AppKit.NSApp.terminate(nil)
+                        Utils().quit()
                     }) {
-                        Text(quitButtonText)
+                        if restartStyle == "None" {
+                            Text(quitButtonText)
+                        } else {
+                            Text(restartButtonText)
+                        }
                     }
                     .keyboardShortcut(.defaultAction)
                 }

@@ -24,6 +24,8 @@
     "provisioningBodyText": "Your Mac is being automatically configured by your organization. This process may take some time to complete. Please don't attempt to restart or shut down the computer unless you are prompted to do so.",
     "provisioningHeaderText": "Setting up your Mac...",
     "quitButtonText": "Quit",
+    "restartStyle": "Notify",
+    "restartButtonText": "Restart",
     "welcomeButtonText": "Continue",
     "welcomeHeaderText": "Welcome to",
     "welcomeSubHeaderText": "hello",

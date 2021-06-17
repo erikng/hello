@@ -12,10 +12,6 @@ var placeholderColors: [Color] = [
 ]
 
 struct Utils {
-    func pathExists(path: String) -> Bool {
-        FileManager.default.fileExists(atPath: path)
-    }
-    
     func getHelloJSONPreferences() -> HelloPreferences? {
         let url = Utils().getHelloJSONURL()
         
@@ -57,6 +53,32 @@ struct Utils {
 
     func openMoreInfo(url: String) {
         NSWorkspace.shared.open(URL(string: url) ?? URL(string: "https://apple.com")!)
+    }
+    
+    func pathExists(path: String) -> Bool {
+        FileManager.default.fileExists(atPath: path)
+    }
+
+    func quit() {
+        if restartStyle == "None" {
+            AppKit.NSApp.terminate(nil)
+        } else {
+            let task = Process()
+            task.launchPath = "/usr/bin/osascript"
+            if restartStyle == "Notify" {
+                task.arguments = ["-e", "tell app \"loginwindow\" to «event aevtrrst»"]
+            } else if restartStyle == "Immediate" {
+                task.arguments = ["-e", "tell app \"System Events\" to restart"]
+            }
+
+            do {
+                try task.run()
+            } catch {
+                let msg = "Error processing reboot"
+                print(msg)
+            }
+            AppKit.NSApp.terminate(nil)
+        }
     }
     
     func randomPlaceholderColor() -> Color {

@@ -157,16 +157,27 @@ struct ExitBottom: View {
     var body: some View {
         HStack {
             Button(action: {
-                AppKit.NSApp.terminate(nil)
+                Utils().quit()
             }) {
-                Text(quitButtonText)
-                    .foregroundColor(.white)
-                    .font(.headline)
-                    .padding()
-                    .frame(minWidth: 0, maxWidth: 500, alignment: .center)
-                    .background(RoundedRectangle(cornerRadius: 15, style: .continuous)
-                        .fill(Color(NSColor.underPageBackgroundColor)))
-                    .padding(.bottom)
+                if restartStyle == "None" {
+                    Text(quitButtonText)
+                        .foregroundColor(.white)
+                        .font(.headline)
+                        .padding()
+                        .frame(minWidth: 0, maxWidth: 500, alignment: .center)
+                        .background(RoundedRectangle(cornerRadius: 15, style: .continuous)
+                            .fill(Color(NSColor.underPageBackgroundColor)))
+                        .padding(.bottom)
+                } else {
+                    Text(restartButtonText)
+                        .foregroundColor(.white)
+                        .font(.headline)
+                        .padding()
+                        .frame(minWidth: 0, maxWidth: 500, alignment: .center)
+                        .background(RoundedRectangle(cornerRadius: 15, style: .continuous)
+                            .fill(Color(NSColor.underPageBackgroundColor)))
+                        .padding(.bottom)
+                }
             }
             .buttonStyle(.link)
             .keyboardShortcut(.defaultAction)

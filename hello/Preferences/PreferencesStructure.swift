@@ -105,8 +105,8 @@ struct UserExperience: Codable {
     let exitScreenItem1ButtonText, exitScreenItem1DescriptionText, exitScreenItem1ImagePath, exitScreenItem1LaunchURL, exitScreenItem1Title: String?
     let exitScreenItem2ButtonText, exitScreenItem2DescriptionText, exitScreenItem2ImagePath, exitScreenItem2LaunchURL, exitScreenItem2Title: String?
     let exitScreenItem3ButtonText, exitScreenItem3DescriptionText, exitScreenItem3ImagePath, exitScreenItem3LaunchURL, exitScreenItem3Title: String?
-    let exitText, provisioningBodyText, provisioningHeaderText, quitButtonText, welcomeButtonText: String?
-    let welcomeHeaderText, welcomeSubHeaderText: String?
+    let exitText, provisioningBodyText, provisioningHeaderText, quitButtonText, restartButtonText: String?
+    let restartStyle, welcomeButtonText, welcomeHeaderText, welcomeSubHeaderText: String?
     let welcomeScreenItem1DescriptionText, welcomeScreenItem1SymbolName, welcomeScreenItem1Title: String?
     let welcomeScreenItem2DescriptionText, welcomeScreenItem2SymbolName, welcomeScreenItem2Title: String?
     let welcomeScreenItem3DescriptionText, welcomeScreenItem3SymbolName, welcomeScreenItem3Title: String?
@@ -155,6 +155,8 @@ extension UserExperience {
         provisioningBodyText: String?? = nil,
         provisioningHeaderText: String?? = nil,
         quitButtonText: String?? = nil,
+        restartButtonText: String?? = nil,
+        restartStyle: String?? = nil,
         welcomeButtonText: String?? = nil,
         welcomeHeaderText: String?? = nil,
         welcomeSubHeaderText: String?? = nil,
@@ -193,6 +195,8 @@ extension UserExperience {
             provisioningBodyText: provisioningBodyText ?? self.provisioningBodyText,
             provisioningHeaderText: provisioningHeaderText ?? self.provisioningHeaderText,
             quitButtonText: quitButtonText ?? self.quitButtonText,
+            restartButtonText: restartButtonText ?? self.restartButtonText,
+            restartStyle: restartStyle ?? self.restartStyle,
             welcomeButtonText: welcomeButtonText ?? self.welcomeButtonText,
             welcomeHeaderText: welcomeHeaderText ?? self.welcomeHeaderText,
             welcomeSubHeaderText: welcomeSubHeaderText ?? self.welcomeSubHeaderText,
