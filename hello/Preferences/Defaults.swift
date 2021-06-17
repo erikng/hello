@@ -20,6 +20,7 @@ let exitScreenBodyText = userExperienceJSON?.exitScreenBodyText ?? "Your Mac has
 let exitText = userExperienceJSON?.exitText ?? "Setup complete"
 let disableWelcomeScreen = userExperienceJSON?.disableWelcomeScreen ?? false
 let disableExitScreen = userExperienceJSON?.disableExitScreen ?? false
+let enableWelcomeScreenTimer = userExperienceJSON?.enableWelcomeScreenTimer ?? false
 let exitScreenItem1ButtonText = userExperienceJSON?.exitScreenItem1ButtonText ?? ""
 let exitScreenItem1DescriptionText = userExperienceJSON?.exitScreenItem1DescriptionText ?? ""
 let exitScreenItem1ImagePath = userExperienceJSON?.exitScreenItem1ImagePath ?? ""
@@ -52,6 +53,7 @@ let welcomeScreenItem2Title = userExperienceJSON?.welcomeScreenItem2Title ?? "Ap
 let welcomeScreenItem3DescriptionText = userExperienceJSON?.welcomeScreenItem3DescriptionText ?? "By applying security policies, we ensure that your device is fully up to date with the latest updates, all while still valuing your privacy."
 let welcomeScreenItem3SymbolName = userExperienceJSON?.welcomeScreenItem3SymbolName ?? "mappin.circle"
 let welcomeScreenItem3Title = userExperienceJSON?.welcomeScreenItem3Title ?? "Secure"
+let welcomeTimer = userExperienceJSON?.welcomeTimer ?? 60
 
 // deviceStages
 let deviceStages = deviceStagesJSON ?? []

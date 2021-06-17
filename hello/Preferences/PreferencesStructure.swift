@@ -100,7 +100,7 @@ extension DeviceStage {
 // MARK: - UserExperience
 struct UserExperience: Codable {
     let aboutURL, companyLogoPath: String?
-    let disableWelcomeScreen, disableExitScreen: Bool?
+    let disableWelcomeScreen, disableExitScreen, enableWelcomeScreenTimer: Bool?
     let exitScreenBodyText: String?
     let exitScreenItem1ButtonText, exitScreenItem1DescriptionText, exitScreenItem1ImagePath, exitScreenItem1LaunchURL, exitScreenItem1Title: String?
     let exitScreenItem2ButtonText, exitScreenItem2DescriptionText, exitScreenItem2ImagePath, exitScreenItem2LaunchURL, exitScreenItem2Title: String?
@@ -110,6 +110,7 @@ struct UserExperience: Codable {
     let welcomeScreenItem1DescriptionText, welcomeScreenItem1SymbolName, welcomeScreenItem1Title: String?
     let welcomeScreenItem2DescriptionText, welcomeScreenItem2SymbolName, welcomeScreenItem2Title: String?
     let welcomeScreenItem3DescriptionText, welcomeScreenItem3SymbolName, welcomeScreenItem3Title: String?
+    let welcomeTimer: Int?
 }
 
 // MARK: UserExperience convenience initializers and mutators
@@ -135,6 +136,7 @@ extension UserExperience {
         companyLogoPath: String?? = nil,
         disableWelcomeScreen: Bool?? = nil,
         disableExitScreen: Bool?? = nil,
+        enableWelcomeScreenTimer: Bool?? = nil,
         exitScreenBodyText: String?? = nil,
         exitScreenItem1ButtonText: String?? = nil,
         exitScreenItem1DescriptionText: String?? = nil,
@@ -168,13 +170,15 @@ extension UserExperience {
         welcomeScreenItem2Title: String?? = nil,
         welcomeScreenItem3DescriptionText: String?? = nil,
         welcomeScreenItem3SymbolName: String?? = nil,
-        welcomeScreenItem3Title: String?? = nil
+        welcomeScreenItem3Title: String?? = nil,
+        welcomeTimer: Int?? = nil
     ) -> UserExperience {
         return UserExperience(
             aboutURL: aboutURL ?? self.aboutURL,
             companyLogoPath: companyLogoPath ?? self.companyLogoPath,
             disableWelcomeScreen: disableWelcomeScreen ?? self.disableWelcomeScreen,
             disableExitScreen: disableExitScreen ?? self.disableExitScreen,
+            enableWelcomeScreenTimer: enableWelcomeScreenTimer ?? self.enableWelcomeScreenTimer,
             exitScreenBodyText: exitScreenBodyText ?? self.exitScreenBodyText,
             exitScreenItem1ButtonText: exitScreenItem1ButtonText ?? self.exitScreenItem1ButtonText,
             exitScreenItem1DescriptionText: exitScreenItem1DescriptionText ?? self.exitScreenItem1DescriptionText,
@@ -208,7 +212,8 @@ extension UserExperience {
             welcomeScreenItem2Title: welcomeScreenItem2Title ?? self.welcomeScreenItem2Title,
             welcomeScreenItem3DescriptionText: welcomeScreenItem3DescriptionText ?? self.welcomeScreenItem3DescriptionText,
             welcomeScreenItem3SymbolName: welcomeScreenItem3SymbolName ?? self.welcomeScreenItem3SymbolName,
-            welcomeScreenItem3Title: welcomeScreenItem3Title ?? self.welcomeScreenItem3Title
+            welcomeScreenItem3Title: welcomeScreenItem3Title ?? self.welcomeScreenItem3Title,
+            welcomeTimer: welcomeTimer ?? self.welcomeTimer
         )
     }
 

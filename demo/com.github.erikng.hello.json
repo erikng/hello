@@ -4,6 +4,7 @@
     "companyLogoPath": "https://raw.githubusercontent.com/erikng/hello/main/demo/icons/company/hellodemo.png",
     "disableExitScreen": false,
     "disableWelcomeScreen": false,
+    "enableWelcomeScreenTimer": true,
     "exitScreenBodyText": "Your Mac has been successfully configured. Below are a few resources to help you get started.",
     "exitScreenItem1ButtonText": "LAUNCH",
     "exitScreenItem1DescriptionText": "Easily install apps and tools provided by your IT department.",
@@ -37,7 +38,8 @@
     "welcomeScreenItem2Title":"Applications",
     "welcomeScreenItem3DescriptionText": "By applying security policies, we ensure that your device is fully up to date with the latest updates, all while still valuing your privacy.",
     "welcomeScreenItem3SymbolName": "mappin.circle",
-    "welcomeScreenItem3Title":"Secure"
+    "welcomeScreenItem3Title":"Secure",
+    "welcomeTimer": 5
   },
   "deviceStages": [
     {

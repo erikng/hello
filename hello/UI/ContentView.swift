@@ -23,7 +23,16 @@ struct ContentView: View {
                         .transition(.opacity)
                 }
             } else {
-                WelcomeView(settings: settings)
+                if enableWelcomeScreenTimer {
+                    WelcomeView(settings: settings)
+                        .onAppear {
+                            DispatchQueue.main.asyncAfter(deadline: .now() + DispatchTimeInterval.seconds(welcomeTimer)) {
+                                settings.hasClickedwelcomeButtonText = true
+                            }
+                        }
+                } else {
+                    WelcomeView(settings: settings)
+                }
             }
         }
         .frame(width: 900, height: 550)
