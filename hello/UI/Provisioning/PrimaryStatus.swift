@@ -105,8 +105,16 @@ struct StageRow: View {
                         }
                 // Catchall for pending
                 } else {
-                    Image(systemName: "gear.circle.fill")
+                    // Handle Big Sur and Monterey. A little janky.
+                    let gearSymbol: Image? = Image(systemName: "gear.circle.fill")
+                    let questionSymbol: Image? = Image(systemName: "questionmark.square.fill")
+                    if gearSymbol != nil {
+                        gearSymbol
                         .foregroundColor(.secondary)
+                    } else {
+                        questionSymbol
+                        .foregroundColor(.secondary)
+                    }
                     Text("Pending")
                         .frame(width: 75)
                         .onAppear {
