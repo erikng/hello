@@ -95,10 +95,18 @@ struct WelcomeDetails: View {
 
     var body: some View {
         HStack(alignment: .center) {
-            Image(systemName: SymbolName)
-                .font(.largeTitle)
-                .foregroundColor(.primary)
-                .padding()
+            let attemptedSymbol: Image? = Image(systemName: SymbolName)
+            if attemptedSymbol == nil {
+                Image(systemName: "lifepreserver.fill")
+                    .font(.largeTitle)
+                    .foregroundColor(.primary)
+                    .padding()
+            } else {
+                Image(systemName: SymbolName)
+                    .font(.largeTitle)
+                    .foregroundColor(.primary)
+                    .padding()
+            }
 
             VStack(alignment: .leading) {
                 Text(title)

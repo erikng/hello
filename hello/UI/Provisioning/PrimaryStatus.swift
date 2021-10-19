@@ -105,8 +105,13 @@ struct StageRow: View {
                         }
                 // Catchall for pending
                 } else {
-                    Image(systemName: "gear.circle.fill")
-                        .foregroundColor(.secondary)
+                    if #available(macOS 12.0, *) {
+                        Image(systemName: "gear.circle.fill")
+                            .foregroundColor(.secondary)
+                    } else {
+                        Image(systemName: "metronome.fill")
+                            .foregroundColor(.secondary)
+                    }
                     Text("Pending")
                         .frame(width: 75)
                         .onAppear {

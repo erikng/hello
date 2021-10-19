@@ -257,7 +257,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1300;
-				LastUpgradeCheck = 1300;
+				LastUpgradeCheck = 1310;
 				TargetAttributes = {
 					0380EC3926704BD800DF4A87 = {
 						CreatedOnToolsVersion = 13.0;
@@ -503,7 +503,7 @@
 				DEVELOPMENT_ASSET_PATHS = "\"hello/Preview Content\"";
 				DEVELOPMENT_TEAM = U7DN82F4L9;
 				ENABLE_APP_SANDBOX = NO;
-				ENABLE_HARDENED_RUNTIME = NO;
+				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				ENABLE_USER_SELECTED_FILES = readonly;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -539,7 +539,7 @@
 				DEVELOPMENT_ASSET_PATHS = "\"hello/Preview Content\"";
 				DEVELOPMENT_TEAM = U7DN82F4L9;
 				ENABLE_APP_SANDBOX = NO;
-				ENABLE_HARDENED_RUNTIME = NO;
+				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				ENABLE_USER_SELECTED_FILES = readonly;
 				GENERATE_INFOPLIST_FILE = YES;

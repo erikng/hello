@@ -14,12 +14,12 @@ struct SecondaryStatus: View {
         // Secondary Status
         if settings.applicationState.isEmpty {
             HStack {
-                Image(systemName: "circle.dashed.inset.filled")
+                Image(systemName: dynamicOSPreferences.pendingApplicationState)
                     .resizable()
                     .aspectRatio(contentMode: .fit)
                     .scaledToFit()
                     .foregroundColor(.primary)
-                    .frame(width: 30, height: 30)
+                    .frame(width: 15, height: 15)
                     .padding(.leading, 15)
                 Text(welcomeSubHeaderText)
                     .fontWeight(.bold)

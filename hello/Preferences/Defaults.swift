@@ -7,7 +7,24 @@
 
 import Foundation
 
+// Dynamic SF Symbols based on macOS version
+class PrefsWrapper {
+    var welcomeScreenItem1SymbolName: String
+    var pendingApplicationState: String
+    init() {
+        if #available(macOS 12.0, *) {
+            welcomeScreenItem1SymbolName = userExperienceJSON?.welcomeScreenItem1SymbolName ?? "gear.circle"
+            pendingApplicationState = "circle.dashed.inset.filled"
+        } else {
+            welcomeScreenItem1SymbolName = userExperienceJSON?.welcomeScreenItem1SymbolName ?? "gear"
+            pendingApplicationState = "timelapse"
+        }
+        
+    }
+}
+
 let helloDefaults = UserDefaults.standard
+let dynamicOSPreferences = PrefsWrapper.init()
 let helloJSONPreferences = Utils().getHelloJSONPreferences()
 let helloRefreshCycleTimer = Timer.publish(every: Double(2.0), on: .main, in: .common).autoconnect()
 let deviceStagesJSON = getDeviceStagesJSON()
@@ -45,7 +62,8 @@ let welcomeButtonText = userExperienceJSON?.welcomeButtonText ?? "Continue"
 let welcomeHeaderText = userExperienceJSON?.welcomeHeaderText ?? "Welcome to"
 let welcomeSubHeaderText = userExperienceJSON?.welcomeSubHeaderText ?? "hello"
 let welcomeScreenItem1DescriptionText = userExperienceJSON?.welcomeScreenItem1DescriptionText ?? "Multiple settings are being configured, tailored to make your first day exceptional."
-let welcomeScreenItem1SymbolName = userExperienceJSON?.welcomeScreenItem1SymbolName ?? "gear.circle"
+let welcomeScreenItem1SymbolName = dynamicOSPreferences.welcomeScreenItem1SymbolName
+
 let welcomeScreenItem1Title = userExperienceJSON?.welcomeScreenItem1Title ?? "Configurations"
 let welcomeScreenItem2DescriptionText = userExperienceJSON?.welcomeScreenItem2DescriptionText ?? "While Apple has world class applications built in to macOS, we know that some of your favorite business applications still need to be added. Some are installing now, but checkout our self service application for even more."
 let welcomeScreenItem2SymbolName = userExperienceJSON?.welcomeScreenItem2SymbolName ?? "slider.horizontal.below.rectangle"
