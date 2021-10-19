@@ -4,6 +4,7 @@
 # ./build_hello.zsh "CREATE_PKG"
 
 # Variables
+XCODE_PATH="/Applications/Xcode_13.1.app"
 SIGNING_IDENTITY="Developer ID Installer: Clever DevOps Co. (9GQZ7KUFR6)"
 MP_SHA="71c57fcfdf43692adcd41fa7305be08f66bae3e5"
 MP_BINDIR="/tmp/munki-pkg"
@@ -12,8 +13,9 @@ TOOLSDIR=$(dirname $0)
 BUILDSDIR="$TOOLSDIR/build"
 OUTPUTSDIR="$TOOLSDIR/outputs"
 MP_ZIP="/tmp/munki-pkg.zip"
-XCODE_BUILD_PATH="/Applications/Xcode_13.0.app/Contents/Developer/usr/bin/xcodebuild"
-XCODE_BETA_BUILD_PATH="/Applications/Xcode-beta.app/Contents/Developer/usr/bin/xcodebuild"
+XCODE_BUILD_PATH="$XCODE_PATH/Contents/Developer/usr/bin/xcodebuild"
+XCODE_NOTARY_PATH="$XCODE_PATH/Contents/Developer/usr/bin/notarytool"
+XCODE_STAPLER_PATH="$XCODE_PATH/Contents/Developer/usr/bin/stapler"
 CURRENT_HELLO_MAIN_BUILD_VERSION=$(/usr/libexec/PlistBuddy -c Print:CFBundleVersion $TOOLSDIR/hello/Info.plist)
 DATE=$(/bin/date -u "+%m%d%Y%H%M%S")
 
@@ -25,18 +27,20 @@ AUTOMATED_HELLO_BUILD="$CURRENT_HELLO_MAIN_BUILD_VERSION.$DATE"
 # Create files to use for build process info
 echo "$AUTOMATED_HELLO_BUILD" > $TOOLSDIR/build_info.txt
 
+# Ensure Xcode is set to run-time
+sudo xcode-select -s "$XCODE_PATH"
+
 ls -la /Applications
 # build hello
 echo "Building hello"
 if [ -e $XCODE_BUILD_PATH ]; then
   XCODE_BUILD="$XCODE_BUILD_PATH"
-elif [ -e $XCODE_BETA_BUILD_PATH ]; then
-  XCODE_BUILD="$XCODE_BETA_BUILD_PATH"
 else
-  XCODE_BUILD="xcodebuild"
+  ls -la /Applications
+  echo "Could not find required Xcode build. Exiting..."
+  exit 1
 fi
-# $XCODE_BUILD -project "$TOOLSDIR/hello.xcodeproj" CODE_SIGN_IDENTITY="Apple Distribution: Clever DevOps Co. (9GQZ7KUFR6)"
-$XCODE_BUILD -project "$TOOLSDIR/hello.xcodeproj" -scheme "hello (Release)" build -derivedDataPath $BUILDSDIR
+$XCODE_BUILD -project "$TOOLSDIR/hello.xcodeproj" CODE_SIGN_IDENTITY=$CODE_SIGN_IDENTITY OTHER_CODE_SIGN_FLAGS="--timestamp"
 XCB_RESULT="$?"
 if [ "${XCB_RESULT}" != "0" ]; then
     echo "Error running xcodebuild: ${XCB_RESULT}" 1>&2
