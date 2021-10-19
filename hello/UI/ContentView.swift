@@ -13,7 +13,7 @@ struct ContentView: View {
     var body: some View {
         VStack {
             if settings.hasClickedwelcomeButtonText || disableWelcomeScreen {
-                if (settings.applicationState.isEmpty || (settings.applicationState.values.contains("installing") || settings.applicationState.values.contains("pending"))) || disableExitScreen {
+                if ((settings.applicationState.isEmpty && deviceStages.count > 0) || (settings.applicationState.values.contains("installing") || settings.applicationState.values.contains("pending"))) || disableExitScreen {
                     ProvisioningView(settings: settings)
                         .animation(.easeInOut(duration: 1.0))
                         .transition(.opacity)
