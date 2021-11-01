@@ -31,7 +31,7 @@ jobs:
             This is a pre-release version of hello created by GitHub Actions.
             hello.app has not been signed application nor has the package.
 
-            By default hudge looks for a `com.github.erikng.hello.json` file located in `/var/tmp`. If you would like to use an alternative path, look at the code.
+            By default hello looks for a `com.github.erikng.hello.json` file located in `/var/tmp`. If you would like to use an alternative path, look at the code.
         draft: false
         prerelease: true
 
