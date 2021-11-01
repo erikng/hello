@@ -9,7 +9,9 @@ SIGNING_IDENTITY="Developer ID Installer: Clever DevOps Co. (9GQZ7KUFR6)"
 MP_SHA="71c57fcfdf43692adcd41fa7305be08f66bae3e5"
 MP_BINDIR="/tmp/munki-pkg"
 CONSOLEUSER=$(/usr/bin/stat -f "%Su" /dev/console)
-TOOLSDIR=$(pwd)
+TOOLSFULLDIR=$(pwd)
+TOOLSDIR=$(dirname $0)
+BUILDSFULLDIR="$TOOLSFULLDIR/build"
 BUILDSDIR="$TOOLSDIR/build"
 OUTPUTSDIR="$TOOLSDIR/outputs"
 MP_ZIP="/tmp/munki-pkg.zip"
@@ -39,7 +41,7 @@ else
   echo "Could not find required Xcode build. Exiting..."
   exit 1
 fi
-$XCODE_BUILD -scheme "hello (Release)" -project "$TOOLSDIR/hello.xcodeproj" BUILD_DIR=${BUILDSDIR} CODE_SIGN_IDENTITY=$CODE_SIGN_IDENTITY OTHER_CODE_SIGN_FLAGS="--timestamp"
+$XCODE_BUILD -scheme "hello (Release)" -project "$TOOLSDIR/hello.xcodeproj" BUILD_DIR=${BUILDSFULLDIR} CODE_SIGN_IDENTITY=$CODE_SIGN_IDENTITY OTHER_CODE_SIGN_FLAGS="--timestamp"
 XCB_RESULT="$?"
 if [ "${XCB_RESULT}" != "0" ]; then
     echo "Error running xcodebuild: ${XCB_RESULT}" 1>&2
