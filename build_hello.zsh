@@ -30,7 +30,6 @@ echo "$AUTOMATED_HELLO_BUILD" > $TOOLSDIR/build_info.txt
 # Ensure Xcode is set to run-time
 sudo xcode-select -s "$XCODE_PATH"
 
-ls -la /Applications
 # build hello
 echo "Building hello"
 if [ -e $XCODE_BUILD_PATH ]; then
@@ -40,7 +39,7 @@ else
   echo "Could not find required Xcode build. Exiting..."
   exit 1
 fi
-$XCODE_BUILD -scheme "hello (Release)" -project "$TOOLSDIR/hello.xcodeproj" CODE_SIGN_IDENTITY=$CODE_SIGN_IDENTITY OTHER_CODE_SIGN_FLAGS="--timestamp"
+$XCODE_BUILD -scheme "hello (Release)" -project "$TOOLSDIR/hello.xcodeproj" BUILD_DIR=${BUILDSDIR} CODE_SIGN_IDENTITY=$CODE_SIGN_IDENTITY OTHER_CODE_SIGN_FLAGS="--timestamp"
 XCB_RESULT="$?"
 if [ "${XCB_RESULT}" != "0" ]; then
     echo "Error running xcodebuild: ${XCB_RESULT}" 1>&2
@@ -66,7 +65,7 @@ if [ -e $HELLO_PKG_PATH ]; then
 fi
 /bin/mkdir -p "$HELLO_PKG_PATH/payload/Applications/Utilities"
 /usr/bin/sudo /usr/sbin/chown -R ${CONSOLEUSER}:wheel "$HELLO_PKG_PATH"
-/bin/mv "${BUILDSDIR}/Build/Products/Release/hello.app" "$HELLO_PKG_PATH/payload/Applications/Utilities/hello.app"
+/bin/mv "${BUILDSDIR}/Build/Release/hello.app" "$HELLO_PKG_PATH/payload/Applications/Utilities/hello.app"
 
 # Download specific version of munki-pkg
 echo "Downloading munki-pkg tool from github..."
