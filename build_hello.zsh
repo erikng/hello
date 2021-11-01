@@ -40,7 +40,7 @@ else
   echo "Could not find required Xcode build. Exiting..."
   exit 1
 fi
-$XCODE_BUILD -project "$TOOLSDIR/hello.xcodeproj" CODE_SIGN_IDENTITY=$CODE_SIGN_IDENTITY OTHER_CODE_SIGN_FLAGS="--timestamp"
+$XCODE_BUILD -scheme "hello (Release)" -project "$TOOLSDIR/hello.xcodeproj" CODE_SIGN_IDENTITY=$CODE_SIGN_IDENTITY OTHER_CODE_SIGN_FLAGS="--timestamp"
 XCB_RESULT="$?"
 if [ "${XCB_RESULT}" != "0" ]; then
     echo "Error running xcodebuild: ${XCB_RESULT}" 1>&2
