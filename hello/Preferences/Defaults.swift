@@ -33,6 +33,7 @@ let userExperienceJSON = getUserExperienceJSON()
 // userExperience
 let aboutURL = userExperienceJSON?.aboutURL ?? "https://github.com/erikng/hello"
 let companyLogoPath = userExperienceJSON?.companyLogoPath ?? ""
+let companyLogoPath2 = userExperienceJSON?.companyLogoPath2 ?? ""
 let exitScreenBodyText = userExperienceJSON?.exitScreenBodyText ?? "Your Mac has been successfully configured. Below are a few resources to help you get started."
 let exitText = userExperienceJSON?.exitText ?? "Setup complete"
 let disableWelcomeScreen = userExperienceJSON?.disableWelcomeScreen ?? false

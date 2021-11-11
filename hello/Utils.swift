@@ -88,6 +88,35 @@ struct Utils {
 
     }
     
+    func profiles(receipt: String) -> Bool {
+        let task = Process()
+        task.launchPath = "/usr/bin/profiles"
+        task.arguments = ["-C", "|", "/usr/bin/grep", receipt]
+        
+        let outputPipe = Pipe()
+        let errorPipe = Pipe()
+
+        task.standardOutput = outputPipe
+        task.standardError = errorPipe
+
+        do {
+            try task.run()
+        } catch {
+            let msg = "Error processing profiles"
+            print(msg)
+            return false
+        }
+        
+        task.waitUntilExit()
+
+        if task.terminationStatus != 0 {
+            return false
+        } else {
+            return true
+        }
+
+    }
+    
     func quit() {
         if restartStyle == "None" {
             AppKit.NSApp.terminate(nil)

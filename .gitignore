@@ -94,3 +94,4 @@ outputs/
 build_info.txt
 date_info.txt
 helloPkg/*
+hello.xcodeproj/project.pbxproj
