@@ -67,7 +67,7 @@ if [ -e $HELLO_PKG_PATH ]; then
 fi
 /bin/mkdir -p "$HELLO_PKG_PATH/payload/Applications/Utilities"
 /usr/bin/sudo /usr/sbin/chown -R ${CONSOLEUSER}:wheel "$HELLO_PKG_PATH"
-/bin/mv "/Users/runner/work/hello/hello/Build/Release/hello.app" "$HELLO_PKG_PATH/payload/Applications/Utilities/hello.app"
+/bin/mv "$GITHUB_WORKSPACE/Build/Release/hello.app" "$HELLO_PKG_PATH/payload/Applications/Utilities/hello.app"
 
 # Download specific version of munki-pkg
 echo "Downloading munki-pkg tool from github..."
