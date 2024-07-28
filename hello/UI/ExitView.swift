@@ -9,15 +9,14 @@ import SwiftUI
 
 struct ExitView: View {
     @ObservedObject var settings: HelloHelper
+    
     var body: some View {
         VStack(alignment: .center, spacing: 20) {
-            // Icons
             TopIcons(settings: settings)
             ExitTop()
             ExitMiddle()
             Divider()
             ExitBottom()
-            
         }
         .frame(minWidth: 0, maxWidth: 600, alignment: .center)
     }
@@ -26,33 +25,47 @@ struct ExitView: View {
 struct ExitTop: View {
     var body: some View {
         VStack {
-            // Hero exit logo
-            ZStack {
-                ExitTopDetails(font: .title2, imageHeight: 35, imageWidth: 35, xOffset: -65, yOffSet: 0, symbolName: "person.crop.circle.badge.checkmark", zIndex: -2)
-                ExitTopDetails(font: .title, imageHeight: 40, imageWidth: 40, xOffset: -35, yOffSet: -20, symbolName: "tray.full.fill", zIndex: -1)
-                ExitTopDetails(font: .largeTitle, imageHeight: 45, imageWidth: 45, xOffset: 0, yOffSet: 0, symbolName: "checkmark.seal.fill", zIndex: 0)
-                ExitTopDetails(font: .largeTitle, imageHeight: 45, imageWidth: 45, xOffset: 35, yOffSet: -20, symbolName: "link.circle.fill", zIndex: -1)
-                ExitTopDetails(font: .title, imageHeight: 40, imageWidth: 40, xOffset: 65, yOffSet: 0, symbolName: "arrow.down.doc.fill", zIndex: -2)
-                ExitTopDetails(font: .title2, imageHeight: 35, imageWidth: 35, xOffset: 95, yOffSet: -20, symbolName: "folder.fill", zIndex: -3)
-            }
-            
+            HeroExitLogo()
             Text(exitText)
                 .font(.largeTitle)
-            // Body
-            HStack {
-                Text(exitScreenBodyText)
-                    .foregroundColor(.secondary)
-                    .lineLimit(3)
-                    .multilineTextAlignment(.center)
+            Text(exitScreenBodyText)
+                .foregroundColor(.secondary)
+                .lineLimit(3)
+                .multilineTextAlignment(.center)
+                .frame(width: 495, alignment: .leading)
+        }
+    }
+}
+
+struct HeroExitLogo: View {
+    let details = [
+        (font: Font.title2, size: 35, offset: CGPoint(x: -65, y: 0), symbol: "person.crop.circle.badge.checkmark", zIndex: -2),
+        (font: Font.title, size: 40, offset: CGPoint(x: -35, y: -20), symbol: "tray.full.fill", zIndex: -1),
+        (font: Font.largeTitle, size: 45, offset: CGPoint(x: 0, y: 0), symbol: "checkmark.seal.fill", zIndex: 0),
+        (font: Font.largeTitle, size: 45, offset: CGPoint(x: 35, y: -20), symbol: "link.circle.fill", zIndex: -1),
+        (font: Font.title, size: 40, offset: CGPoint(x: 65, y: 0), symbol: "arrow.down.doc.fill", zIndex: -2),
+        (font: Font.title2, size: 35, offset: CGPoint(x: 95, y: -20), symbol: "folder.fill", zIndex: -3)
+    ]
+    
+    var body: some View {
+        ZStack {
+            ForEach(details, id: \.symbol) { detail in
+                ExitTopDetails(
+                    font: detail.font,
+                    size: CGFloat(detail.size),
+                    offset: detail.offset,
+                    symbolName: detail.symbol,
+                    zIndex: Double(detail.zIndex)
+                )
             }
-            .frame(width: 495, alignment: .leading)
         }
     }
 }
 
 struct ExitTopDetails: View {
     var font: Font
-    var imageHeight, imageWidth, xOffset, yOffSet: CGFloat
+    var size: CGFloat
+    var offset: CGPoint
     var symbolName: String
     var zIndex: Double
     
@@ -63,16 +76,16 @@ struct ExitTopDetails: View {
             .padding()
             .background(
                 RoundedRectangle(cornerRadius: 10)
-                    .frame(width: imageWidth, height: imageHeight)
+                    .frame(width: size, height: size)
                     .foregroundColor(Color(NSColor.textBackgroundColor))
             )
             .overlay(
                 RoundedRectangle(cornerRadius: 10)
                     .stroke(Color.blue, lineWidth: 3)
                     .opacity(0.4)
-                    .frame(width: imageWidth, height: imageHeight)
+                    .frame(width: size, height: size)
             )
-            .offset(x: xOffset, y: yOffSet)
+            .offset(x: offset.x, y: offset.y)
             .zIndex(zIndex)
     }
 }
@@ -80,66 +93,57 @@ struct ExitTopDetails: View {
 struct ExitMiddle: View {
     var body: some View {
         HStack(spacing: 20) {
-            if !exitScreenItem1Title.isEmpty {
-                ExitMiddleDetails(buttonText: exitScreenItem1ButtonText, description: exitScreenItem1DescriptionText, imagePath: exitScreenItem1ImagePath, launchURL: exitScreenItem1LaunchURL, title: exitScreenItem1Title)
-            }
-            if !exitScreenItem2Title.isEmpty {
-                ExitMiddleDetails(buttonText: exitScreenItem2ButtonText, description: exitScreenItem2DescriptionText, imagePath: exitScreenItem2ImagePath, launchURL: exitScreenItem2LaunchURL, title: exitScreenItem2Title)
-            }
-            if !exitScreenItem3Title.isEmpty {
-                ExitMiddleDetails(buttonText: exitScreenItem3ButtonText, description: exitScreenItem3DescriptionText, imagePath: exitScreenItem3ImagePath, launchURL: exitScreenItem3LaunchURL, title: exitScreenItem3Title)
+            ForEach(exitScreenItems, id: \.title) { item in
+                ExitMiddleDetails(item: item)
             }
         }
     }
 }
 
 struct ExitMiddleDetails: View {
-    var buttonText: String
-    var description: String
-    var imagePath: String
-    var launchURL: String
-    var title: String
+    var item: ExitScreenItem
     
     var body: some View {
-        HStack(alignment: .top) {
-            VStack(spacing: 7.5) {
-                AsyncImage(url: URL(string: imagePath)) { image in
-                    image.resizable()
-                } placeholder: {
-                    Utils().randomPlaceholderColor()
-                        .opacity(0)
-                }
-                .aspectRatio(contentMode: .fit)
-                .scaledToFit()
-                .frame(width: 40, alignment: .center)
-                Text(title)
-                    .font(.body)
-                    .fontWeight(.bold)
-                Text(description)
-                    .font(.subheadline)
-                    .foregroundColor(.secondary)
-                    .frame(width: 150, alignment: .center)
-                Button(action: {
-                    Utils().openMoreInfo(url:  launchURL)
-                }) {
-                    Text(buttonText)
-                        .foregroundColor(.accentColor)
-                        .font(.headline)
-                        .padding()
-                        .frame(width: 100, height: 25, alignment: .center)
-                        .background(RoundedRectangle(cornerRadius: 15, style: .continuous)
-                            .fill(Color(NSColor.windowBackgroundColor)))
-                        .padding(.bottom)
-                }
-                .buttonStyle(.link)
+        VStack(spacing: 7.5) {
+            AsyncImage(url: URL(string: item.imagePath)) { image in
+                image.resizable()
+            } placeholder: {
+                Utils().randomPlaceholderColor()
+                    .opacity(0)
             }
-            .background(
-                RoundedRectangle(cornerRadius: 10)
-                    .frame(width: 175, height: 175)
-                    .foregroundColor(Color(NSColor.textBackgroundColor)
-                ))
-            .frame(width: 175, height: 175)
+            .aspectRatio(contentMode: .fit)
+            .scaledToFit()
+            .frame(width: 40, alignment: .center)
+            
+            Text(item.title)
+                .font(.body)
+                .fontWeight(.bold)
+            
+            Text(item.description)
+                .font(.subheadline)
+                .foregroundColor(.secondary)
+                .frame(width: 150, alignment: .center)
+            
+            Button(action: {
+                Utils().openMoreInfo(url: item.launchURL)
+            }) {
+                Text(item.buttonText)
+                    .foregroundColor(.accentColor)
+                    .font(.headline)
+                    .padding()
+                    .frame(width: 100, height: 25, alignment: .center)
+                    .background(RoundedRectangle(cornerRadius: 15)
+                        .fill(Color(NSColor.windowBackgroundColor)))
+                    .padding(.bottom)
+            }
+            .buttonStyle(.link)
         }
+        .background(
+            RoundedRectangle(cornerRadius: 10)
+                .frame(width: 175, height: 175)
+                .foregroundColor(Color(NSColor.textBackgroundColor))
+        )
+        .frame(width: 175, height: 175)
     }
 }
 
@@ -149,29 +153,17 @@ struct ExitBottom: View {
             Button(action: {
                 Utils().quit()
             }) {
-                if restartStyle == "None" {
-                    Text(quitButtonText)
-                        .foregroundColor(.white)
-                        .font(.headline)
-                        .padding()
-                        .frame(minWidth: 0, maxWidth: 500, alignment: .center)
-                        .background(RoundedRectangle(cornerRadius: 15, style: .continuous)
-                            .fill(Color(NSColor.underPageBackgroundColor)))
-                        .padding(.bottom)
-                } else {
-                    Text(restartButtonText)
-                        .foregroundColor(.white)
-                        .font(.headline)
-                        .padding()
-                        .frame(minWidth: 0, maxWidth: 500, alignment: .center)
-                        .background(RoundedRectangle(cornerRadius: 15, style: .continuous)
-                            .fill(Color(NSColor.underPageBackgroundColor)))
-                        .padding(.bottom)
-                }
+                Text(restartStyle == "None" ? quitButtonText : restartButtonText)
+                    .foregroundColor(.white)
+                    .font(.headline)
+                    .padding()
+                    .frame(maxWidth: .infinity, alignment: .center)
+                    .background(RoundedRectangle(cornerRadius: 15)
+                        .fill(Color(NSColor.underPageBackgroundColor)))
+                    .padding(.bottom)
             }
             .buttonStyle(.link)
             .keyboardShortcut(.defaultAction)
-            
         }
     }
 }
@@ -180,4 +172,21 @@ struct ExitView_Previews: PreviewProvider {
     static var previews: some View {
         ExitView(settings: HelloHelper())
     }
+}
+
+struct ExitScreenItem {
+    var buttonText: String
+    var description: String
+    var imagePath: String
+    var launchURL: String
+    var title: String
+}
+
+// Computed property for exit screen items
+var exitScreenItems: [ExitScreenItem] {
+    [
+        ExitScreenItem(buttonText: exitScreenItem1ButtonText, description: exitScreenItem1DescriptionText, imagePath: exitScreenItem1ImagePath, launchURL: exitScreenItem1LaunchURL, title: exitScreenItem1Title),
+        ExitScreenItem(buttonText: exitScreenItem2ButtonText, description: exitScreenItem2DescriptionText, imagePath: exitScreenItem2ImagePath, launchURL: exitScreenItem2LaunchURL, title: exitScreenItem2Title),
+        ExitScreenItem(buttonText: exitScreenItem3ButtonText, description: exitScreenItem3DescriptionText, imagePath: exitScreenItem3ImagePath, launchURL: exitScreenItem3LaunchURL, title: exitScreenItem3Title)
+    ].filter { !$0.title.isEmpty }
 }
