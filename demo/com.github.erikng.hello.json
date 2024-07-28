@@ -58,7 +58,7 @@
       "id": 3,
       "title": "Slack",
       "iconPath": "https://raw.githubusercontent.com/erikng/hello/main/demo/icons/apps/Slack.png",
-      "installedPath": "com.tinyspeck.slackmacgap"
+      "installedPath": "/Applications/Slack.app"
     },
     {
       "id": 4,
