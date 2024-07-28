@@ -54,32 +54,40 @@
       "id": 2,
       "title": "SF Symbols",
       "iconPath": "https://raw.githubusercontent.com/erikng/hello/main/demo/icons/apps/SF_Symbols.png",
-      "installedType": "path",
-      "installedValue": "/Applications/SF Symbols.app"
+      "installedType": "CFBundleShortVersionString",
+      "installedValue": "/Applications/SF Symbols beta.app",
+      "installedVersion": "6.0"
     },
     {
       "id": 3,
-      "title": "Slack",
-      "iconPath": "https://raw.githubusercontent.com/erikng/hello/main/demo/icons/apps/Slack.png",
-      "installedType": "path",
-      "installedValue": "/Applications/Slack.1app"
+      "title": "SimpleMDM",
+      "iconPath": "https://gdm-catalog-fmapi-prod.imgix.net/ProductLogo/74995390-c875-4028-aba7-b0dbc2887aae.png?auto=format%2Ccompress&fit=max&w=256&q=75&ch=Width%2CDPR",
+      "installedType": "profile",
+      "installedValue": "com.unwiredmdm.mobileconfig.profile-service"
     },
     {
       "id": 4,
       "title": "Swift Playgrounds",
       "iconPath": "https://raw.githubusercontent.com/erikng/hello/main/demo/icons/apps/Swift_Playgrounds.png",
-      "installedType": "path",
-      "installedValue": "/Applications/Playgrounds.app"
+      "installedType": "pkg-receipt",
+      "installedValue": "com.apple.pkg.Playgrounds"
     },
     {
       "id": 5,
+      "title": "Slack",
+      "iconPath": "https://raw.githubusercontent.com/erikng/hello/main/demo/icons/apps/Slack.png",
+      "installedType": "path",
+      "installedValue": "/Applications/Slack.app"
+    },
+    {
+      "id": 6,
       "title": "Visual Studio Code",
       "iconPath": "https://raw.githubusercontent.com/erikng/hello/main/demo/icons/apps/Visual_Studio_Code.png",
       "installedType": "path",
       "installedValue": "/Applications/Visual Studio Code.app"
     },
     {
-      "id": 6,
+      "id": 7,
       "title": "Xcode",
       "iconPath": "https://raw.githubusercontent.com/erikng/hello/main/demo/icons/apps/Xcode.png",
       "installedType": "path",
