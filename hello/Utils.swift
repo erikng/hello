@@ -77,26 +77,32 @@ struct Utils {
         }
         
         do {
-            let xmlDoc = try XMLDocument(data: data)
-            let nodes = try xmlDoc.nodes(forXPath: "//ProfileIdentifier")
-            
-            for node in nodes {
-                if let identifier = node.stringValue, identifier == profileIdentifier {
-                    return true
+            // Deserialize the plist data
+            if let plist = try PropertyListSerialization.propertyList(from: data, options: [], format: nil) as? [String: Any],
+               let computerLevelArray = plist["_computerlevel"] as? [[String: Any]] {
+                
+                // Iterate through the profiles
+                for profile in computerLevelArray {
+                    if let profileIdentifierFromPlist = profile["ProfileIdentifier"] as? String,
+                       profileIdentifierFromPlist == profileIdentifier {
+                        return true
+                    }
                 }
+            } else {
+                print("Invalid plist format")
             }
         } catch {
-            print("Error parsing XML: \(error)")
+            print("Error parsing plist: \(error)")
         }
         
         return false
     }
 
-    // Check if a CFBundleVersion matches
-    func isCFBundleVersionMatching(path: String, version: String) -> Bool {
+    // Check if a Bundle version matches
+    func isBundleVersionMatching(path: String, type: String, version: String) -> Bool {
         guard let bundle = Bundle(path: path) else { return false }
-        let bundleVersion = bundle.infoDictionary?["CFBundleVersion"] as? String
-        return bundleVersion == version
+        let foundVersion = bundle.infoDictionary?["\(type)"] as? String
+        return foundVersion == version
     }
 
     // Check if an item is installed based on its type
@@ -113,7 +119,13 @@ struct Utils {
                 print("Version is required for CFBundleVersion type")
                 return false
             }
-            return isCFBundleVersionMatching(path: installedValue, version: installedVersion!)
+            return isBundleVersionMatching(path: installedValue, type: installedType, version: installedVersion!)
+        case "CFBundleShortVersionString":
+            guard installedVersion != nil else {
+                print("Version is required for CFBundleVersion type")
+                return false
+            }
+            return isBundleVersionMatching(path: installedValue, type: installedType, version: installedVersion!)
         default:
             return false
         }
