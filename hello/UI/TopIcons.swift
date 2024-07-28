@@ -12,14 +12,14 @@ struct TopIcons: View {
     @ObservedObject var settings: HelloHelper
     var body: some View {
         HStack(alignment: .top) {
-            if companyLogoPath.isEmpty {
+            if companyLogoPath2.isEmpty {
                 Image("HelloIcon")
                     .resizable()
                     .aspectRatio(contentMode: .fit)
                     .scaledToFit()
                     .frame(width: 75, height: 75)
             } else {
-                AsyncImage(url: URL(string: companyLogoPath)) { image in
+                AsyncImage(url: URL(string: companyLogoPath2)) { image in
                     image.resizable()
                 } placeholder: {
                     Utils().randomPlaceholderColor()
