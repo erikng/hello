@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import SDWebImageSwiftUI
 
 // Inspired from https://betterprogramming.pub/creating-an-apple-like-splash-screen-in-swiftui-fdeb36b47e81
 
@@ -46,24 +45,15 @@ struct WelcomeTop: View {
                     .scaledToFit()
                     .frame(width: 150, alignment: .center)
             } else {
-                if #available(macOS 12.0, *) {
-                    AsyncImage(url: URL(string: companyLogoPath)) { image in
-                        image.resizable()
-                    } placeholder: {
-                        Utils().randomPlaceholderColor()
-                            .opacity(0)
-                    }
-                    .aspectRatio(contentMode: .fit)
-                    .scaledToFit()
-                    .frame(width: 150, alignment: .center)
-                } else {
-                    WebImage(url: URL(string: companyLogoPath))
-                            .renderingMode(.original)
-                            .resizable()
-                            .aspectRatio(contentMode: .fit)
-                            .scaledToFit()
-                            .frame(width: 150, alignment: .center)
+                AsyncImage(url: URL(string: companyLogoPath)) { image in
+                    image.resizable()
+                } placeholder: {
+                    Utils().randomPlaceholderColor()
+                        .opacity(0)
                 }
+                .aspectRatio(contentMode: .fit)
+                .scaledToFit()
+                .frame(width: 150, alignment: .center)
             }
 
             Text(welcomeHeaderText)

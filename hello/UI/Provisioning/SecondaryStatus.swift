@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import SDWebImageSwiftUI
 
 struct SecondaryStatus: View {
     @ObservedObject var settings: HelloHelper
@@ -31,26 +30,16 @@ struct SecondaryStatus: View {
             .frame(width: 876)
         } else if settings.applicationState.values.contains("installing") || settings.applicationState.values.contains("pending") {
             HStack {
-                if #available(macOS 12.0, *) {
-                    AsyncImage(url: URL(string: settings.applicationInstallingIconPath)) { image in
-                        image.resizable()
-                    } placeholder: {
-                        Utils().randomPlaceholderColor()
-                            .opacity(0)
-                    }
-                    .aspectRatio(contentMode: .fit)
-                    .scaledToFit()
-                    .frame(width: 30, height: 30)
-                    .padding(.leading, 15)
-                } else {
-                    WebImage(url: URL(string: settings.applicationInstallingIconPath))
-                            .renderingMode(.original)
-                            .resizable()
-                            .aspectRatio(contentMode: .fit)
-                            .scaledToFit()
-                            .frame(width: 30, height: 30)
-                            .padding(.leading, 15)
+                AsyncImage(url: URL(string: settings.applicationInstallingIconPath)) { image in
+                    image.resizable()
+                } placeholder: {
+                    Utils().randomPlaceholderColor()
+                        .opacity(0)
                 }
+                .aspectRatio(contentMode: .fit)
+                .scaledToFit()
+                .frame(width: 30, height: 30)
+                .padding(.leading, 15)
                 Text(settings.applicationInstalling)
                     .fontWeight(.bold)
                 Text("is installing")

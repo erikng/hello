@@ -6,46 +6,28 @@
 //
 
 import SwiftUI
-import SDWebImageSwiftUI
 
 // TopIcons
 struct TopIcons: View {
     @ObservedObject var settings: HelloHelper
     var body: some View {
         HStack(alignment: .top) {
-            if #available(macOS 12.0, *) {
-                if companyLogoPath2.isEmpty {
-                    Image("HelloIcon")
-                        .resizable()
-                        .aspectRatio(contentMode: .fit)
-                        .scaledToFit()
-                        .frame(width: 75, height: 75)
-                } else {
-                    AsyncImage(url: URL(string: companyLogoPath2)) { image in
-                        image.resizable()
-                    } placeholder: {
-                        Utils().randomPlaceholderColor()
-                            .opacity(0)
-                    }
+            if companyLogoPath2.isEmpty {
+                Image("HelloIcon")
+                    .resizable()
                     .aspectRatio(contentMode: .fit)
                     .scaledToFit()
                     .frame(width: 75, height: 75)
-                }
             } else {
-                if companyLogoPath2.isEmpty {
-                    Image("HelloIcon")
-                        .resizable()
-                        .aspectRatio(contentMode: .fit)
-                        .scaledToFit()
-                        .frame(width: 75, height: 75)
-                } else {
-                    WebImage(url: URL(string: companyLogoPath2))
-                            .renderingMode(.original)
-                            .resizable()
-                            .aspectRatio(contentMode: .fit)
-                            .scaledToFit()
-                            .frame(width: 75, height: 75)
+                AsyncImage(url: URL(string: companyLogoPath2)) { image in
+                    image.resizable()
+                } placeholder: {
+                    Utils().randomPlaceholderColor()
+                        .opacity(0)
                 }
+                .aspectRatio(contentMode: .fit)
+                .scaledToFit()
+                .frame(width: 75, height: 75)
             }
             
             Spacer()

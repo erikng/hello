@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		0305DD11267A9FF7000DA4C7 /* SecondaryStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0305DD10267A9FF7000DA4C7 /* SecondaryStatus.swift */; };
 		0305DD13267AA086000DA4C7 /* Misc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0305DD12267AA086000DA4C7 /* Misc.swift */; };
-		0305DD16267AE139000DA4C7 /* SDWebImageSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 0305DD15267AE139000DA4C7 /* SDWebImageSwiftUI */; };
 		036C17BE2674F0AF006461A9 /* _Notes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 036C17BD2674F0AF006461A9 /* _Notes.swift */; };
 		0380EC3E26704BD800DF4A87 /* helloApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0380EC3D26704BD800DF4A87 /* helloApp.swift */; };
 		0380EC4026704BD800DF4A87 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0380EC3F26704BD800DF4A87 /* ContentView.swift */; };
@@ -48,6 +47,7 @@
 /* Begin PBXFileReference section */
 		0305DD10267A9FF7000DA4C7 /* SecondaryStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondaryStatus.swift; sourceTree = "<group>"; };
 		0305DD12267AA086000DA4C7 /* Misc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Misc.swift; sourceTree = "<group>"; };
+		036BFFEA2C56ABF30077D261 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		036C17BD2674F0AF006461A9 /* _Notes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = _Notes.swift; sourceTree = "<group>"; };
 		0380EC3A26704BD800DF4A87 /* hello.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = hello.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0380EC3D26704BD800DF4A87 /* helloApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = helloApp.swift; sourceTree = "<group>"; };
@@ -76,7 +76,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0305DD16267AE139000DA4C7 /* SDWebImageSwiftUI in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -100,6 +99,7 @@
 		0380EC3126704BD800DF4A87 = {
 			isa = PBXGroup;
 			children = (
+				036BFFEA2C56ABF30077D261 /* README.md */,
 				0380EC3C26704BD800DF4A87 /* hello */,
 				0380EC4D26704BD900DF4A87 /* helloTests */,
 				0380EC5726704BD900DF4A87 /* helloUITests */,
@@ -207,7 +207,6 @@
 			);
 			name = hello;
 			packageProductDependencies = (
-				0305DD15267AE139000DA4C7 /* SDWebImageSwiftUI */,
 			);
 			productName = hello;
 			productReference = 0380EC3A26704BD800DF4A87 /* hello.app */;
@@ -257,7 +256,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1300;
-				LastUpgradeCheck = 1310;
+				LastUpgradeCheck = 1600;
 				TargetAttributes = {
 					0380EC3926704BD800DF4A87 = {
 						CreatedOnToolsVersion = 13.0;
@@ -282,7 +281,6 @@
 			);
 			mainGroup = 0380EC3126704BD800DF4A87;
 			packageReferences = (
-				0305DD14267AE138000DA4C7 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */,
 			);
 			productRefGroup = 0380EC3B26704BD800DF4A87 /* Products */;
 			projectDirPath = "";
@@ -379,6 +377,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -409,9 +408,11 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -440,6 +441,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -470,9 +472,11 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -500,6 +504,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"hello/Preview Content\"";
 				DEVELOPMENT_TEAM = U7DN82F4L9;
 				ENABLE_APP_SANDBOX = NO;
@@ -516,8 +521,8 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 11.0;
-				MARKETING_VERSION = 0.0.2;
+				MACOSX_DEPLOYMENT_TARGET = 14.5;
+				MARKETING_VERSION = 0.0.3;
 				PRODUCT_BUNDLE_IDENTIFIER = com.erikng.hello;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -536,6 +541,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"hello/Preview Content\"";
 				DEVELOPMENT_TEAM = U7DN82F4L9;
 				ENABLE_APP_SANDBOX = NO;
@@ -552,8 +558,8 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 11.0;
-				MARKETING_VERSION = 0.0.2;
+				MACOSX_DEPLOYMENT_TARGET = 14.5;
+				MARKETING_VERSION = 0.0.3;
 				PRODUCT_BUNDLE_IDENTIFIER = com.erikng.hello;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -565,11 +571,11 @@
 		0380EC6026704BD900DF4A87 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -589,11 +595,11 @@
 		0380EC6126704BD900DF4A87 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -613,10 +619,10 @@
 		0380EC6326704BD900DF4A87 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -635,10 +641,10 @@
 		0380EC6426704BD900DF4A87 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -694,25 +700,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCRemoteSwiftPackageReference section */
-		0305DD14267AE138000DA4C7 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/SDWebImage/SDWebImageSwiftUI";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 2.0.0;
-			};
-		};
-/* End XCRemoteSwiftPackageReference section */
-
-/* Begin XCSwiftPackageProductDependency section */
-		0305DD15267AE139000DA4C7 /* SDWebImageSwiftUI */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 0305DD14267AE138000DA4C7 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */;
-			productName = SDWebImageSwiftUI;
-		};
-/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 0380EC3226704BD800DF4A87 /* Project object */;
 }

@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import SDWebImageSwiftUI
 
 struct ExitView: View {
     @ObservedObject var settings: HelloHelper
@@ -104,24 +103,15 @@ struct ExitMiddleDetails: View {
     var body: some View {
         HStack(alignment: .top) {
             VStack(spacing: 7.5) {
-                if #available(macOS 12.0, *) {
-                    AsyncImage(url: URL(string: imagePath)) { image in
-                        image.resizable()
-                    } placeholder: {
-                        Utils().randomPlaceholderColor()
-                            .opacity(0)
-                    }
-                    .aspectRatio(contentMode: .fit)
-                    .scaledToFit()
-                    .frame(width: 40, alignment: .center)
-                } else {
-                    WebImage(url: URL(string: imagePath))
-                            .renderingMode(.original)
-                            .resizable()
-                            .aspectRatio(contentMode: .fit)
-                            .scaledToFit()
-                            .frame(width: 40, alignment: .center)
+                AsyncImage(url: URL(string: imagePath)) { image in
+                    image.resizable()
+                } placeholder: {
+                    Utils().randomPlaceholderColor()
+                        .opacity(0)
                 }
+                .aspectRatio(contentMode: .fit)
+                .scaledToFit()
+                .frame(width: 40, alignment: .center)
                 Text(title)
                     .font(.body)
                     .fontWeight(.bold)

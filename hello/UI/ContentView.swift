@@ -15,11 +15,11 @@ struct ContentView: View {
             if settings.hasClickedwelcomeButtonText || disableWelcomeScreen {
                 if ((settings.applicationState.isEmpty && deviceStages.count > 0) || (settings.applicationState.values.contains("installing") || settings.applicationState.values.contains("pending"))) || disableExitScreen {
                     ProvisioningView(settings: settings)
-                        .animation(.easeInOut(duration: 1.0))
+                        .animation(.easeInOut, value: 1.0)
                         .transition(.opacity)
                 } else {
                     ExitView(settings: settings)
-                        .animation(.easeInOut(duration: 1.0))
+                        .animation(.easeInOut, value: 1.0)
                         .transition(.opacity)
                 }
             } else {
@@ -36,8 +36,8 @@ struct ContentView: View {
             }
         }
         .frame(width: 900, height: 550)
-        //.textSelection(.enabled) - macOS 12.0 and higher only
-        //.ignoresSafeArea(.all) - macOS 12.0 and higher only
+        .textSelection(.enabled)
+        .ignoresSafeArea(.all)
         .edgesIgnoringSafeArea(.all)
     }
 }
