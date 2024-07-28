@@ -118,7 +118,7 @@ struct StageRow: View {
     private func checkInstallationStatus() {
         DispatchQueue.main.async {
             installedPkg = Utils().pkgInfo(receipt: installStage.installedPath)
-            installedProfile = Utils().profiles(receipt: installStage.installedPath)
+            installedProfile = Utils().profileExists(profileId: installStage.installedPath)
         }
     }
 }

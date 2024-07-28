@@ -61,8 +61,53 @@ struct Utils {
     }
     
     // Check if a profile exists
-    func profiles(receipt: String) -> Bool {
-        return executeTask("/usr/bin/profiles", ["-C", "|", "/usr/bin/grep", receipt]) == 0
+    func profileExists(profileId: String) -> Bool {
+        let xmlString = getProfilesPlist()
+        
+        guard let data = xmlString.data(using: .utf8) else {
+            print("Error converting XML string to Data")
+            return false
+        }
+        
+        do {
+            let xmlDoc = try XMLDocument(data: data)
+            let nodes = try xmlDoc.nodes(forXPath: "//ProfileIdentifier")
+            
+            for node in nodes {
+                if let identifier = node.stringValue, identifier == profileId {
+                    return true
+                }
+            }
+        } catch {
+            print("Error parsing XML: \(error)")
+        }
+        
+        return false
+    }
+
+    func getProfilesPlist() -> String {
+        let command = "/usr/bin/profiles"
+        let arguments = ["-C", "-o", "stdout-xml"]
+        return executeShellCommand(command, arguments: arguments)
+    }
+
+    func executeShellCommand(_ command: String, arguments: [String]) -> String {
+        let process = Process()
+        process.executableURL = URL(fileURLWithPath: command)
+        process.arguments = arguments
+
+        let pipe = Pipe()
+        process.standardOutput = pipe
+        process.standardError = pipe
+
+        do {
+            try process.run()
+            let data = pipe.fileHandleForReading.readDataToEndOfFile()
+            return String(data: data, encoding: .utf8) ?? ""
+        } catch {
+            print("Error executing command: \(error)")
+            return ""
+        }
     }
     
     // Quit or restart the application based on the restart style
