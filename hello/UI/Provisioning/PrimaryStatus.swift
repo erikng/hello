@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import SDWebImageSwiftUI
 
 // Status
 struct PrimaryStatus: View {
@@ -36,24 +35,15 @@ struct StageRow: View {
         HStack {
             // Icon
             // TODO: Figure out how to refresh AsyncImage if it fails to download the first time
-            if #available(macOS 12.0, *) {
-                AsyncImage(url: URL(string: installstage.iconPath)) { image in
-                    image.resizable()
-                } placeholder: {
-                    Utils().randomPlaceholderColor()
-                        .opacity(0)
-                }
-                .aspectRatio(contentMode: .fit)
-                .scaledToFit()
-                .frame(width: 40, height: 40)
-            } else {
-                WebImage(url: URL(string: installstage.iconPath))
-                        .renderingMode(.original)
-                        .resizable()
-                        .aspectRatio(contentMode: .fit)
-                        .scaledToFit()
-                        .frame(width: 40, height: 40)
+            AsyncImage(url: URL(string: installstage.iconPath)) { image in
+                image.resizable()
+            } placeholder: {
+                Utils().randomPlaceholderColor()
+                    .opacity(0)
             }
+            .aspectRatio(contentMode: .fit)
+            .scaledToFit()
+            .frame(width: 40, height: 40)
 
             // Stage Name
             Text(installstage.title)
@@ -105,13 +95,8 @@ struct StageRow: View {
                         }
                 // Catchall for pending
                 } else {
-                    if #available(macOS 12.0, *) {
-                        Image(systemName: "gear.circle.fill")
-                            .foregroundColor(.secondary)
-                    } else {
-                        Image(systemName: "metronome.fill")
-                            .foregroundColor(.secondary)
-                    }
+                    Image(systemName: "gear.circle.fill")
+                        .foregroundColor(.secondary)
                     Text("Pending")
                         .frame(width: 75)
                         .onAppear {

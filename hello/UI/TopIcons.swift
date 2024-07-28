@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import SDWebImageSwiftUI
 
 // TopIcons
 struct TopIcons: View {
@@ -39,12 +38,15 @@ struct TopIcons: View {
                         .scaledToFit()
                         .frame(width: 75, height: 75)
                 } else {
-                    WebImage(url: URL(string: companyLogoPath))
-                            .renderingMode(.original)
-                            .resizable()
-                            .aspectRatio(contentMode: .fit)
-                            .scaledToFit()
-                            .frame(width: 75, height: 75)
+                    AsyncImage(url: URL(string: companyLogoPath)) { image in
+                        image.resizable()
+                    } placeholder: {
+                        Utils().randomPlaceholderColor()
+                            .opacity(0)
+                    }
+                    .aspectRatio(contentMode: .fit)
+                    .scaledToFit()
+                    .frame(width: 75, height: 75)
                 }
             }
             
