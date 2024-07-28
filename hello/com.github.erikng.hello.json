@@ -5,6 +5,7 @@
     "companyLogoPath2": "https://raw.githubusercontent.com/erikng/hello/main/demo/icons/company/hellodemo.png",
     "disableExitScreen": false,
     "disableWelcomeScreen": false,
+    "enableWelcomeScreenTimer": true,
     "exitScreenBodyText": "Your Mac has been successfully configured. Below are a few resources to help you get started.",
     "exitScreenItem1ButtonText": "LAUNCH",
     "exitScreenItem1DescriptionText": "Easily install apps and tools provided by your IT department.",
@@ -38,44 +39,51 @@
     "welcomeScreenItem2Title":"Applications",
     "welcomeScreenItem3DescriptionText": "By applying security policies, we ensure that your device is fully up to date with the latest updates, all while still valuing your privacy.",
     "welcomeScreenItem3SymbolName": "mappin.circle",
-    "welcomeScreenItem3Title":"Secure"
+    "welcomeScreenItem3Title":"Secure",
+    "welcomeTimer": 5
   },
   "deviceStages": [
     {
       "id": 1,
       "title": "GitHub Desktop",
       "iconPath": "https://raw.githubusercontent.com/erikng/hello/main/demo/icons/apps/GitHub_Desktop.png",
-      "installedPath": "/Applications/GitHub Desktop.app"
+      "installedType": "path",
+      "installedValue": "/Applications/GitHub Desktop.app"
     },
     {
       "id": 2,
       "title": "SF Symbols",
       "iconPath": "https://raw.githubusercontent.com/erikng/hello/main/demo/icons/apps/SF_Symbols.png",
-      "installedPath": "/Applications/SF Symbols.app"
+      "installedType": "path",
+      "installedValue": "/Applications/SF Symbols.app"
     },
     {
       "id": 3,
       "title": "Slack",
       "iconPath": "https://raw.githubusercontent.com/erikng/hello/main/demo/icons/apps/Slack.png",
-      "installedPath": "com.tinyspeck.slackmacgap"
+      "installedType": "path",
+      "installedValue": "/Applications/Slack.1app"
     },
     {
       "id": 4,
       "title": "Swift Playgrounds",
       "iconPath": "https://raw.githubusercontent.com/erikng/hello/main/demo/icons/apps/Swift_Playgrounds.png",
-      "installedPath": "/Applications/Playgrounds.app"
+      "installedType": "path",
+      "installedValue": "/Applications/Playgrounds.app"
     },
     {
       "id": 5,
       "title": "Visual Studio Code",
       "iconPath": "https://raw.githubusercontent.com/erikng/hello/main/demo/icons/apps/Visual_Studio_Code.png",
-      "installedPath": "/Applications/Visual Studio Code.app"
+      "installedType": "path",
+      "installedValue": "/Applications/Visual Studio Code.app"
     },
     {
       "id": 6,
       "title": "Xcode",
       "iconPath": "https://raw.githubusercontent.com/erikng/hello/main/demo/icons/apps/Xcode.png",
-      "installedPath": "/Applications/Xcode.app"
+      "installedType": "path",
+      "installedValue": "/Applications/Xcode.app"
     }
   ]
 }

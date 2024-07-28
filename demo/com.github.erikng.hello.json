@@ -2,6 +2,7 @@
   "userExperience": {
     "aboutURL": "https://github.com/erikng/hello",
     "companyLogoPath": "https://raw.githubusercontent.com/erikng/hello/main/demo/icons/company/hellodemo.png",
+    "companyLogoPath2": "https://raw.githubusercontent.com/erikng/hello/main/demo/icons/company/hellodemo.png",
     "disableExitScreen": false,
     "disableWelcomeScreen": false,
     "enableWelcomeScreenTimer": true,
@@ -46,37 +47,43 @@
       "id": 1,
       "title": "GitHub Desktop",
       "iconPath": "https://raw.githubusercontent.com/erikng/hello/main/demo/icons/apps/GitHub_Desktop.png",
-      "installedPath": "/Applications/GitHub Desktop.app"
+      "installedType": "path",
+      "installedValue": "/Applications/GitHub Desktop.app"
     },
     {
       "id": 2,
       "title": "SF Symbols",
       "iconPath": "https://raw.githubusercontent.com/erikng/hello/main/demo/icons/apps/SF_Symbols.png",
-      "installedPath": "/Applications/SF Symbols.app"
+      "installedType": "path",
+      "installedValue": "/Applications/SF Symbols.app"
     },
     {
       "id": 3,
       "title": "Slack",
       "iconPath": "https://raw.githubusercontent.com/erikng/hello/main/demo/icons/apps/Slack.png",
-      "installedPath": "/Applications/Slack.1app"
+      "installedType": "path",
+      "installedValue": "/Applications/Slack.1app"
     },
     {
       "id": 4,
       "title": "Swift Playgrounds",
       "iconPath": "https://raw.githubusercontent.com/erikng/hello/main/demo/icons/apps/Swift_Playgrounds.png",
-      "installedPath": "/Applications/Playgrounds.app"
+      "installedType": "path",
+      "installedValue": "/Applications/Playgrounds.app"
     },
     {
       "id": 5,
       "title": "Visual Studio Code",
       "iconPath": "https://raw.githubusercontent.com/erikng/hello/main/demo/icons/apps/Visual_Studio_Code.png",
-      "installedPath": "/Applications/Visual Studio Code.app"
+      "installedType": "path",
+      "installedValue": "/Applications/Visual Studio Code.app"
     },
     {
       "id": 6,
       "title": "Xcode",
       "iconPath": "https://raw.githubusercontent.com/erikng/hello/main/demo/icons/apps/Xcode.png",
-      "installedPath": "/Applications/Xcode.app"
+      "installedType": "path",
+      "installedValue": "/Applications/Xcode.app"
     }
   ]
 }

@@ -52,7 +52,8 @@ extension HelloPreferences {
 // MARK: - DeviceStage
 struct DeviceStage: Codable, Identifiable, Hashable {
     let id: Int
-    let title, iconPath, installedPath: String
+    let title, iconPath, installedType, installedValue: String
+    let installedVersion: String?
 }
 
 // MARK: DeviceStage Convenience Initializers and Mutators
@@ -76,9 +77,11 @@ extension DeviceStage {
         id: Int,
         title: String,
         iconPath: String,
-        installedPath: String
+        installedType: String,
+        installedValue: String,
+        installedVersion: String?
     ) -> DeviceStage {
-        DeviceStage(id: id, title: title, iconPath: iconPath, installedPath: installedPath)
+        DeviceStage(id: id, title: title, iconPath: iconPath, installedType: installedType, installedValue: installedValue, installedVersion: installedVersion ?? "")
     }
 
     func jsonData() throws -> Data {

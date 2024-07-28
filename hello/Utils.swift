@@ -51,17 +51,24 @@ struct Utils {
     }
     
     // Check if a file path exists
-    func pathExists(path: String) -> Bool {
-        FileManager.default.fileExists(atPath: path)
+    func pathExists(_ path: String) -> Bool {
+        return FileManager.default.fileExists(atPath: path)
     }
 
-    // Check if a package receipt exists
-    func pkgInfo(receipt: String) -> Bool {
-        return executeTask("/usr/sbin/pkgutil", ["--pkg-info", receipt]) == 0
+    func isPkgInstalled(_ pkgReceipt: String) -> Bool {
+        // Implement the logic to check if the package is installed
+        let task = Process()
+        task.launchPath = "/usr/sbin/pkgutil"
+        task.arguments = ["--pkg-info", pkgReceipt]
+        let pipe = Pipe()
+        task.standardOutput = pipe
+        task.launch()
+        task.waitUntilExit()
+        let output = String(data: pipe.fileHandleForReading.readDataToEndOfFile(), encoding: .utf8) ?? ""
+        return !output.isEmpty
     }
-    
-    // Check if a profile exists
-    func profileExists(profileId: String) -> Bool {
+
+    func isProfileInstalled(_ profileIdentifier: String) -> Bool {
         let xmlString = getProfilesPlist()
         
         guard let data = xmlString.data(using: .utf8) else {
@@ -74,7 +81,7 @@ struct Utils {
             let nodes = try xmlDoc.nodes(forXPath: "//ProfileIdentifier")
             
             for node in nodes {
-                if let identifier = node.stringValue, identifier == profileId {
+                if let identifier = node.stringValue, identifier == profileIdentifier {
                     return true
                 }
             }
@@ -83,6 +90,33 @@ struct Utils {
         }
         
         return false
+    }
+
+    // Check if a CFBundleVersion matches
+    func isCFBundleVersionMatching(path: String, version: String) -> Bool {
+        guard let bundle = Bundle(path: path) else { return false }
+        let bundleVersion = bundle.infoDictionary?["CFBundleVersion"] as? String
+        return bundleVersion == version
+    }
+
+    // Check if an item is installed based on its type
+    func isItemInstalled(installedType: String, installedValue: String, installedVersion: String? = nil) -> Bool {
+        switch installedType {
+        case "path":
+            return pathExists(installedValue)
+        case "profile":
+            return isProfileInstalled(installedValue)
+        case "pkg-receipt":
+            return isPkgInstalled(installedValue)
+        case "CFBundleVersion":
+            guard installedVersion != nil else {
+                print("Version is required for CFBundleVersion type")
+                return false
+            }
+            return isCFBundleVersionMatching(path: installedValue, version: installedVersion!)
+        default:
+            return false
+        }
     }
 
     func getProfilesPlist() -> String {

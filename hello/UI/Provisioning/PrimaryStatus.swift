@@ -57,7 +57,7 @@ struct StageRow: View {
     
     private var currentStageStatus: some View {
         Group {
-            if Utils().pathExists(path: installStage.installedPath) || installedPkg || installedProfile {
+            if Utils().isItemInstalled(installedType: installStage.installedType, installedValue: installStage.installedValue, installedVersion: installStage.installedVersion) {
                 statusView(image: "checkmark.circle.fill", text: "Installed", color: .green)
                     .onAppear {
                         settings.applicationState[installStage.id] = "installed"
@@ -117,8 +117,7 @@ struct StageRow: View {
     
     private func checkInstallationStatus() {
         DispatchQueue.main.async {
-            installedPkg = Utils().pkgInfo(receipt: installStage.installedPath)
-            installedProfile = Utils().profileExists(profileId: installStage.installedPath)
+            _ = Utils().isItemInstalled(installedType: installStage.installedType, installedValue: installStage.installedValue, installedVersion: installStage.installedVersion)
         }
     }
 }
