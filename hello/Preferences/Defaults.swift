@@ -76,7 +76,7 @@ func getUserExperienceValue<T>(_ keyPath: KeyPath<UserExperience, T?>, defaultVa
 let helloDefaults = UserDefaults.standard
 let dynamicOSPreferences = PrefsWrapper()
 let helloJSONPreferences = Utils().getHelloJSONPreferences()
-let helloRefreshCycleTimer = Timer.publish(every: 2.0, on: .main, in: .common).autoconnect()
+let helloRefreshCycleTimer = Timer.publish(every: 5.0, on: .main, in: .common).autoconnect()
 let deviceStagesJSON = getDeviceStagesJSON()
 let userExperienceJSON = getUserExperienceJSON()
 
