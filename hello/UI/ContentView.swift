@@ -15,11 +15,11 @@ struct ContentView: View {
             if settings.hasClickedwelcomeButtonText || disableWelcomeScreen {
                 if ((settings.applicationState.isEmpty && deviceStages.count > 0) || (settings.applicationState.values.contains("installing") || settings.applicationState.values.contains("pending"))) || disableExitScreen {
                     ProvisioningView(settings: settings)
-                        .animation(.easeInOut(duration: 1.0))
+                        .animation(.easeInOut, value: 1.0)
                         .transition(.opacity)
                 } else {
                     ExitView(settings: settings)
-                        .animation(.easeInOut(duration: 1.0))
+                        .animation(.easeInOut, value: 1.0)
                         .transition(.opacity)
                 }
             } else {
