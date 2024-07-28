@@ -17,93 +17,82 @@ struct WelcomeView: View {
             WelcomeTop()
                 .padding(.top, 35)
             WelcomeMiddle()
-            Button(action: {
-                settings.hasClickedwelcomeButtonText = true
-            }) {
-                Text(welcomeButtonText)
-                    .foregroundColor(.white)
-                    .font(.headline)
-                    .padding()
-                    .frame(minWidth: 0, maxWidth: .infinity, alignment: .center)
-                    .background(RoundedRectangle(cornerRadius: 15, style: .continuous)
-                        .fill(Color.blue))
-                    .padding(.bottom)
-            }
-            .buttonStyle(.link)
+            welcomeButton
         }
         .frame(minWidth: 0, maxWidth: 600, alignment: .center)
+    }
+    
+    private var welcomeButton: some View {
+        Button(action: {
+            settings.hasClickedwelcomeButtonText = true
+        }) {
+            Text(welcomeButtonText)
+                .foregroundColor(.white)
+                .font(.headline)
+                .padding()
+                .frame(minWidth: 0, maxWidth: .infinity, alignment: .center)
+                .background(RoundedRectangle(cornerRadius: 15, style: .continuous).fill(Color.blue))
+                .padding(.bottom)
+        }
+        .buttonStyle(.link)
     }
 }
 
 struct WelcomeTop: View {
     var body: some View {
         VStack {
-            if companyLogoPath.isEmpty {
-                Image("HelloIcon")
-                    .resizable()
-                    .aspectRatio(contentMode: .fit)
-                    .scaledToFit()
-                    .frame(width: 150, alignment: .center)
-            } else {
-                AsyncImage(url: URL(string: companyLogoPath)) { image in
-                    image.resizable()
-                } placeholder: {
-                    Utils().randomPlaceholderColor()
-                        .opacity(0)
-                }
-                .aspectRatio(contentMode: .fit)
-                .scaledToFit()
+            companyLogo
                 .frame(width: 150, alignment: .center)
-            }
-
             Text(welcomeHeaderText)
                 .font(.largeTitle)
-
             Text(welcomeSubHeaderText)
                 .font(.largeTitle)
                 .foregroundColor(.secondary)
         }
+    }
+    
+    private var companyLogo: some View {
+        Group {
+            if companyLogoPath.isEmpty {
+                Image("HelloIcon")
+                    .resizable()
+            } else {
+                AsyncImage(url: URL(string: companyLogoPath)) { image in
+                    image.resizable()
+                } placeholder: {
+                    Utils().randomPlaceholderColor().opacity(0)
+                }
+            }
+        }
+        .aspectRatio(contentMode: .fit)
+        .scaledToFit()
     }
 }
 
 struct WelcomeMiddle: View {
     var body: some View {
         VStack(alignment: .leading) {
-            WelcomeDetails(title: welcomeScreenItem1Title, description: welcomeScreenItem1DescriptionText, SymbolName: welcomeScreenItem1SymbolName)
-
-            WelcomeDetails(title: welcomeScreenItem2Title, description: welcomeScreenItem2DescriptionText, SymbolName: welcomeScreenItem2SymbolName)
-
-            WelcomeDetails(title: welcomeScreenItem3Title, description: welcomeScreenItem3DescriptionText, SymbolName: welcomeScreenItem3SymbolName)
+            ForEach(welcomeScreenItems, id: \.title) { item in
+                WelcomeDetails(item: item)
+            }
         }
     }
 }
 
 struct WelcomeDetails: View {
-    var title: String
-    var description: String
-    var SymbolName: String
-
+    var item: WelcomeScreenItem2
+    
     var body: some View {
         HStack(alignment: .center) {
-            let attemptedSymbol: Image? = Image(systemName: SymbolName)
-            if attemptedSymbol == nil {
-                Image(systemName: "lifepreserver.fill")
-                    .font(.largeTitle)
-                    .foregroundColor(.primary)
-                    .padding()
-            } else {
-                Image(systemName: SymbolName)
-                    .font(.largeTitle)
-                    .foregroundColor(.primary)
-                    .padding()
-            }
-
+            Image(systemName: item.symbolName)
+                .font(.largeTitle)
+                .foregroundColor(.primary)
+                .padding()
             VStack(alignment: .leading) {
-                Text(title)
+                Text(item.title)
                     .font(.headline)
                     .foregroundColor(.primary)
-
-                Text(description)
+                Text(item.description)
                     .font(.body)
                     .foregroundColor(.secondary)
                     .fixedSize(horizontal: false, vertical: true)
@@ -119,3 +108,16 @@ struct WelcomeView_Previews: PreviewProvider {
     }
 }
 #endif
+
+struct WelcomeScreenItem2 {
+    var title: String
+    var description: String
+    var symbolName: String
+}
+
+// Dummy data (you can replace this with actual data fetching)
+let welcomeScreenItems = [
+    WelcomeScreenItem2(title: welcomeScreenItem1Title, description: welcomeScreenItem1DescriptionText, symbolName: welcomeScreenItem1SymbolName),
+    WelcomeScreenItem2(title: welcomeScreenItem2Title, description: welcomeScreenItem2DescriptionText, symbolName: welcomeScreenItem2SymbolName),
+    WelcomeScreenItem2(title: welcomeScreenItem3Title, description: welcomeScreenItem3DescriptionText, symbolName: welcomeScreenItem3SymbolName)
+]

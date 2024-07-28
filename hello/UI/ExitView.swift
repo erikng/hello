@@ -101,7 +101,7 @@ struct ExitMiddle: View {
 }
 
 struct ExitMiddleDetails: View {
-    var item: ExitScreenItem
+    var item: ExitScreenItem2
     
     var body: some View {
         VStack(spacing: 7.5) {
@@ -174,7 +174,7 @@ struct ExitView_Previews: PreviewProvider {
     }
 }
 
-struct ExitScreenItem {
+struct ExitScreenItem2 {
     var buttonText: String
     var description: String
     var imagePath: String
@@ -183,10 +183,10 @@ struct ExitScreenItem {
 }
 
 // Computed property for exit screen items
-var exitScreenItems: [ExitScreenItem] {
+var exitScreenItems: [ExitScreenItem2] {
     [
-        ExitScreenItem(buttonText: exitScreenItem1ButtonText, description: exitScreenItem1DescriptionText, imagePath: exitScreenItem1ImagePath, launchURL: exitScreenItem1LaunchURL, title: exitScreenItem1Title),
-        ExitScreenItem(buttonText: exitScreenItem2ButtonText, description: exitScreenItem2DescriptionText, imagePath: exitScreenItem2ImagePath, launchURL: exitScreenItem2LaunchURL, title: exitScreenItem2Title),
-        ExitScreenItem(buttonText: exitScreenItem3ButtonText, description: exitScreenItem3DescriptionText, imagePath: exitScreenItem3ImagePath, launchURL: exitScreenItem3LaunchURL, title: exitScreenItem3Title)
+        ExitScreenItem2(buttonText: exitScreenItem1ButtonText, description: exitScreenItem1DescriptionText, imagePath: exitScreenItem1ImagePath, launchURL: exitScreenItem1LaunchURL, title: exitScreenItem1Title),
+        ExitScreenItem2(buttonText: exitScreenItem2ButtonText, description: exitScreenItem2DescriptionText, imagePath: exitScreenItem2ImagePath, launchURL: exitScreenItem2LaunchURL, title: exitScreenItem2Title),
+        ExitScreenItem2(buttonText: exitScreenItem3ButtonText, description: exitScreenItem3DescriptionText, imagePath: exitScreenItem3ImagePath, launchURL: exitScreenItem3LaunchURL, title: exitScreenItem3Title)
     ].filter { !$0.title.isEmpty }
 }

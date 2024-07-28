@@ -7,139 +7,118 @@
 
 import SwiftUI
 
-var placeholderColors: [Color] = [
-    .red, .blue, .orange, .purple, .yellow, .green, .pink
-]
+// Define a set of placeholder colors
+let placeholderColors: [Color] = [.red, .blue, .orange, .purple, .yellow, .green, .pink]
 
 struct Utils {
+    
+    // Fetch and decode HelloPreferences from JSON
     func getHelloJSONPreferences() -> HelloPreferences? {
-        let url = Utils().getHelloJSONURL()
+        let url = getHelloJSONURL()
         
-        if url.contains("https://") || url.contains("http://") {
-            if let json_url = URL(string: url) {
-                if let data = try? Data(contentsOf: json_url) {
-                    do {
-                        let decodedData = try HelloPreferences(data: data)
-                        return decodedData
-                    } catch {
-                        return nil
-                    }
-                }
-            }
+        guard let url = URL(string: url) else { return nil }
+        
+        let data: Data?
+        if url.scheme == "http" || url.scheme == "https" {
+            data = try? Data(contentsOf: url)
+        } else {
+            data = FileManager.default.fileExists(atPath: url.path) ? try? Data(contentsOf: url) : nil
         }
         
-        guard let fileURL = URL(string: url) else {
+        guard let jsonData = data else { return nil }
+        
+        do {
+            return try HelloPreferences(data: jsonData)
+        } catch {
+            print("Failed to decode HelloPreferences: \(error)")
             return nil
         }
-        
-        if FileManager.default.fileExists(atPath: fileURL.path) {
-            do {
-                let content = try Data(contentsOf: fileURL)
-                let decodedData = try HelloPreferences(data: content)
-                return decodedData
-                
-            } catch _ {
-                return nil
-            }
-        }
-
-        return nil
-        
     }
     
+    // Retrieve the JSON URL from UserDefaults
     func getHelloJSONURL() -> String {
         return helloDefaults.string(forKey: "json-url") ?? "file:///var/tmp/com.github.erikng.Hello.json"
     }
 
+    // Open a URL in the default web browser
     func openMoreInfo(url: String) {
-        NSWorkspace.shared.open(URL(string: url) ?? URL(string: "https://apple.com")!)
+        guard let validURL = URL(string: url) else {
+            guard let fallbackURL = URL(string: "https://apple.com") else { return }
+            NSWorkspace.shared.open(fallbackURL)
+            return
+        }
+        NSWorkspace.shared.open(validURL)
     }
     
+    // Check if a file path exists
     func pathExists(path: String) -> Bool {
         FileManager.default.fileExists(atPath: path)
     }
 
+    // Check if a package receipt exists
     func pkgInfo(receipt: String) -> Bool {
-        let task = Process()
-        task.launchPath = "/usr/sbin/pkgutil"
-        task.arguments = ["--pkg-info", receipt]
-        
-        let outputPipe = Pipe()
-        let errorPipe = Pipe()
-
-        task.standardOutput = outputPipe
-        task.standardError = errorPipe
-
-        do {
-            try task.run()
-        } catch {
-            let msg = "Error processing pkgutil"
-            print(msg)
-            return false
-        }
-        
-        task.waitUntilExit()
-
-        if task.terminationStatus != 0 {
-            return false
-        } else {
-            return true
-        }
-
+        return executeTask("/usr/sbin/pkgutil", ["--pkg-info", receipt]) == 0
     }
     
+    // Check if a profile exists
     func profiles(receipt: String) -> Bool {
-        let task = Process()
-        task.launchPath = "/usr/bin/profiles"
-        task.arguments = ["-C", "|", "/usr/bin/grep", receipt]
-        
-        let outputPipe = Pipe()
-        let errorPipe = Pipe()
-
-        task.standardOutput = outputPipe
-        task.standardError = errorPipe
-
-        do {
-            try task.run()
-        } catch {
-            let msg = "Error processing profiles"
-            print(msg)
-            return false
-        }
-        
-        task.waitUntilExit()
-
-        if task.terminationStatus != 0 {
-            return false
-        } else {
-            return true
-        }
-
+        return executeTask("/usr/bin/profiles", ["-C", "|", "/usr/bin/grep", receipt]) == 0
     }
     
+    // Quit or restart the application based on the restart style
     func quit() {
         if restartStyle == "None" {
             AppKit.NSApp.terminate(nil)
         } else {
+            let script: String
+            switch restartStyle {
+            case "Notify":
+                script = "tell app \"loginwindow\" to «event aevtrrst»"
+            case "Immediate":
+                script = "tell app \"System Events\" to restart"
+            default:
+                script = ""
+            }
+            
             let task = Process()
             task.launchPath = "/usr/bin/osascript"
-            if restartStyle == "Notify" {
-                task.arguments = ["-e", "tell app \"loginwindow\" to «event aevtrrst»"]
-            } else if restartStyle == "Immediate" {
-                task.arguments = ["-e", "tell app \"System Events\" to restart"]
-            }
-
+            task.arguments = ["-e", script]
+            
             do {
                 try task.run()
             } catch {
-                let msg = "Error processing reboot"
-                print(msg)
+                print("Error processing reboot: \(error)")
             }
+            
             AppKit.NSApp.terminate(nil)
         }
     }
     
+    // Return a random placeholder color
     func randomPlaceholderColor() -> Color {
-      placeholderColors.randomElement()!
+        placeholderColors.randomElement() ?? .gray
+    }
+    
+    // Helper function to execute a shell command and return its exit status
+    private func executeTask(_ launchPath: String, _ arguments: [String]) -> Int32 {
+        let task = Process()
+        task.launchPath = launchPath
+        task.arguments = arguments
+        
+        let outputPipe = Pipe()
+        let errorPipe = Pipe()
+        
+        task.standardOutput = outputPipe
+        task.standardError = errorPipe
+        
+        do {
+            try task.run()
+        } catch {
+            print("Error executing task: \(error)")
+            return -1
+        }
+        
+        task.waitUntilExit()
+        return task.terminationStatus
     }
 }

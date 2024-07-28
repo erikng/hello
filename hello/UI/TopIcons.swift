@@ -7,32 +7,31 @@
 
 import SwiftUI
 
-// TopIcons
 struct TopIcons: View {
     @ObservedObject var settings: HelloHelper
-    var body: some View {
-        HStack(alignment: .top) {
+    
+    var companyLogoImage: some View {
+        Group {
             if companyLogoPath2.isEmpty {
                 Image("HelloIcon")
                     .resizable()
-                    .aspectRatio(contentMode: .fit)
-                    .scaledToFit()
-                    .frame(width: 75, height: 75)
             } else {
                 AsyncImage(url: URL(string: companyLogoPath2)) { image in
                     image.resizable()
                 } placeholder: {
-                    Utils().randomPlaceholderColor()
-                        .opacity(0)
+                    Utils().randomPlaceholderColor().opacity(0)
                 }
-                .aspectRatio(contentMode: .fit)
-                .scaledToFit()
-                .frame(width: 75, height: 75)
             }
-            
+        }
+        .aspectRatio(contentMode: .fit)
+        .scaledToFit()
+        .frame(width: 75, height: 75)
+    }
+    
+    var body: some View {
+        HStack(alignment: .top) {
+            companyLogoImage
             Spacer()
-            
-            // More Info
             Button {
                 Utils().openMoreInfo(url: aboutURL)
             } label: {

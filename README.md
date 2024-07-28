@@ -23,3 +23,6 @@ macOS Sonoma 14.5 and higher
 #### Dark
 <img src="/assets/demo_dark_3.png" width=75% height=75%>
 <img src="/assets/demo_dark_4.png" width=75% height=75%>
+
+### Notes on inspiration
+- https://stackoverflow.com/questions/67304592/how-to-reliably-retrieve-a-windows-background-color-on-macos-with-swiftui

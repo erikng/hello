@@ -13,40 +13,39 @@ struct HelloPreferences: Codable {
     let deviceStages: [DeviceStage]?
 }
 
-// MARK: HelloPreferences convenience initializers and mutators
-
+// MARK: HelloPreferences Convenience Initializers and Mutators
 extension HelloPreferences {
     init(data: Data) throws {
         self = try newJSONDecoder().decode(HelloPreferences.self, from: data)
     }
 
-    init(_ json: String, using encoding: String.Encoding = .utf8) throws {
+    init(json: String, encoding: String.Encoding = .utf8) throws {
         guard let data = json.data(using: encoding) else {
-            throw NSError(domain: "JSONDecoding", code: 0, userInfo: nil)
+            throw NSError(domain: "JSONDecoding", code: 0, userInfo: [NSLocalizedDescriptionKey: "Invalid JSON string encoding"])
         }
         try self.init(data: data)
     }
 
     init(fromURL url: URL) throws {
-        try self.init(data: try Data(contentsOf: url))
+        try self.init(data: Data(contentsOf: url))
     }
 
     func with(
-        userExperience: UserExperience?? = nil,
-        deviceStages: [DeviceStage]?? = nil
+        userExperience: UserExperience? = nil,
+        deviceStages: [DeviceStage]? = nil
     ) -> HelloPreferences {
-        return HelloPreferences(
+        HelloPreferences(
             userExperience: userExperience ?? self.userExperience,
             deviceStages: deviceStages ?? self.deviceStages
         )
     }
 
     func jsonData() throws -> Data {
-        return try newJSONEncoder().encode(self)
+        try newJSONEncoder().encode(self)
     }
 
     func jsonString(encoding: String.Encoding = .utf8) throws -> String? {
-        return String(data: try self.jsonData(), encoding: encoding)
+        String(data: try self.jsonData(), encoding: encoding)
     }
 }
 
@@ -56,22 +55,21 @@ struct DeviceStage: Codable, Identifiable, Hashable {
     let title, iconPath, installedPath: String
 }
 
-// MARK: DeviceStage convenience initializers and mutators
-
+// MARK: DeviceStage Convenience Initializers and Mutators
 extension DeviceStage {
     init(data: Data) throws {
         self = try newJSONDecoder().decode(DeviceStage.self, from: data)
     }
 
-    init(_ json: String, using encoding: String.Encoding = .utf8) throws {
+    init(json: String, encoding: String.Encoding = .utf8) throws {
         guard let data = json.data(using: encoding) else {
-            throw NSError(domain: "JSONDecoding", code: 0, userInfo: nil)
+            throw NSError(domain: "JSONDecoding", code: 0, userInfo: [NSLocalizedDescriptionKey: "Invalid JSON string encoding"])
         }
         try self.init(data: data)
     }
 
     init(fromURL url: URL) throws {
-        try self.init(data: try Data(contentsOf: url))
+        try self.init(data: Data(contentsOf: url))
     }
 
     func with(
@@ -80,38 +78,70 @@ extension DeviceStage {
         iconPath: String,
         installedPath: String
     ) -> DeviceStage {
-        return DeviceStage(
-            id: id,
-            title: title,
-            iconPath: iconPath,
-            installedPath: installedPath
-        )
+        DeviceStage(id: id, title: title, iconPath: iconPath, installedPath: installedPath)
     }
 
     func jsonData() throws -> Data {
-        return try newJSONEncoder().encode(self)
+        try newJSONEncoder().encode(self)
     }
 
     func jsonString(encoding: String.Encoding = .utf8) throws -> String? {
-        return String(data: try self.jsonData(), encoding: encoding)
+        String(data: try self.jsonData(), encoding: encoding)
     }
 }
 
 // MARK: - UserExperience
 struct UserExperience: Codable {
-    let aboutURL, companyLogoPath: String?
-    let companyLogoPath2: String?
-    let disableWelcomeScreen, disableExitScreen, enableWelcomeScreenTimer: Bool?
-    let exitScreenBodyText: String?
-    let exitScreenItem1ButtonText, exitScreenItem1DescriptionText, exitScreenItem1ImagePath, exitScreenItem1LaunchURL, exitScreenItem1Title: String?
-    let exitScreenItem2ButtonText, exitScreenItem2DescriptionText, exitScreenItem2ImagePath, exitScreenItem2LaunchURL, exitScreenItem2Title: String?
-    let exitScreenItem3ButtonText, exitScreenItem3DescriptionText, exitScreenItem3ImagePath, exitScreenItem3LaunchURL, exitScreenItem3Title: String?
-    let exitText, provisioningBodyText, provisioningHeaderText, quitButtonText, restartButtonText: String?
-    let restartStyle, welcomeButtonText, welcomeHeaderText, welcomeSubHeaderText: String?
-    let welcomeScreenItem1DescriptionText, welcomeScreenItem1SymbolName, welcomeScreenItem1Title: String?
-    let welcomeScreenItem2DescriptionText, welcomeScreenItem2SymbolName, welcomeScreenItem2Title: String?
-    let welcomeScreenItem3DescriptionText, welcomeScreenItem3SymbolName, welcomeScreenItem3Title: String?
-    let welcomeTimer: Int?
+    // Exit Screen Items
+    var exitScreenItem1ButtonText: String?
+    var exitScreenItem1DescriptionText: String?
+    var exitScreenItem1ImagePath: String?
+    var exitScreenItem1LaunchURL: String?
+    var exitScreenItem1Title: String?
+    
+    var exitScreenItem2ButtonText: String?
+    var exitScreenItem2DescriptionText: String?
+    var exitScreenItem2ImagePath: String?
+    var exitScreenItem2LaunchURL: String?
+    var exitScreenItem2Title: String?
+    
+    var exitScreenItem3ButtonText: String?
+    var exitScreenItem3DescriptionText: String?
+    var exitScreenItem3ImagePath: String?
+    var exitScreenItem3LaunchURL: String?
+    var exitScreenItem3Title: String?
+    
+    // Welcome Screen Items
+    var welcomeScreenItem1DescriptionText: String?
+    var welcomeScreenItem1SymbolName: String?
+    var welcomeScreenItem1Title: String?
+    
+    var welcomeScreenItem2DescriptionText: String?
+    var welcomeScreenItem2SymbolName: String?
+    var welcomeScreenItem2Title: String?
+    
+    var welcomeScreenItem3DescriptionText: String?
+    var welcomeScreenItem3SymbolName: String?
+    var welcomeScreenItem3Title: String?
+    
+    // Other parameters
+    var aboutURL: String?
+    var companyLogoPath: String?
+    var companyLogoPath2: String?
+    var exitScreenBodyText: String?
+    var exitText: String?
+    var disableWelcomeScreen: Bool?
+    var disableExitScreen: Bool?
+    var enableWelcomeScreenTimer: Bool?
+    var provisioningBodyText: String?
+    var provisioningHeaderText: String?
+    var quitButtonText: String?
+    var restartButtonText: String?
+    var restartStyle: String?
+    var welcomeButtonText: String?
+    var welcomeHeaderText: String?
+    var welcomeSubHeaderText: String?
+    var welcomeTimer: Int?
 }
 
 // MARK: UserExperience convenience initializers and mutators
@@ -133,13 +163,6 @@ extension UserExperience {
     }
 
     func with(
-        aboutURL: String?? = nil,
-        companyLogoPath: String?? = nil,
-        companyLogoPath2: String?? = nil,
-        disableWelcomeScreen: Bool?? = nil,
-        disableExitScreen: Bool?? = nil,
-        enableWelcomeScreenTimer: Bool?? = nil,
-        exitScreenBodyText: String?? = nil,
         exitScreenItem1ButtonText: String?? = nil,
         exitScreenItem1DescriptionText: String?? = nil,
         exitScreenItem1ImagePath: String?? = nil,
@@ -155,15 +178,6 @@ extension UserExperience {
         exitScreenItem3ImagePath: String?? = nil,
         exitScreenItem3LaunchURL: String?? = nil,
         exitScreenItem3Title: String?? = nil,
-        exitText: String?? = nil,
-        provisioningBodyText: String?? = nil,
-        provisioningHeaderText: String?? = nil,
-        quitButtonText: String?? = nil,
-        restartButtonText: String?? = nil,
-        restartStyle: String?? = nil,
-        welcomeButtonText: String?? = nil,
-        welcomeHeaderText: String?? = nil,
-        welcomeSubHeaderText: String?? = nil,
         welcomeScreenItem1DescriptionText: String?? = nil,
         welcomeScreenItem1SymbolName: String?? = nil,
         welcomeScreenItem1Title: String?? = nil,
@@ -173,16 +187,25 @@ extension UserExperience {
         welcomeScreenItem3DescriptionText: String?? = nil,
         welcomeScreenItem3SymbolName: String?? = nil,
         welcomeScreenItem3Title: String?? = nil,
+        aboutURL: String?? = nil,
+        companyLogoPath: String?? = nil,
+        companyLogoPath2: String?? = nil,
+        exitScreenBodyText: String?? = nil,
+        exitText: String?? = nil,
+        disableWelcomeScreen: Bool?? = nil,
+        disableExitScreen: Bool?? = nil,
+        enableWelcomeScreenTimer: Bool?? = nil,
+        provisioningBodyText: String?? = nil,
+        provisioningHeaderText: String?? = nil,
+        quitButtonText: String?? = nil,
+        restartButtonText: String?? = nil,
+        restartStyle: String?? = nil,
+        welcomeButtonText: String?? = nil,
+        welcomeHeaderText: String?? = nil,
+        welcomeSubHeaderText: String?? = nil,
         welcomeTimer: Int?? = nil
     ) -> UserExperience {
         return UserExperience(
-            aboutURL: aboutURL ?? self.aboutURL,
-            companyLogoPath: companyLogoPath ?? self.companyLogoPath,
-            companyLogoPath2: companyLogoPath2 ?? self.companyLogoPath2,
-            disableWelcomeScreen: disableWelcomeScreen ?? self.disableWelcomeScreen,
-            disableExitScreen: disableExitScreen ?? self.disableExitScreen,
-            enableWelcomeScreenTimer: enableWelcomeScreenTimer ?? self.enableWelcomeScreenTimer,
-            exitScreenBodyText: exitScreenBodyText ?? self.exitScreenBodyText,
             exitScreenItem1ButtonText: exitScreenItem1ButtonText ?? self.exitScreenItem1ButtonText,
             exitScreenItem1DescriptionText: exitScreenItem1DescriptionText ?? self.exitScreenItem1DescriptionText,
             exitScreenItem1ImagePath: exitScreenItem1ImagePath ?? self.exitScreenItem1ImagePath,
@@ -198,15 +221,6 @@ extension UserExperience {
             exitScreenItem3ImagePath: exitScreenItem3ImagePath ?? self.exitScreenItem3ImagePath,
             exitScreenItem3LaunchURL: exitScreenItem3LaunchURL ?? self.exitScreenItem3LaunchURL,
             exitScreenItem3Title: exitScreenItem3Title ?? self.exitScreenItem3Title,
-            exitText: exitText ?? self.exitText,
-            provisioningBodyText: provisioningBodyText ?? self.provisioningBodyText,
-            provisioningHeaderText: provisioningHeaderText ?? self.provisioningHeaderText,
-            quitButtonText: quitButtonText ?? self.quitButtonText,
-            restartButtonText: restartButtonText ?? self.restartButtonText,
-            restartStyle: restartStyle ?? self.restartStyle,
-            welcomeButtonText: welcomeButtonText ?? self.welcomeButtonText,
-            welcomeHeaderText: welcomeHeaderText ?? self.welcomeHeaderText,
-            welcomeSubHeaderText: welcomeSubHeaderText ?? self.welcomeSubHeaderText,
             welcomeScreenItem1DescriptionText: welcomeScreenItem1DescriptionText ?? self.welcomeScreenItem1DescriptionText,
             welcomeScreenItem1SymbolName: welcomeScreenItem1SymbolName ?? self.welcomeScreenItem1SymbolName,
             welcomeScreenItem1Title: welcomeScreenItem1Title ?? self.welcomeScreenItem1Title,
@@ -216,6 +230,22 @@ extension UserExperience {
             welcomeScreenItem3DescriptionText: welcomeScreenItem3DescriptionText ?? self.welcomeScreenItem3DescriptionText,
             welcomeScreenItem3SymbolName: welcomeScreenItem3SymbolName ?? self.welcomeScreenItem3SymbolName,
             welcomeScreenItem3Title: welcomeScreenItem3Title ?? self.welcomeScreenItem3Title,
+            aboutURL: aboutURL ?? self.aboutURL,
+            companyLogoPath: companyLogoPath ?? self.companyLogoPath,
+            companyLogoPath2: companyLogoPath2 ?? self.companyLogoPath2,
+            exitScreenBodyText: exitScreenBodyText ?? self.exitScreenBodyText,
+            exitText: exitText ?? self.exitText,
+            disableWelcomeScreen: disableWelcomeScreen ?? self.disableWelcomeScreen,
+            disableExitScreen: disableExitScreen ?? self.disableExitScreen,
+            enableWelcomeScreenTimer: enableWelcomeScreenTimer ?? self.enableWelcomeScreenTimer,
+            provisioningBodyText: provisioningBodyText ?? self.provisioningBodyText,
+            provisioningHeaderText: provisioningHeaderText ?? self.provisioningHeaderText,
+            quitButtonText: quitButtonText ?? self.quitButtonText,
+            restartButtonText: restartButtonText ?? self.restartButtonText,
+            restartStyle: restartStyle ?? self.restartStyle,
+            welcomeButtonText: welcomeButtonText ?? self.welcomeButtonText,
+            welcomeHeaderText: welcomeHeaderText ?? self.welcomeHeaderText,
+            welcomeSubHeaderText: welcomeSubHeaderText ?? self.welcomeSubHeaderText,
             welcomeTimer: welcomeTimer ?? self.welcomeTimer
         )
     }
@@ -228,6 +258,17 @@ extension UserExperience {
         return String(data: try self.jsonData(), encoding: encoding)
     }
 }
+
+// MARK: - ExitScreenItem
+struct ExitScreenItem: Codable {
+    let buttonText, descriptionText, imagePath, launchURL, title: String?
+}
+
+// MARK: - WelcomeScreenItem
+struct WelcomeScreenItem: Codable {
+    let descriptionText, symbolName, title: String?
+}
+
 
 // MARK: - Helper functions for creating encoders and decoders
 

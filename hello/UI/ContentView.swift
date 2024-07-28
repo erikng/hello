@@ -7,13 +7,13 @@
 
 import SwiftUI
 
-// ContentView
 struct ContentView: View {
     @ObservedObject var settings: HelloHelper
+    
     var body: some View {
         VStack {
             if settings.hasClickedwelcomeButtonText || disableWelcomeScreen {
-                if ((settings.applicationState.isEmpty && deviceStages.count > 0) || (settings.applicationState.values.contains("installing") || settings.applicationState.values.contains("pending"))) || disableExitScreen {
+                if shouldShowProvisioningView {
                     ProvisioningView(settings: settings)
                         .animation(.easeInOut, value: 1.0)
                         .transition(.opacity)
@@ -40,6 +40,21 @@ struct ContentView: View {
         .ignoresSafeArea(.all)
         .edgesIgnoringSafeArea(.all)
     }
+    
+    private var shouldShowProvisioningView: Bool {
+        !settings.allStagesInstalled || disableExitScreen
+    }
+    
+    private var welcomeView: some View {
+        WelcomeView(settings: settings)
+            .onAppear {
+                if enableWelcomeScreenTimer {
+                    DispatchQueue.main.asyncAfter(deadline: .now() + DispatchTimeInterval.seconds(welcomeTimer)) {
+                        settings.hasClickedwelcomeButtonText = true
+                    }
+                }
+            }
+    }
 }
 
 #if DEBUG
@@ -49,3 +64,4 @@ struct ContentView_Previews: PreviewProvider {
     }
 }
 #endif
+

@@ -9,9 +9,22 @@ import SwiftUI
 
 struct SecondaryStatus: View {
     @ObservedObject var settings: HelloHelper
+    
     var body: some View {
-        // Secondary Status
-        if settings.applicationState.isEmpty {
+        VStack {
+            if settings.applicationState.isEmpty {
+                InitializingView()
+            } else if settings.applicationState.values.contains("installing") || settings.applicationState.values.contains("pending") {
+                InstallingView(settings: settings)
+            } else {
+                CompletedView(settings: settings)
+            }
+        }
+        .frame(width: 876)
+    }
+    
+    private struct InitializingView: View {
+        var body: some View {
             HStack {
                 Image(systemName: dynamicOSPreferences.pendingApplicationState)
                     .resizable()
@@ -27,8 +40,13 @@ struct SecondaryStatus: View {
                     .padding(.leading, -5)
                 Spacer()
             }
-            .frame(width: 876)
-        } else if settings.applicationState.values.contains("installing") || settings.applicationState.values.contains("pending") {
+        }
+    }
+    
+    private struct InstallingView: View {
+        @ObservedObject var settings: HelloHelper
+        
+        var body: some View {
             HStack {
                 AsyncImage(url: URL(string: settings.applicationInstallingIconPath)) { image in
                     image.resizable()
@@ -47,8 +65,13 @@ struct SecondaryStatus: View {
                     .padding(.leading, -5)
                 Spacer()
             }
-            .frame(width: 876)
-        } else {
+        }
+    }
+    
+    private struct CompletedView: View {
+        @ObservedObject var settings: HelloHelper
+        
+        var body: some View {
             HStack {
                 Image(systemName: "checkmark.circle.fill")
                     .resizable()
@@ -61,21 +84,24 @@ struct SecondaryStatus: View {
                     .fontWeight(.bold)
                 Spacer()
                 if disableExitScreen {
-                    // Normal Quit button
-                    Button(action: {
-                        Utils().quit()
-                    }) {
-                        if restartStyle == "None" {
-                            Text(quitButtonText)
-                        } else {
-                            Text(restartButtonText)
-                        }
-                    }
-                    .keyboardShortcut(.defaultAction)
+                    QuitButton()
                 }
-
             }
-            .frame(width: 876)
+        }
+        
+        private struct QuitButton: View {
+            var body: some View {
+                Button(action: {
+                    Utils().quit()
+                }) {
+                    if restartStyle == "None" {
+                        Text(quitButtonText)
+                    } else {
+                        Text(restartButtonText)
+                    }
+                }
+                .keyboardShortcut(.defaultAction)
+            }
         }
     }
 }

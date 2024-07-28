@@ -7,28 +7,33 @@
 
 import SwiftUI
 
-// Company Text
 struct CompanyText: View {
     var body: some View {
         VStack(spacing: 5) {
-            // Header
-            HStack {
-                Spacer()
-                Text(provisioningHeaderText)
-                    .foregroundColor(.primary)
-                    .font(.title)
-                    .fontWeight(.medium)
-                Spacer()
-            }
-            // Body
-            HStack {
-                Text(provisioningBodyText)
-                    .foregroundColor(.secondary)
-                    .lineLimit(3)
-                    .multilineTextAlignment(.center)
-            }
-            .frame(width: 495, alignment: .leading)
+            header
+            bodyText
         }
+    }
+    
+    private var header: some View {
+        HStack {
+            Spacer()
+            Text(provisioningHeaderText)
+                .foregroundColor(.primary)
+                .font(.title)
+                .fontWeight(.medium)
+            Spacer()
+        }
+    }
+    
+    private var bodyText: some View {
+        HStack {
+            Text(provisioningBodyText)
+                .foregroundColor(.secondary)
+                .lineLimit(3)
+                .multilineTextAlignment(.center)
+        }
+        .frame(width: 495, alignment: .leading)
     }
 }
 
@@ -39,3 +44,4 @@ struct CompanyText_Previews: PreviewProvider {
     }
 }
 #endif
+

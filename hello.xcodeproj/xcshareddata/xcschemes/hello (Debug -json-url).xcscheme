@@ -72,7 +72,7 @@
       </BuildableProductRunnable>
       <CommandLineArguments>
          <CommandLineArgument
-            argument = "-json-url &quot;https://raw.githubusercontent.com/erikng/hello/main/demo/com.github.erikng.hello.json&quot;"
+            argument = "-json-url &quot;file:///Users/Erik/Documents/GitHub/hello/demo/com.github.erikng.hello.json&quot;"
             isEnabled = "YES">
          </CommandLineArgument>
       </CommandLineArguments>
