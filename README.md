@@ -10,7 +10,7 @@ hello is application onboarding macOS devices.
 DO NOT USE THIS IN PRODUCTION! IT IS NOT READY AND MAY NEVER BE READY!
 
 ## OS support
-macOS Big Sur 11.0 and higher
+macOS Sonoma 14.5 and higher
 
 # Examples of the User Interface
 
