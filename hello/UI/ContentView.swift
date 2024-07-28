@@ -36,8 +36,8 @@ struct ContentView: View {
             }
         }
         .frame(width: 900, height: 550)
-        //.textSelection(.enabled) - macOS 12.0 and higher only
-        //.ignoresSafeArea(.all) - macOS 12.0 and higher only
+        .textSelection(.enabled)
+        .ignoresSafeArea(.all)
         .edgesIgnoringSafeArea(.all)
     }
 }

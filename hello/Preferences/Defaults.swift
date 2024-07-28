@@ -12,13 +12,8 @@ class PrefsWrapper {
     var welcomeScreenItem1SymbolName: String
     var pendingApplicationState: String
     init() {
-        if #available(macOS 12.0, *) {
-            welcomeScreenItem1SymbolName = userExperienceJSON?.welcomeScreenItem1SymbolName ?? "gear.circle"
-            pendingApplicationState = "circle.dashed.inset.filled"
-        } else {
-            welcomeScreenItem1SymbolName = userExperienceJSON?.welcomeScreenItem1SymbolName ?? "gear"
-            pendingApplicationState = "timelapse"
-        }
+        welcomeScreenItem1SymbolName = userExperienceJSON?.welcomeScreenItem1SymbolName ?? "gear.circle"
+        pendingApplicationState = "circle.dashed.inset.filled"
         
     }
 }
